@@ -1,0 +1,39 @@
+public class ScoreMain {
+	public static void main(String[] args) {
+		java.util.Scanner input = new java.util.Scanner(System.in);
+		
+		int kor = 0, eng = 0, math = 0, total = 0;
+		char grade;
+		float avg = 0.0f;
+		
+		do {
+			System.out.print("국어 : ");
+			kor = input.nextInt();
+		}while(kor < 0 || kor > 100);
+		do {
+			System.out.print("영어 : ");
+			eng = input.nextInt();
+		}while(eng < 0 || eng > 100);
+		do {
+			System.out.print("수학 : ");
+			math = input.nextInt();
+		}while(math < 0 || math > 100);
+		total= kor+eng+math;
+		avg= total/ 3.0f;
+		
+		switch((int)(avg/10)) {
+		case 10 :
+		case 9 : grade = 'A'; break;
+		case 8 : grade = 'B'; break;
+		case 7 : grade = 'C'; break;
+		case 6 : grade = 'D'; break;
+		default: grade = 'F'; break;
+		}
+		System.out.printf("==당신의 성적==%n국어 : %d 영어 : %d 수학 %d%n"
+				+ "총점 : %d%n평균 : %.2f%n등급 : %c",kor,eng,math,total,avg,grade);
+		
+		input.close();
+		
+	}
+
+}
