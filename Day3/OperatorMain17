@@ -1,0 +1,23 @@
+
+public class OperatorMain17 {
+
+	public static void main(String[] args) {
+		System.out.println("====비트연산자====");
+		//정수 타입만 비트 연산 가능
+		byte a = 12;// 0 1 1 0 0
+		byte b = 20;// 1 0 1 0 0
+		
+		
+		byte c = (byte)(a&b);//AND
+		System.out.println("a & b = " + c);	//0 0 1 0 0
+		
+		c = (byte)(a|b);//OR
+		System.out.println("a | b = " + c);	//1 1 1 0 0
+		
+		c = (byte)(a^b);//XOR
+		System.out.println("a ^ b = " + c);	//1 1 0 0 0
+		
+
+	}
+
+}
