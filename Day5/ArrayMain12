@@ -1,0 +1,29 @@
+public class ArrayMain12 {
+	public static void main(String[] args) {
+		//2차원 배열을 이용한 성적처리
+		int[][] score = {{95,45,87},
+				{90,92,91},
+				{88,77,96},
+				{91,90,70},
+				{69,89,96}};
+		System.out.println("번호\t국어\t영어\t수학\t총점\t평균");
+		System.out.println("---------------------------------------------");
+		
+		for(int i=0; i<score.length; i++) {
+			int sum=0;
+			System.out.print(" "+(i+1)+"\t");
+			for(int j=0; j<score[i].length; j++) {
+				sum+=score[i][j];
+				System.out.print(score[i][j]+"\t");
+				
+			}
+			System.out.print(sum+"\t"+sum/score[i].length);
+			System.out.println("");
+			//총점과 평균출력
+			
+			
+		}
+		
+	}
+
+}
