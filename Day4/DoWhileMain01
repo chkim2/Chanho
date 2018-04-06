@@ -1,0 +1,18 @@
+
+public class DoWhileMain01 {
+
+	public static void main(String[] args) {
+		int su = 0;
+		String str = "We are the world";
+		while(su++ <5){
+			System.out.println(str);
+		}
+
+		System.out.println("---------------");
+		su=0;
+		do {
+			System.out.println(str);
+		}while(su++ <5);	//세미콜론 생략시 오류
+	}
+
+}
