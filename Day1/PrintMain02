@@ -1,0 +1,46 @@
+public class PrintMain02 {
+	public static void main(String[] args) {
+		//실습
+		/*
+		 아래와 같이 출력하려ㅗ 출련문을 작성했지만
+		 최종적으로 특기와 취미는 주석처리하시오.
+		 컴퓨터 공학과
+		 =========
+		 이름 : 강호동
+		 학번 : 20180301
+		 특기 : 게임
+		 취미 : 축구
+		 */
+		System.out.println("컴퓨터 공학과");
+		System.out.println("============");
+		System.out.println("이름 : 강호동");
+		System.out.println("학번 : 20180301");
+		//System.out.println("특기 : 게임");
+		//System.out.println("취미 : 축구");
+		int mul=1;
+		for(int i=1; i<=10; i++){
+		    if(i%2==0)  
+		         mul*=i;
+		}
+		System.out.println("1부터 10까지 짝수의 곱 : " + mul);
+		System.out.println("1부터 10까지 짝수의 곱 : " + mul);	
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+				int a[] = new int[3];
+				int min = 100;
+				for(int i=0; i<a.length; i++){
+				     System.out.print("정수 입력 : ");
+				     a[i]=scan.nextInt(); 
+				     
+				     if(min>a[i])
+				         min=a[i];
+				}
+				System.out.print("입력한 수 : ");
+				for(int i=0; i<a.length; i++){
+				    System.out.print(a[i]+" ");
+				}
+				System.out.println("");
+				System.out.println("세 개의 정수 중에서 가장 작은 값 : "+min);
+				scan.close();
+	}
+
+}
