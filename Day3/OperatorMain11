@@ -1,0 +1,16 @@
+public class OperatorMain11 {
+	public static void main(String[] args) {
+		System.out.println("===조건(삼항)연산자===");
+		
+		int x = 10;
+		int y = -10;
+		
+		//조건연산자
+		int absX = x>=0 ? x : -x; // 조건 ? 참값 : 거짓값 - 조건이 맞으면 참값 출력 틀리면 거짓값
+		int absY = y>=0 ? y : -y;
+		System.out.printf("x= %d일 때, x의 절대값은 : %d%n",x,absX);
+		System.out.printf("y= %d일 때, x의 절대값은 : %d%n ",y,absY);
+
+	}
+
+}
