@@ -1,0 +1,31 @@
+
+public class SwitchMain02 {
+
+	public static void main(String[] args) {
+		char b= 65;
+		
+		switch(b) {//char -> int(아스키 코드)
+		case 'A':
+			System.out.println("A출력");
+			break;
+		case 'B':
+			System.out.println("B출력");
+			break;
+		case 'C':
+				System.out.println("C출력");
+				break;	
+		default :
+			System.out.println("A,B,C가 아닌 문자출력");
+		}
+		System.out.println("----------------");
+		char g = '라';
+		switch(g) {//char->int(유니코드)
+		case '가' : System.out.println("가 출력"); break;
+		case '나' : System.out.println("나 출력"); break;
+		case '다' : System.out.println("다 출력"); break;
+		case '라' : System.out.println("라 출력"); break;
+		default : System.out.println("가,나,다,라 이 외 출력");
+		}
+	}
+
+}
