@@ -1,0 +1,39 @@
+package com.d03.instance;
+class Worker{
+	//멤버 변수
+	String name;
+	int money;//일해서 번 돈
+	int balance;//저축한 금액
+	//멤버 메서드
+	//일하기
+	public void work() {
+		money+=1000;
+	}
+	//저축하기
+	public void depoite() {
+		balance += money;
+		money = 0;
+	}
+}
+public class WorkerMain {
+	public static void main(String[] args) {
+		//객체 선언및 생성;
+		Worker worker = new Worker();
+		//이름지정
+		worker.name ="김하늘";
+		
+		//10번 일하는데 번돈이 3000원일 때마다 저축
+		for(int i=1; i<=10; i++) {
+			worker.work();
+			if(worker.money==3000)
+				worker.depoite();
+		}
+		//직원이름, 현재 입금되지 않은 급여, 통장의 잔고
+		System.out.println("직원 이름 : "+worker.name);
+		System.out.printf("현재 입금되지 않은 급여 : %,d원%n",worker.money);
+		System.out.printf("통장의 잔고 : %,d원%n",worker.balance);
+		
+
+	}
+
+}
