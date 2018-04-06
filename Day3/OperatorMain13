@@ -1,0 +1,20 @@
+public class OperatorMain13 {
+	public static void main(String[] args) {
+		//
+		System.out.println("====조건연산자====");
+		
+		char ch = 'A';
+		String s;
+		
+		//대문자 여부 체크
+		//조건? 참 :거짓
+		s = ch >= 65 && ch<=90 ? "대문자 임": "대문자가 아님";
+		
+		System.out.println(s);
+		
+				
+		
+
+	}
+
+}
