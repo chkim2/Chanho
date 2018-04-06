@@ -1,0 +1,12 @@
+public class BreakMain01 {
+	public static void main(String[] args) {
+		int n = 1;//초기값
+		while(n<=10) {//조건식
+			System.out.println(n);
+			n++;//증감식
+			//n이 8일 경우 while문을 빠져나감
+			if(n==8) break;
+		}
+	}
+
+}
