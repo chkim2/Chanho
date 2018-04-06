@@ -1,0 +1,23 @@
+package com.d01.instance;
+public class Student {
+	//멤버 필드
+	String name;
+	int age;
+	
+	public static void main(String[] args) {
+		//객체 선언 및 생성
+		//자료형 참조변수		    생성자
+		Student student = new Student();
+		
+		System.out.println(student);
+		System.out.println(student.name);
+		System.out.println(student.age);
+		
+		student.name = "강동원";
+		student.age = 30;
+		System.out.println("------------");
+		System.out.println(student.name);
+		System.out.println(student.age);
+		
+	}
+}
