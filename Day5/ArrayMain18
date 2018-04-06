@@ -1,0 +1,11 @@
+public class ArrayMain18 {		//배열
+ public static void main(String[] args) {
+	 //문자열 배열
+	 String[] str= {"java","Oracle","JSP"};
+	//반복문을 이용한 출력
+	 for(int i=0; i<str.length; i ++) {
+		 System.out.println(str[i]);
+		 
+	 	}
+ 	}
+}
