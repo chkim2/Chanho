@@ -1,0 +1,28 @@
+package com.d03.instance;
+public class InstanceMain02 {
+	//멤버필드(변수,상수)
+	int  var1;//멤버 변수
+	final int NUM =10;//멤버 상수 (상수을 만들때  final를 꼭넣어야함 안넣으면 변수가됨
+
+	//생성자,기본적으로 생략
+	//public InstanceMain02() {} 
+
+	//멤버 메서드
+	public int sum(int a, int b) {
+		return  a + b;
+
+	}
+
+	public static void main(String[] args) {
+		//객체 선언,생성
+		InstanceMain02 me= new InstanceMain02();
+		//멤버 필드 호출
+		me.var1 = 100;
+		//상수임.. 값 변경 불가능
+		//me.NUM = 200;
+
+		//멤버 메서드 호출
+		int res = me.sum(1000, -100);
+		System.out.println("res = " + res);
+	}
+}
