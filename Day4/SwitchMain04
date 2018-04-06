@@ -1,0 +1,29 @@
+public class SwitchMain04 {
+	public static void main(String[] args) {
+		
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+		
+		int score;
+		char grade;
+		
+		System.out.print("당신의 점수를 입력해주세요(1~100) : ");
+		score = scan.nextInt();
+		
+		if(score < 0 || score > 100) {
+			System.out.println("0~100만 입력 가능합니다.");
+			System.exit(0);
+		}
+		switch(score/10) {
+		case 10 :
+		case 9 : grade = 'A'; break;
+		case 8 : grade = 'B'; break;
+		case 7 : grade = 'C'; break;
+		case 6 : grade = 'D'; break;
+		default: grade = 'F'; break;
+		}
+		System.out.println("당신의 성적은 " + score );
+		System.out.println("당신의 학점은 " + grade );
+		scan.close();
+	}
+
+}
