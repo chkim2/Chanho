@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class OperatorMain07 {
+
+	public static void main(String[] args) {
+		/*
+		 * [문제]국어,영어,수학 성적을 입력받아서 총점, 평균을
+		 * 구하고 국어, 영어, 수학, 총점, 평균을 출력하시오.
+		 * 
+		 */
+		
+		Scanner scan =new Scanner(System.in);
+		
+		int kor, eng, math, total;
+		double avg;
+		System.out.print("국어 점수를 입력하시오 (0~100): ");
+		kor = scan.nextInt();
+		System.out.print("영어 점수를 입력하시오 (0~100): ");
+		eng = scan.nextInt();
+		System.out.print("수학 점수를 입력하시오 (0~100): ");
+		math = scan.nextInt();
+		
+		total = kor+eng+math;
+
+		avg = total/3.0; 
+		
+		System.out.println("당신의 점수는~~~");
+		System.out.printf("국어 = %d%n영어 = %d%n수학 = %d%n"
+						+ "총점 = %d%n평균 = %.1f%n",
+							kor,eng,math,total,avg);
+		if(avg>=90.0 && avg<=100){
+			System.out.println("님 최고의 플레이어");
+		}
+		else if(avg>=80.0 && avg<=89.9){
+			System.out.println("님 공부 좀 하셨는듯");
+		}
+		else if(avg>=70.0 && avg<=79.9){
+			System.out.println("조금만 더 하시지 준비한것도 많았을텐데");
+		}
+		else
+			System.out.println("공부하세요~");
+		scan.close();
+	}
+	
+}
