@@ -1,0 +1,90 @@
+public class CoffeeMain02 {
+	public static void main(String[] args) {
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+		int balance=0;
+		//커피 정보
+		int price =300;			// 커피 가격
+		int content_coffee = 5;	// 커피 사용량
+		int content_cream = 3;	// 프림 사용량
+		int content_sugar = 1;	// 설탕 사용량
+
+		//커피에 들어갈 재료의 혀재 보유량
+		int coffee = 10;
+		int cream = 10;
+		int sugar = 10;
+
+		//보유 동전
+		int coin = 10000;
+
+		//보유 금액
+		int amount = 0;
+
+		while(true) {
+			System.out.println("-------------------------------------------");
+			System.out.println("|1 : 커피마시기, 2 : 자판기 정보 보기, 3 : 종료   |");
+			System.out.println("-------------------------------------------");
+			System.out.print("입력 : ");
+			int num = scan.nextInt();
+			if(num==1) {//커피 구매
+				//동전 구입
+				System.out.print("동전을 투입해주세요. ");
+				int payment = scan.nextInt();
+				if(payment< price) {
+					System.out.println("투입동전이 부족합니다.");
+					continue;
+				}
+				//거스름돈 계산
+				balance = payment-price;
+				//커피 주문이 가능한지 조건체크
+				//커피 부족시 "커피가 부족합니다"
+				//프림 부족시 "프림이 부족합니다"
+				//설탕 부족시 "설탕이 부족합니다"
+				if(coffee<content_coffee) {
+					System.out.println("커피가 부족합니다.");
+					continue;
+				}
+				if(cream<content_cream) {
+					System.out.println("프림이 부족합니다.");
+					continue;
+				}
+				if(sugar<content_sugar) {
+					System.out.println("설탕이 부족합니다.");
+					continue;
+				}
+				if(coin<0) {
+					System.out.println("자판기 잔돈이 부족합니다.");
+					continue;
+				}
+
+				//커피, 프림, 설탕 차감
+				//거스름돈 차감
+				//투입한 금액 누적
+				coffee-=content_coffee;
+				cream-=content_cream;
+				sugar-=content_sugar;
+				coin-=balance;
+				amount+=payment;
+				System.out.println("<따뜻한 커피 나왔습니다.>");
+				System.out.printf("거스름돈은 %,d원 입니다%n",balance);
+				//거스름돈 출력
+				//"맛좋은 커피가 준비되었습니다."
+			}else if(num==2) {	//자판기 정보 보기
+				System.out.println("==== 현재 자판기 정보 ====");
+				System.out.println("커피의 양 : "+coffee);
+				System.out.println("프림의 양 : "+cream);
+				System.out.println("설탕의 양 : "+sugar);
+				System.out.printf("동전보유금액 : %,d원%n",coin);
+				System.out.printf("투입한 금액 출력 : %,d원%n",amount);
+
+			}else if(num==3) {	// 종료
+				System.out.println("프로그램 종료");
+				break;
+			}else {
+				System.out.println("잘못 입력하셨습니다.");
+			}
+		}
+
+		scan.close();
+	}
+
+}
