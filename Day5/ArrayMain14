@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class ArrayMain14 {
+	public static void main(String[] args) {
+		// 2차원 배열을 이용한 성적처리
+		Scanner scan = new Scanner(System.in);
+		String[] subname = {"국어","영어","수학"};
+		String[] sname = new String[2];
+		int sub[][] = new int[2][subname.length];
+		int max =0;
+		//총점
+		int[] sum =new int[2];
+		//평균
+		float[] avg = new float[2];
+		for(int i=0; i<sub.length;i++) {
+			System.out.print("이름을 입력하세요: ");
+			sname[i]= scan.next();
+			for(int j=0; j<sub[i].length; j++) {
+				do {
+					System.out.print(subname[j]+" 성적을 입력하세요 :");
+					sub[i][j] =scan.nextInt();
+				}while(sub[i][j]<0||sub[i][j]>100);
+				if(max<sub[i][j]) {
+					max=sub[i][j];	
+				}
+				//총점 구하기
+				sum[i] += sub[i][j];
+			}
+			avg[i] = sum[i]/(float)subname.length;
+			
+		}
+		//총점 평균출력
+		System.out.println("--------------------");
+		for(int i=0; i<sub.length;i++) {
+			System.out.println(sname[i]+" 성적표");
+			System.out.println("--------------------");
+			for(int j=0; j<sub[i].length; j++) {
+				System.out.println(subname[j]+" :"
+						+ " "+sub[i][j]);
+			}
+			System.out.println("총점 : "+sum[i]);
+			System.out.printf("평균 : %.2f%n",avg[i]);
+			System.out.println("");
+		}
+		for(int i=0; i<sub.length;i++) {
+			for(int j=0; j<sub[i].length; j++) {
+				if(max==sub[i][j])
+					System.out.printf("%s의 %s 점수가 %d로 가장높습니다.%n",sname[i],subname[j],max);
+			}
+		}	
+	}
+
+}
