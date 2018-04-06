@@ -1,0 +1,24 @@
+public class OperatorMain08 {
+	public static void main(String[] args) {
+		System.out.println("====논리연산자====");
+		boolean a,b,result;
+		a = true;
+		b = false;
+		
+		
+		//논리곱(&&):선조건, 후조건 모두 true일 때만 결과값이 true
+		result = a && b; //false
+		System.out.println("a && b --> "+result);
+		
+		//논리합(||):선조건, 후조건 중 하나만 true이면 결과값이 true
+		result = a || b; //true
+		System.out.println("a || b --> "+result);
+		
+		//부정(!): true를 false로 false를 ture로
+		result = !a;
+		System.out.println("!a --> "+result);
+		
+		
+	}
+
+}
