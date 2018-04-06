@@ -1,0 +1,15 @@
+public class WhileMain02 {
+
+	public static void main(String[] args) {
+		//1~100의 합
+		int i=1,sum=0;
+		
+		while(i<=100) {
+			sum+=i;
+			i++;
+			
+		}
+		System.out.println(sum);
+	}
+
+}
