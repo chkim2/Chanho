@@ -1,0 +1,32 @@
+public class CastMain02 {
+	public static void main(String[] args) {
+		//디모션(명시적 형변환, 강제 형변환
+		//더 작은 자료형으로 강등, 정보의 손실이 있을 수 있음
+		byte b1 = 127;
+		byte b2 = 127;
+		byte b3 = (byte)/*캐스트 연산자*/(b1 + b2);
+		
+		System.out.println("b3 = " +b3);
+		
+		short s1 = 3275;
+		short s2 = 3275;
+		short s3 = (short)(s1+s2); 	// <- 허용 범위 내 강제 형변환환
+							
+		System.out.println("s3 = "+ s3);
+		
+		int in = 1234;
+		long lg = 5678l;
+								//long -> int로 강제 형변환
+		int result = in +(int)lg;
+		
+		System.out.printf("%d + %d = %d%n",in,lg,result);
+		
+		int in2 = 1234;
+		float f1 = 34.56f;
+							//flout -> int로 강제 형변환
+		int result2 = in2 +(int)f1;
+		
+		System.out.printf("%d + %.2f = %d%n",in2,f1,result2);
+	}
+
+}
