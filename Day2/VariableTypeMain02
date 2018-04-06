@@ -1,0 +1,18 @@
+
+public class VarialbeTypeMain02 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		char single = '\'';
+		String quote = "\"hello World\"";
+		String root = "d:\\javaWork\\";
+		String single2 = "오늘은 '서울'에 비가와요!";
+		
+		System.out.println("single = " + single);
+		System.out.println("quote = " + quote);
+		System.out.println("root = "+ root);
+		System.out.println("single2 = "+single2);
+		
+	}
+
+}
