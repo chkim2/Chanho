@@ -1,0 +1,25 @@
+public class Hello {
+	public static void main(String[] args) {
+		System.out.println("Hello World!");
+		System.out.println("신세계!!!");
+
+		int payment=10000,price=3500,quantity=2,total,balance;
+		float vat = 0.1f;
+		total=(price*quantity)+(int)(price*quantity*vat);
+		balance = payment- total;
+		
+		if(balance<0) {
+			System.out.printf("지불금액이 %,d원 모자랍니다.%n",-balance);
+		}else {
+			System.out.printf("상품 총액은 %,d원 입니다.%n",total);
+			System.out.printf("거스름돈은 %,d원 입니다.%n",balance);
+		}
+		
+		int number=11;
+		if(number > 10)
+			System.out.print("10초과");
+		else
+	       System.out.print("10이하");
+
+	}
+}
