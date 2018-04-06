@@ -1,0 +1,33 @@
+public class SwitchMain03 {
+	public static void main(String[] args) {
+		java.util.Scanner input = new java.util.Scanner(System.in);
+		int first = 0, second = 0, result = 0;
+		String operator;
+		System.out.print("첫번째 수 : ");
+		first = input.nextInt();
+		System.out.print("연산자 : ");
+		operator= input.next();
+		System.out.print("두번째 수 : ");
+		second = input.nextInt();
+		
+		//JDK7.0이상부터 switch에 인자값으로 문자열 전달가능
+		try{
+			switch(operator){
+			case "+" : result=first+second; break;
+			case "-" : result=first-second; break;
+			case "*" : result=first*second; break;
+			case "/" : result=first/second;	break;
+			case "%" : result=first%second; break;
+			default : System.out.println("잘못된 연산자"); System.exit(0);
+			}
+		}catch(ArithmeticException e) {
+			System.out.println("0으로 나눌 수 없습니다.");
+			System.exit(0);
+		}
+		
+		System.out.printf("%d %s %d = %d%n",first,operator,second,result);
+		input.close();
+
+	}
+
+}
