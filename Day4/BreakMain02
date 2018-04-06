@@ -1,0 +1,15 @@
+public class BreakMain02 {
+	public static void main(String[] args) {
+		//다중 반복문
+		for(int i=0; i<3; i++) {
+			//break를 다중반복문에 상용하면 break가 포함된 반복문만 빠져나감
+			for(int j=0; j<5; j++) {
+					if(j==3) {
+						break;
+					}
+					System.out.println("i값 : "+ i +", " + "j값 : " +j);
+			}
+		}
+	}
+
+}
