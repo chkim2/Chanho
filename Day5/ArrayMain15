@@ -1,0 +1,24 @@
+public class ArrayMain15 {
+	public static void main(String[] args) {
+		int[][] score = {
+				{88,90,92,80},
+				{81,70,93,70},
+				{78,80,94,60},
+				{99,90,95,85}
+		};
+		int total = 0, avg = 0;
+		
+		for(int i=0; i<score.length;i++) {
+			for(int j=0; j<score[i].length;j++) {
+				//총점구하기(전체데이터누적)
+				total += score[i][j];
+			}
+		}
+		//평균구하기		행갯수 *열갯수 = 전체과목수		for밖에 있어서 숫자로
+		avg = total / (score.length * score[0].length);
+		
+		
+		System.out.println("총점 : " + total);
+		System.out.println("평균 :" + avg);
+	}
+}
