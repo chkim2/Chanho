@@ -1,0 +1,35 @@
+
+public class CastMain01 {
+
+	public static void main(String[] args) {
+		//프로모션(묵시적 형변환, 자동적 형변환)
+		//더 큰 잘혀으로 승격이 일어나는 형태
+		//정보의 큰손실이 전혀 없으며 자동적으로 발생 
+		byte b1 = 127; //byte 표현범위 -128~ 127
+		byte b2 = 127;
+		//32bit 미만 byte형 데이터를 연산하면 자동으로 32bit로 승격 
+		int b3 = b1+b2;
+		System.out.println("b3 = " + b3);
+		//short 표현범위 -32,768 ~ 32,767
+		short s1 = 32767; 
+		short s2 = 32767;
+		//32bit 미만 short형 데이터 연산자로 승격
+		int s3 = s1+s2;
+		System.out.println("s3 = " +s3);
+		
+		int in = 1234;
+		long lg = 5678l;
+					//int ->long으로 자동 형변환
+		long result = in + lg;
+		System.out.println("result = " +result);
+		
+		int in2 = 1234;
+		double du = 10.9;
+					//int -> double로 자동 형변환
+		double result2 = in2 + du;
+		System.out.printf("result2 = %.2f",result2);
+		
+		
+	}
+
+}
