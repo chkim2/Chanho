@@ -1,0 +1,19 @@
+public class OperatorMain12 {
+	public static void main(String[] args) {
+		System.out.println("===조건 연산자===");
+		
+		int a= 55, b= 5;
+		
+		int max; // 최대값
+		int min; // 최소값
+		
+		//최대값
+		max = a > b ? a : b;
+		min = a < b ? a : b;
+		System.out.printf("max = %d%n",max);
+		System.out.printf("min = %d%n",min);
+		
+
+	}
+
+}
