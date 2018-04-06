@@ -1,0 +1,30 @@
+package com.d02.instance;
+public class Student3 {
+	String name;
+	int age;
+	String phone;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Student3 s1 = new Student3();
+		s1.name = "강호동";
+		s1.age = 40;
+		s1.phone= "010-2224-2323";
+		System.out.println(s1);
+		System.out.println("이름 : "+s1.name+", "+"나이 : "+s1.age+", "+
+						   "폰 번호 : "+s1.phone);
+
+		
+		System.out.println("-----------");
+		
+		Student3 s2 = new Student3();
+		s2.name = "유재석";
+		s2.age = 39;
+		s2.phone= "010-9876-5432";
+		System.out.println(s2);
+		System.out.println("이름 : "+s2.name+", "+"나이 : "+s2.age+", "+
+						   "폰 번호 : "+s2.phone);
+		
+		
+	}
+
+}
