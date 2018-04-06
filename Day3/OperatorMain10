@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class OperatorMain10 {
+
+	public static void main(String[] args) {
+		/*
+		 * [문제] 키보드에서 초를 입력 받아서 시, 분, 초로
+		 * 나타낼 수 있는 프로그램을 작성하시오.
+		 * [출력 예시]
+		 * 초 입력 : 4200
+		 *
+		 *01시간 10분 00초
+		 *  
+		 */
+		Scanner scan = new Scanner(System.in);
+		
+		int s,s1,m,h;
+		
+		System.out.print("초 입력 : ");
+		s1=scan.nextInt();
+		
+		h = s1/3600;
+		m = s1%3600/60;
+		s = s1%3600%60;
+		
+		System.out.printf("%02d시 %02d분 %d초",h,m,s);
+		scan.close();
+	}
+
+}
