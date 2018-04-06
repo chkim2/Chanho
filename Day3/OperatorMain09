@@ -1,0 +1,27 @@
+public class OperatorMain09 {
+	public static void main(String[] args) {
+		//증감연산자, 비교연산자, 논리연산자
+		int a,b;
+		a = b = 10;
+		
+		boolean c = a++ >= ++b && ++a > b++; //false
+		/*
+		 * 10>=11 && 선조건 값이 false면 후조건 연산 X
+		 * false && 
+		 * false
+		 */
+		System.out.println("a : " + a +"\nb : "+ b +"\nc : " + c);
+		
+		System.out.println("===============");
+		int d,e;
+		d = e = 10;
+		
+		boolean f = ++d > e++ || d++ >= ++e; 
+		
+		//11>10 || 
+		//선조건 값이 true면 후조건 연산 X
+		//ture || 
+		System.out.println("d : " + d +"\ne : "+ e +"\nf : " + f);
+	}
+
+}
