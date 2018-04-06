@@ -1,0 +1,39 @@
+public class ArrayMain02 {
+	public static void main(String[] args) {
+		// 배열 선언 및 생성
+		// 배열이 생성되면서 각 자료형의 기본값으로
+		// 데이터를 넣어서 배열 생성함.
+		int[] it = new int[6];
+		//처음에는 0으로 초기화 되어 있지만
+		//원하는 데이터로 배열 초기화함
+		it[0] = 10;
+		it[1] = 20;
+		it[2] = 30;
+		it[3] = 40;
+		it[4] = 50;
+		it[5] = 60;
+		
+		//배열 요소 출력
+		System.out.println(it[0]);
+		System.out.println(it[1]);
+		System.out.println(it[2]);
+		System.out.println(it[3]);
+		System.out.println(it[4]);
+		System.out.println(it[5]);
+		System.out.println("---------------------");
+		//반복문을 이용한 출력
+		for(int i=0; i<it.length; i++){//.length는 배열의 길이
+			System.out.printf("it[%d] = %d%n",i,it[i]);
+		}
+		System.out.println("---------------------");
+		//배열의 선언, 생성, 초기화(명시적 배열 생성)
+		//char[] ch1 = new char[] {'J','a','v','a'};
+		
+		//배열의 선언, 생성, 초기화(암시적 배열 생성)
+		//자료형
+		//char[] ch2 = {'자','바'};
+		
+		
+	}
+
+}
