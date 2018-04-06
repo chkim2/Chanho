@@ -1,0 +1,23 @@
+
+public class OperatorMain03 {
+	public static void main(String[] args){
+		// 증가 연산자
+		int i = 5;
+		//선행
+		System.out.println(++i);//6
+		//후행
+		System.out.println(i++);//6
+		System.out.println(i);//7
+
+
+
+		System.out.println("==========");
+		//감소연산자
+		int j = 10;
+		//선행
+		System.out.println(--j); //9
+		//후행
+		System.out.println(j--); //9
+		System.out.println(j); //8
+	}
+}
