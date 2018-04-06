@@ -1,0 +1,14 @@
+public class OperatorMain14 {
+
+	public static void main(String[] args) {
+		System.out.println("====조건연산자====");
+		
+		int age = 29;
+		String s;
+		
+		s = age>=10 && age<=19 ? "10대 임":"10대 아님";
+		System.out.println(s);
+
+	}
+
+}
