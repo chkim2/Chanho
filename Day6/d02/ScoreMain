@@ -1,0 +1,53 @@
+package com.d02.instance;
+public class ScoreMain {
+	//멤버 필드
+	String name;
+	int korean;
+	int math;
+	int english;
+	
+	//멤버 메서드(동작)
+	public int getSum() {
+		return korean + math + english;
+	}
+	public int getAverage(){
+		return getSum()/3;
+	}
+	public String getGrade() {
+		String grade;
+		if(getAverage()>=90 && getAverage()<=100) {grade="A";}
+		else if(getAverage()>=80 && getAverage()<=89) {grade="B";}
+		else if(getAverage()>=70 && getAverage()<=79) {grade="C";}
+		else if(getAverage()>=60 && getAverage()<=69) {grade="D";}
+		else if(getAverage()>=0 && getAverage()<=59) {grade="F";}
+		else {grade="등급 외 점수";}
+		/*		
+		switch(getAverage()/10) {
+		case 10:
+		case 9: grade="A"; break;
+		case 8: grade="B"; break;
+		case 7: grade="C"; break;
+		case 6: grade="D"; break;
+		default : grade="F"; 
+		}
+		*/	
+		return grade; 
+	}
+	public static void main(String[] args) {
+		ScoreMain sm = new ScoreMain();
+		sm.name ="아이유";
+		sm.korean = 100;
+		sm.english = 100;
+		sm.math =110;
+		System.out.println("이름 : "+sm.name);
+		System.out.println("이름 : "+sm.korean);
+		System.out.println("이름 : "+sm.math);
+		System.out.println("이름 : "+sm.english);
+		//멤버 메서드를 호출해서 결과값을 출력함
+		System.out.printf("총점 : %d%n",sm.getSum());
+		System.out.printf("평균 : %d%n",sm.getAverage());
+		System.out.printf("등급 : %s%n",sm.getGrade());
+
+	}
+
+}
