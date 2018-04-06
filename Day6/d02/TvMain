@@ -1,0 +1,39 @@
+package com.d02.instance;
+class Tv{
+	//Tv 속성(맴버변수)
+	boolean power;	//전워낭태 (on/off)
+	int channel; 	//채널
+
+	//tv의 동작(맴버 메서드)
+	public void power() {	//tv를 켜거나 끄는 기능을 하는 메서드
+		power =! power; 
+	}
+	//TV의 채널을 높이는 기능을 하는 메서드
+	public void channelUp() {
+		++channel;
+	}
+	//TV의 채널을 높이는 기능을 하는 메서드
+	public void channelDown() {
+		--channel;
+	}
+}
+public class TvMain {
+	public static void main(String[] args) {
+		//객체 선언 및 생성
+		Tv t = new Tv();
+		//멤버 메서드 호출(Tv 실행)
+		t.power();
+		System.out.println("Tv 실행 여부 : "+t.power);
+		//채널 선택
+		t.channel=7;
+		System.out.println("현재 채널 : "+t.channel);
+		//채널 변경
+		t.channelUp();
+		System.out.println("변경된 채널 : "+t.channel);
+		
+		//tv종료
+		t.power();
+		System.out.println("Tv 실행 여부 : "+t.power);
+	}
+
+}
