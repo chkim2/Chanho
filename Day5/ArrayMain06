@@ -1,0 +1,35 @@
+
+public class ArrayMain06 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+		
+		String[] subname = {"국어","영어","수학"};
+		int[] sub =new int[subname.length];//0:국어,1:영어,2:수학
+		int sum = 0;		//합계
+		float avg = 0.0f;	//평균
+		
+		for(int i=0; i<subname.length; i++) {
+			//0~100만 입력가능하게 조건 체크
+			do {
+				System.out.print(subname[i]+ " : ");
+				sub[i]=scan.nextInt();
+			}while(sub[i]<0||sub[i]>100);
+			sum+=sub[i];
+		}
+		avg= sum/(float)sub.length;
+		
+		System.out.println("===================");
+		//과목별 성적 출력
+		for(int i=0; i<subname.length; i++) {
+			System.out.printf("%s : %d%n",subname[i],sub[i]);
+		}
+		
+		System.out.println("총점 : "+sum);
+		System.out.printf("평균 : %.2f",avg);
+		
+		scan.close();
+	}
+
+}
