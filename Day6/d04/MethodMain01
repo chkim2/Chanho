@@ -1,0 +1,40 @@
+package com.d04.method;
+
+public class MethodMain01 {
+	//멤버 변수
+	String msg;
+	
+	//인자로 데이터가 전달되고 반환하는 데이터가 있는 경우
+	//public : 접근 지정자
+	//int : 반환형
+	//add : 메서드명
+	//(int a, int b) ->a,b : 인자
+	//return 반환하는 데이터 명시
+	public int add(int a, int b) {
+		return a + b;
+	}
+	//void : 반환하는 데이터가 없을 경우 반환형을 지정할 수 없기때문에
+	//void를 명시해서 비어있다는 의미로 사용함
+	public void setMsg(String m) {
+		msg = m;//맴버변수에 할당
+		
+		return;//일반적으로 생략함
+	}
+	public String getMsg() {
+		return msg;
+	}
+	public void print(String str) {
+		//메서드 내부에 있는 수행문 실행
+		System.out.println(str);
+	}
+	public static void main(String[] args) {
+		//개체 선언 및 생성
+		MethodMain01 mt = new MethodMain01();
+		int result = mt.add(6,9);
+		System.out.println("result = "+result);
+		mt.setMsg("봄");
+		System.out.println("msg = "+mt.msg);
+		System.out.println("msg = "+mt.getMsg());
+		mt.print(mt.msg);
+	}
+}
