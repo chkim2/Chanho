@@ -1,0 +1,45 @@
+
+public class WhileMain07 {
+
+	public static void main(String[] args) {
+		/*
+		 * [문제]커피값이 4,000원입니다. 마실 커피 수량을
+		 * 입력하고 돈을 지불하세요. 지불한 돈에서 발생한
+		 * 거스름돈을 출력하고 상품의 총비용보다 지부한
+		 * 돈이 적어서 상품을 구매할 수 없을 경우
+		 * 금액이부족합니다. 라고 알려준 후 다시 지불할 수 있는 프로그램 작성 
+		 */
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+		int price = 4000;//커피가격
+		int quantity,balance,payment,total;//수량,거스름돈,지불금액, 총 금액
+		System.out.println("커피 가격은 " + price + "입니다.\n");
+		while(true) {
+			do {
+				System.out.print("구매 수량 입력(1개 이상) : ");
+				quantity= scan.nextInt();
+			}while(quantity<=0);
+			do {
+				System.out.print("지불 금액 입력 : ");
+				payment= scan.nextInt();
+			}while(payment<=0);
+			
+			total=price*quantity;	//구매가격=커피가격*구매 수량
+			balance=payment-total;	//거스름돈 = 지불금액-구매가격
+			
+			//거스름돈 발생시 while를 빠져나옴
+			if(balance>=0) {
+				break;	
+			}
+			//예)~가 부족합니다.
+			System.out.printf("%,d원이 부족합니다.%n",-balance);
+			//지불금액보다 구매가격이 더 크기때문에 값이 -값으로 나옴 
+			//앞에 -를 붙여 주어서 절대값을 출력하게 해줌
+		}
+		System.out.printf("총 구매금액은 %,d원입니다.%n",total);
+		System.out.printf("지불금액은 %,d원입니다.%n",payment);
+		System.out.printf("거스름돈은 %,d원입니다.%n",balance);
+		
+		scan.close();
+	}
+
+}
