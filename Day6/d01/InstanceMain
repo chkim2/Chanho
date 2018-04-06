@@ -1,0 +1,31 @@
+package com.d01.instance;
+public class InstanceMain {
+	//멤버필드
+	int a;
+	boolean b;
+	float c;
+	
+	public static void main(String[] args) {
+		//객체 선언 및 생성
+		InstanceMain im = new InstanceMain();
+		//멤버 변수 호출
+		System.out.println(im.a);//0
+		System.out.println(im.b);//false
+		System.out.println(im.c);//0.0
+		System.out.println("------------");
+		im.a = 10;
+		im.b = true;
+		im.c = 4.5f;
+		System.out.println(im.a);//10
+		System.out.println(im.b);//ture
+		System.out.println(im.c);//4.5
+		
+		//a,b,c 변수를 메인 메서드안에서 찾는데
+		//a,b,c가 선언되지 않아서 오류 발생
+	/*  System.out.println(a);
+		System.out.println(b);
+		System.out.println(c);*/
+		
+		
+	}
+}
