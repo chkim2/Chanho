@@ -1,0 +1,45 @@
+package com.d02.set;
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class HashSetMain01 {
+	public static void main(String[] args) {
+		
+		//Set 구조 : 저자되는 순서가 유지 안 됨.
+		//          중복 저장을 허용하지 않음. >>바구니 같은 구조(막 담음)
+		//HashSet에 Set 구조를 구현
+		String[] array = {"Java","JSP","Java","Android"};
+		
+		HashSet<String> hs = new HashSet<String>();
+		//반복문을 이용해서 요소의 저장 
+		// n : 요소가 저장되는 변수
+		//array : 배열명
+		
+		for(String n : array) {
+			//HashSet에 저장
+			hs.add(n);//중복 불허
+		}
+		System.out.println(hs);
+		System.out.println("===============");
+		
+		//array배열 생성
+		//hs.add(n) array를 저장
+		//iterator로 소환
+		Iterator<String> ir = hs.iterator();
+		while(ir.hasNext()) {//요소가 있는지 없는지 검증
+			//저장된 요소의 반환
+			System.out.println(ir.next());
+			
+		}
+		System.out.println("===============");
+		//확장 for문을 이용한 요소의 출력
+		for(String s : hs) {
+			System.out.println(s);
+		}
+		
+		
+		
+	}
+
+}
