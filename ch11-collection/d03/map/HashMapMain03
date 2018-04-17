@@ -1,0 +1,48 @@
+package com.d03.map;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class HashMapMain03 {
+	public static void main(String[] args) {
+			
+		HashMap<String, String> map = new HashMap<>();
+		//       key(id)   value(비밀번호)
+		map.put("dragon", "1234");
+		map.put("sky", "1111");
+		map.put("blue", "4321");
+		
+		Scanner sc = new Scanner(System.in);
+		
+		//아이디와 비밀번호가 일치하면 루프를 빠져나감
+		//불일치하면 루프내에 있음
+		while(true) {
+			System.out.println("아이디와 비밀번호를 입력하세요");
+			System.out.println("ID : ");
+			String id = sc.next();
+			System.out.println("PW : ");
+			String passwd = sc.next();
+			System.out.println();
+			
+			//지정된 key 포함 여부
+			if(!map.containsKey(id)) {//key 미포함
+				System.out.println("입력하신 아이디는 존재하지 않습니다.");
+				System.out.println("다시 입력해주세요");
+			}else {//key 포함
+				//key를 통해서 value 구하기
+				            //map.get(id)란 map의 value값을 가져온다는 말
+				String pw = map.get(id);//id를 넣어주면 비밀번호를 대조할수있다는데..
+				//map의 비밀번호와 입력한 비밀번호를 대조
+				if(pw.equals(passwd)) {//객체비교 //같은객체냐?
+					System.out.println("ID와 비밀번호 일치");
+					break;
+				}else {//비밀번호 불일치
+					System.out.println("비밀번호 불일치 다시입력하세요");
+				}
+			}
+		}
+		
+		
+		sc.close();
+	}
+}
