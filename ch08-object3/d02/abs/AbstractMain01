@@ -1,0 +1,27 @@
+package com.d02.abs;
+
+//추상 클래스
+//미완성된 개념으로 단독으로 객체 생성이 불가능하고 자식 클래스에 상소되어져 사용함
+abstract class A{
+	private int x;
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getX() {
+		return x;
+	}
+}
+class B extends A{
+	int b =200;
+	
+}
+public class AbstractMain01 {
+	public static void main(String[] args) {
+//		추상 클래스는 객체생성 불가능
+//		A a = new A();
+		B b = new B();
+		b.setX(100);
+		System.out.println(b.getX());//상속받았으니 가져다가 씀
+	}
+	
+}
