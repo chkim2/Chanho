@@ -1,0 +1,114 @@
+package com.d04.list;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class MemberMain {
+	/*
+	 * [실습] 메뉴 구성
+	 * 1. 회원정보 입력, 2.회원정보 출력, 3.종료
+	 * 
+	 * 입력시 조건체크
+	 * 1.숫자 입력시 숫자만 입력하도록 체크 Number e
+	 * 2.나이입력시 1살 이상 입력가능  if
+	 * 
+	 */
+	BufferedReader br = null;
+	BufferedWriter bw = null;
+	FileReader fr = null;
+	FileWriter fw = null;
+	ArrayList<Member> list;
+	
+	
+	
+	public MemberMain() {
+		br = new BufferedReader(new InputStreamReader(System.in));
+		list  = new ArrayList<Member>();
+	}
+	
+	public void input() throws IOException {
+		try {
+			Member mb = new Member();
+			System.out.println("이름 : ");
+			mb.setName(br.readLine());
+			System.out.println("나이 : ");
+			mb.setAge(Integer.parseInt(br.readLine()));
+			if(mb.getAge()<=0) {
+				System.out.println("나이는 1살 이상 입력가능.");
+				return;
+			}
+			System.out.println("직업 : ");
+			mb.setJob(br.readLine());
+			System.out.println("주소 : ");
+			mb.setAddress(br.readLine());
+			System.out.println("번호 : ");
+			mb.setPhone(br.readLine());
+			
+			list.add(mb);
+			
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
+			System.out.println("숫자만 입력하세요");
+		}
+	}
+	public void output() {
+		try {
+			System.out.println("이름\t나이\t직업\t주소\t번호");
+			for(int i=0;i<list.size();i++) {
+				Member mb = list.get(i);
+				
+				System.out.println(mb.getName()+"\t"+mb.getAge()
+				+"\t"+mb.getJob()+"\t"+mb.getAddress()+"\t"+mb.getPhone());
+
+				fw = new FileWriter("Member.txt");
+				bw = new BufferedWriter(fw);
+				
+				bw.write("이름\t나이\t직업\t주소\t번호\n");
+				bw.write(mb.getName()+"\t"+mb.getAge()
+				+"\t"+mb.getJob()+"\t"+mb.getAddress()+"\t"+mb.getPhone());
+				bw.flush();
+			}
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	public void callMenu()throws IOException {
+		while(true) {
+			try {
+				System.out.println("1.회원정보 입력, 2.회원정보 출력, 3.종료");
+				int num = Integer.parseInt(br.readLine());
+				if(num==1) {
+					input();
+				}else if(num==2) {
+					output();
+				}else if(num==3) {
+					System.out.println("종료");
+					System.exit(0);
+				}else {
+					System.out.println("잘못 입력하셨습니다.");
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (NumberFormatException e) {
+				// TODO: handle exception
+				System.out.println("문자 안됨");
+			}
+		}
+	}
+	public static void main(String[] args) {
+		MemberMain mm = new MemberMain();
+		try {
+			mm.callMenu();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}
