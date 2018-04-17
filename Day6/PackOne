@@ -1,0 +1,17 @@
+package com.packone;
+
+//import com.packtwo.PackTwo;
+public class PackOne {
+	public static void main(String[] args) {
+		//com.packone.PackOne packone =new com.packone.PackOne();
+		//PackOne과 PackMain이 같은 패키지에 위치하기 때무에 PackMain에서
+		//PackOne을 호출할 때 패키치 생략
+		//PackOne p1 = new PackOne();
+		
+		//다른 패키지의 클래스를 호출할 대는 반드시 패키지를 표시해야 함
+		//com.packtwo.PackTwo p2 = new com.packtwo.PackTwo();
+		//import문을 이용해서 미리 클래스를 등록하면
+		//패키지 생략가능
+		//PackTwo p2 = new PackTwo();
+	}
+}
