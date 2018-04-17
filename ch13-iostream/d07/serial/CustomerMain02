@@ -1,0 +1,52 @@
+package com.d07.serial;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+public class CustomerMain02 {
+	public static void main(String[] args) {
+		
+		System.out.println("=====객체 역직렬화 하기========");
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		
+		try {
+			//파일을 읽어옴
+			fis = new FileInputStream("object.ser");
+			//객체 역직렬화를 수행하는 객체 생성
+			ois = new ObjectInputStream(fis);
+			//객체 역직렬화
+			//           무조건 Customer만 반환하게끔 설계되어있어서 다운캐스팅을 해주어야함
+			Customer m = (Customer) ois.readObject();//파일에있는 Customer 객체 생성
+			System.out.println(m.getName());
+		} catch (FileNotFoundException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			
+			if(ois !=null) {
+				try {
+					ois.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+			if(fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+		}
+		
+	}
+
+}
