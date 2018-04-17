@@ -1,0 +1,32 @@
+package com.d03.local;
+
+public class LocalMain03 {
+	public void innterTest(final int a) {//지역변수
+		//지역변수
+		final int b = 200;//JDk 6.0에서 하는 방식
+		
+		//내부적으로 a를 상수로 인식(final)
+		//로컬내부클래스에서는 지역변수 참조가 불가능함
+		//상수만 참조 가능
+		//그래서 JDK8.0부터는 지역변수를 자동으로 상수화 시킨다.
+		//따라서 데이터 변경이 불가능함
+//		a = 50;
+//		b = 60;    >>>>>>>>얘네처럼 불가능함
+		//로컬내부클래스
+		class Inner{
+			public void getData() {
+				System.out.println("a : " + a);
+				System.out.println("b : " + b);
+			}
+		}
+		//로컬 내부클래스 객체생성
+		Inner i = new Inner();
+		i.getData();
+	}
+	
+	public static void main(String[] args) {
+		LocalMain03 lm = new LocalMain03();
+		lm.innterTest(100);
+	}
+
+}
