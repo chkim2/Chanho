@@ -1,0 +1,30 @@
+package com.d11.thistest;
+
+public class ScoreMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Score[] scoreArray = new Score[4];
+		int total = 0;//전체 과목 합계
+		
+		//Score 객체를 4개 생성해서 배열에 저장
+		scoreArray[0] = new Score("인간", 97, 100, 100); 
+		scoreArray[1] = new Score("사람", 90, 80, 88); 
+		scoreArray[2] = new Score("휴먼", 88, 19, 92); 
+		scoreArray[3] = new Score("피플", 90, 97, 100); 
+		//4명의 국어, 영어, 수학, 총점, 평균, 등급 출력
+		System.out.println("이름\t국어 \t영어\t 수학 \t총점\t 평균\t 등급");
+		System.out.println("=====================================================");
+		for(int i=0; i<scoreArray.length; i++) {
+			System.out.printf("%s\t%d \t%d\t%d\t%d\t%.2f\t  %s\n",scoreArray[i].getName(),
+					scoreArray[i].getKor(),scoreArray[i].getEng(),scoreArray[i].getMath(),
+					scoreArray[i].makeSum(),scoreArray[i].makeAvg(),scoreArray[i].makeGrade());
+			total+=scoreArray[i].makeSum();
+		}
+		System.out.println("=====================================================");
+		//전체 과목 합계 출력
+		System.out.println("전 과목 총점 : "+total+"점");
+		System.out.printf("전 과목 평균 : %.2f점%n",(total/12.0f));
+	}
+
+}
