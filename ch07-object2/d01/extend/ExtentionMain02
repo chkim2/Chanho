@@ -1,0 +1,22 @@
+package com.d01.extend;
+//부모클래스
+class people{
+	public void eat() {
+		System.out.println("식사하다.");
+	}
+}
+class Student extends people{
+	public void study() {
+		System.out.println("공부하다.");
+	}
+}
+
+public class ExtentionMain02 {
+	public static void main(String[] args) {
+		Student s = new Student();
+		System.out.println(s);
+		s.eat();//people의 메서드를 상속받아서 호출
+		s.study();
+		System.out.println(s.toString());
+	}
+}
