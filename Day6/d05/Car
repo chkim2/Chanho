@@ -1,0 +1,67 @@
+package com.d05.instance;
+/*[실습]
+ * Car 클래스에 
+ * 맴버변수 지정 -> 기름(int),물(int),주행여부(boolean)
+ * 맴버메서드 지정 -> 
+ * 주행(run) : 멈춰있는 자동차를 움직이게 함
+ * 정지(Stop) : 움직이고 있는 자동차를 멈추게 함
+ * 속도 올리기(speedUp) : 호출하며 기름을 10차감
+ * 
+ */
+
+class Car{
+	//멤버 변수
+	int oil, water; //기름, 물
+	boolean isRun;  //주행 여부
+
+	//멤버 메서드
+	//주행하기
+	public void run() {
+		isRun = true;
+	}
+	//정지하기
+	public void stop() {
+		isRun =false;
+	}
+	//속도 높이기
+	public void speedUp() {
+		oil-=10;
+		if(oil<0)
+			oil=0;
+	}
+}
+/*
+ * 1) Car 객체생성
+ * 2) 기름, 물 충전
+ * 3) 기름, 물 출력
+ * 4) 주행하는 메서드를 호출해서 자동차를 움직임
+ * 5) 주행여부 출력
+ * 6) 속도를 올림, 속도를 올리는 메서드 1회 호출
+ * 7) 현재 기름의 양을 출력
+ * 8) 정지하기 메서드 호출
+ * 9) 주행여부 출력
+ */
+public class CarTest {
+	
+	public static void main(String[] args) {
+		Car car =new Car();
+		System.out.println("충전 전 기름의 양 : "+car.oil);
+		System.out.println("충전 전 물의 양 : "+car.water);
+		car.oil = 100;
+		car.water = 100;
+		System.out.print("충전 후 기름의 양 : "+car.oil);
+		System.out.println(", 충전 후 물의 양 : "+car.water);
+		//주행
+		car.run();
+		//주행여부 출력
+		System.out.println("자동차 주행여부 : "+car.isRun);
+		//속도 높이기 
+		car.speedUp();
+		//기름의 양 출력
+		System.out.println("현재 기름의 양 : "+car.oil);
+		car.stop();
+		System.out.println("자동차 주행여부 : "+car.isRun);
+		
+	}
+
+}
