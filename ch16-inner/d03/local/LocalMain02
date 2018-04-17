@@ -1,0 +1,30 @@
+package com.d03.local;
+
+public class LocalMain02 {
+	
+	//멤버변수
+	int a = 100;
+	//멤버메서드
+	public void innerTest() {
+		//로컬 내부클래스
+		class Innner{
+			public void getData() {
+				System.out.println("변경 전 : " + a);
+				System.out.println("-------------------");
+				//멤버변수의 값 변경
+				a=200;
+				System.out.println("변경 후 : " + a);
+			}
+		}
+		//로컬내부클래스 객체 생성 >> 로컬내부클래스를 메모리에 올리므로 사용가능해짐
+		Innner i = new Innner();
+		i.getData();
+	
+	}
+	public static void main(String[] args) {
+		LocalMain02 lm = new LocalMain02();
+		lm.innerTest();
+		
+	}
+
+}
