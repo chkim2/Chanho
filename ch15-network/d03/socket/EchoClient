@@ -1,0 +1,76 @@
+package com.d03.socket;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class EchoClient {
+	private Socket socket;
+	private DataInputStream dis;
+	private DataOutputStream dos;
+	private Scanner sc;
+	
+	public EchoClient() {
+		String serverIp = "192.168.10.28";//상대방 IP
+		try {
+			System.out.println("서버에 연결중");
+			System.out.println("서버 IP : " + serverIp);
+			//소켓을 생성하여 연결을 요청
+			//소켓객체를 생성하여 Server쪽 accept가 받음
+			                   //서버IP, 포트번호
+			socket = new Socket(serverIp,7777);
+			//소켓의 입력스트림을 얻는다.
+			//서버에서 전송한 데이터를 읽음
+			dis = new DataInputStream(socket.getInputStream());
+			
+			//소켓의 출력스트림을 얻는다.
+			//서버로 데이터를 전송
+			dos = new DataOutputStream(socket.getOutputStream());
+			
+			System.out.print("입력 : ");
+			sc = new Scanner(System.in);
+			String msg = sc.nextLine();
+			//서버로 데이터 전송
+			dos.writeUTF(msg);
+			
+			//소켓으로부터 받은 데이터를 출력
+			//(서버에서 전송된 데이터)
+			System.out.println("서버로부터 받은 메세지 : " + dis.readUTF());
+			System.out.println("연결을 종료합니다");
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			if(dis !=null) {
+				try {
+					dis.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+			if(dos !=null) {
+				try {
+					dos.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+			if(socket != null) {
+				try {
+					socket.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+			if(sc !=null) {
+				sc.close();
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		new EchoClient();
+	}
+}
