@@ -1,0 +1,80 @@
+package com.d03.socket;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Scanner;
+
+class ClientThread extends Thread{
+	//데이터를 읽어옴
+	MultClient mc;
+	public ClientThread(MultClient mc) {
+		this.mc = mc;
+	}
+	public void run() {
+		while(true) {
+			try {
+				System.out.println("[서버에서 전송된 메세지]"+mc.getDis().readUTF());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("연결이 종료되었습니다.");
+				e.printStackTrace();
+			}
+		}
+	}
+}
+public class MultClient {
+	DataInputStream dis;
+	DataOutputStream dos;
+	Socket sk;
+	Scanner sc;
+	
+	public MultClient() throws IOException{
+		String serverIP = "192.168.10.3";
+		//소켓을 생성하여 연결 요청
+		Socket socket = new Socket(serverIP, 5000);
+		
+		//소켓의 입력스트림을 얻는다.
+		dis = new DataInputStream(socket.getInputStream());
+		//소켓의 출력 스트림을 얻는다.
+		dos = new DataOutputStream(socket.getOutputStream());
+		
+		
+		//ㅇㅋㅇㅋ
+		ClientThread ct = new ClientThread(this);
+		ct.start();
+		//서버에 데이터 전송
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			//exit입력하면 종료를 의미하고 다른 데이터를 입력하면
+			//종료하지 않고 서버에 데이터 전송이 가능하다.
+			String msg = sc.nextLine();
+			dos.writeUTF(msg);
+			dos.flush();
+			if(msg.equals("exit")) {
+				break;
+			}
+		}
+		dis.close();
+		dos.close();
+		socket.close();
+		sc.close();//try catch 사용 안했기 때문에 그냥 자원정리 가능
+	}
+	public DataInputStream getDis() {
+		return dis;
+	}
+	public DataOutputStream getDos() {
+		return dos;
+	}
+	public static void main(String[] args) {
+		try {
+			new MultClient();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+
+}
