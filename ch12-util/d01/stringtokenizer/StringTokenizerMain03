@@ -1,0 +1,19 @@
+package com.d01.stringtokenizer;
+
+import java.util.StringTokenizer;
+
+public class StringTokenizerMain03 {
+	
+	public static void main(String[] args) {
+		String expression = "x=100*(200+300)/2";
+		
+		StringTokenizer st =
+				                    //대상문자열,구분자,구분자반환여부
+				new StringTokenizer(expression, "+*/=()",true);
+		
+		while(st.hasMoreTokens()) {
+			System.out.println(st.nextToken());
+		}
+	}
+
+}
