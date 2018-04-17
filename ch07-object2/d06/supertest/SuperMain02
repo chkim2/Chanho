@@ -1,0 +1,32 @@
+package com.d06.supertest;
+
+class Parent{
+	int a = 100;
+	public void play() {
+		System.out.println("Parent의 play 메서드");
+	}
+}
+class Child extends Parent{
+	int a = 200;
+	public Child() {
+		//부모클래스 영영에 접근해서 멤버변수 a를 호출
+		System.out.println(super.a);
+		//부모 클래스영역을 접근해서 play호출
+		super.play();
+		System.out.println("====================");
+	}
+	//메서드 재정의
+	//@Override 어노테이션 메서드 재정의 문법에 akwrp wowjddml
+	//않으면 컴파일 오루가 발생
+	@Override
+	public void play() {
+		System.out.println("Child의 play 메서드");
+	}
+}
+public class SuperMain02 {
+	public static void main(String[] args) {
+		Child ch = new Child();
+		System.out.println(ch.a);
+		ch.play();
+	}
+}
