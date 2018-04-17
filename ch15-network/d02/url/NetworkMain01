@@ -1,0 +1,33 @@
+package com.d02.url;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class NetworkMain01 {
+	
+	public static void main(String[] args) {
+		try {
+			//잘못 명시(입력)하면 예외가 발생하기 때문에 무조건 try catch문을 써야 오류 안남
+			URL url = new URL("http://java.sun.com/index"
+					+ ".jsp?name=kim#content");
+			//명시되어 있는것을 읽어옴 ,http
+			System.out.println("프로토콜 : " + url.getProtocol());
+			//구분자를 통해 정보를 읽어옴(위치적으로 맞아야함-안맞으면 예외발생)
+			//포트를 명시하지 않아서 getPort 메서드가 -1을 반환
+			System.out.println("호스트 : " + url.getHost());
+			//포트번호는 0번부터 출발
+			System.out.println("포트 : " + url.getPort());
+			//프로토콜의 기본포트를 읽어옴>>80
+			System.out.println("기본 포트 : " + url.getDefaultPort());
+			
+			System.out.println("패스 : " +  url.getPath());
+			System.out.println("쿼리 : " +  url.getQuery());
+			System.out.println("ref : " + url.getRef());
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+	}
+
+}
