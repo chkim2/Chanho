@@ -1,0 +1,53 @@
+package com.d01.string;
+
+public class StringMain04 {
+	public static void main(String[] args) {
+		String s1 = " aBa ";
+		String s2 = "abc";
+		int a = 100;
+		String msg = null;//==Strin msg = "" <-빈문자열
+		
+		//여기 클래스들은 문자열을 받아와야 사용가능
+		
+		//대문자로 표시
+		msg = s1.toUpperCase();
+		System.out.println("msg : "+ msg);
+		
+		//소문자로 표시
+		msg = s1.toLowerCase();
+		System.out.println("msg : "+ msg);
+		
+		System.out.println(msg);
+
+		//검색한 문자를 지정한 문자로 대체
+		msg = s1.replace("ab", "b");
+		System.out.println("msg : " + msg);
+		
+		//앞뒤 공백을 제거
+		msg = s1.trim();
+		System.out.println("msg : "+ msg);
+		
+		//지정한 문자(또는 문자열)를 검색
+		boolean f = s1.contains("aB");//~포함한다면
+		System.out.println("f : "+f);
+		
+		//검색하고자하는 문자가 문자열의 앞에 위치하면
+		//true를 반환
+		f = s2.startsWith("ab");
+		System.out.println("f : " + f);
+		
+		//검색하고자 하는 문자가 문자열 뒤에 위치하면
+		//true를 반환
+		f = s2.endsWith("bc");
+		System.out.println("f : " + f);
+		
+		//int > String
+		msg = String.valueOf(a);
+		System.out.println(a+a);//숫자일때
+		System.out.println(msg+msg);//문자일때
+		
+		msg = a +"";//100 > "100";
+		
+	}
+
+}
