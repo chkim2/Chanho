@@ -1,0 +1,54 @@
+package com.d07.serial;
+
+import java.io.*;
+import java.util.*;
+
+
+public class SerialMain01 {
+	
+	public static void main(String[] args) {
+		
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		
+		//직렬화할 객체 생성
+		
+		UserInfo u1 = new UserInfo("John", 20, "서울시");
+		UserInfo u2 = new UserInfo("Sunney", 38, "군산시");
+		
+		//ArrayList 배열에 UserInfo 정보만 담겠습니다~
+		ArrayList<UserInfo> list = new ArrayList<UserInfo>();
+		list.add(u1);
+		list.add(u2);
+		
+		try {
+			//파일 생성
+			fos = new FileOutputStream("userinfo.ser");
+			//객체 직렬화를 수행할 객체 생성
+			oos = new ObjectOutputStream(fos);
+			//객체 직렬화 수행 //ArrayList에 저장했으니 list로 한바에 넘겨도 됨
+			oos.writeObject(list);
+			System.out.println("직렬화가 성공적으로 완료되었습니다");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			if(oos !=null) {
+				try {
+					oos.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+			if(fos !=null) {
+				try {
+					fos.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+		}
+		
+	}
+
+}
