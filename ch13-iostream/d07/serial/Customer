@@ -1,0 +1,29 @@
+package com.d07.serial;
+
+import java.io.Serializable;
+
+public class Customer implements Serializable{
+	/*
+	 * Serializable 인터페이스를 구현하면 해당 클래스는 
+	 * 객체 직렬화 대상이 되어 언제든지 객체 직렬화를 수행할 수 있다.
+	 * Serializable이 구현되지 않으면 객체 직렬화 불가능
+	 * 직렬화 대상은 멤버변수
+	 * 
+	 * 서로 약속된 상태에서 직렬화 가능
+	 * 시스템 종료한 뒤 다시 실행했을 때 파일에있는 내용을 불러옴
+	 */
+	private String name;
+
+	public Customer(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+}
