@@ -1,0 +1,55 @@
+package com.d10.poly;
+
+class A{
+	public void make() {
+		System.out.println("make");
+	}
+}
+class B{
+	public void play() {
+		System.out.println("play");
+	}
+}
+class C{
+	public void fun() {
+		System.out.println("fun");
+	}
+}
+
+public class CastMain01 {
+	public void add(Object o) {
+		  //객체                  자료형
+		if(o instanceof A) {
+//			전달되는 객체가 원래 A타입이냐?
+//			true면 실행 //false면 실행 x
+			A a = (A)o;//다운캐스팅
+			a.make();
+			System.out.println("-------------");
+		}else if(o instanceof B) {
+			B b = (B)o;
+			b.play();
+			System.out.println("-------------");
+		}else if(o instanceof C) {
+			C c = (C)o;
+			c.fun();
+		}
+//		이 방식은
+//		새로운 D클래스가 생성되면 사용할 수 없다는게 함정..
+	}
+	public static void main(String[] args) {
+		CastMain01 cm = new CastMain01();
+		cm.add(new A());
+		cm.add(new B());
+		cm.add(new C());//부모타입이기 때문에 make, play, fun 출력 불가능
+//		cm.add(new D());
+		
+//		여러개의 클래스를(자료형에 상관없이) 불러오기 위해서 CastMain01 객체생성
+//		몇개 불러올지 모르니 Object로 업캐스팅하여 메소드 지정
+//		업캐스팅 하고나니 원래 가지고있던 메소드 못불러옴
+//		그리하여 CastMain01 안에있는 add메소드에서 다운캐스팅
+//		>> 출력가능
+		
+		
+	}
+
+}
