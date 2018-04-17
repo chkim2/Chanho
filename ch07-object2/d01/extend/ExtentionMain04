@@ -1,0 +1,27 @@
+package com.d01.extend;
+//부모클래스
+class parent2{
+	private String season = "봄";
+	
+	public String getSeason() {
+		return season;
+	}
+}
+
+//자식클래스
+class Child2 extends parent2{
+	private String weather ="맑음";
+	public String getWeather() {
+		return weather;
+	}
+}
+public class ExtentionMain04 {
+
+	public static void main(String[] args) {
+		Child2 ch = new Child2();
+		System.out.println(ch.getSeason());
+		//System.out.println(ch.weather);
+		System.out.println(ch.getWeather());
+	}
+
+}
