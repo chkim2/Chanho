@@ -1,0 +1,53 @@
+package com.d04.list;
+
+public class Account {
+	private String account;//계좌
+	private String name;
+	private int balance;//예금액
+	private int depomoney=0;
+	public Account() {
+		
+	}
+	public Account(String account, 
+			String name,int balance) {
+		
+		this.account = account;
+		this.name = name;
+		this.balance = balance;
+	}	
+	
+	//입금하기
+	public void deposite(int balance) {
+		this.balance += balance;
+	}
+	//출금하기
+	public void withdraw(int balance) {
+		// 조건 : 잔고가 부족하면 출금할 수 없음
+		if(balance>this.balance) {
+			System.out.println("금액이 모자름");
+		}else {
+			this.balance -= balance;
+		}
+		
+	}
+	
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getBalance() {
+		return balance;
+	}
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
+}
