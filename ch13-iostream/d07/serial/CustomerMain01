@@ -1,0 +1,53 @@
+package com.d07.serial;
+
+import java.io.Serializable;
+import java.io.FileOutputStream;
+import java.io.*;
+public class CustomerMain01 implements Serializable{
+	
+	public static void main(String[] args) {
+		
+		System.out.println("===============객체 직렬화하기==============");
+		
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		
+		//직렬화할 객체 생성
+		Customer c = new Customer("홍길동");
+		
+		//파일을 다루는 클래스라서 finally 필요함
+		try {
+			//파일 생성
+			fos = new FileOutputStream("object.ser");
+			//직렬화 수행을 위한 객체 생성
+			oos = new ObjectOutputStream(fos);
+			//객체 직렬화 수행
+			oos.writeObject(c);
+			System.out.println("객체 직렬화 완료");
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			if(oos != null) {
+				try {
+					oos.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+			if(fos != null) {
+				try {
+					fos.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+			
+		}
+		
+	}
+	
+	//fos 파일 생성하고  // oos직렬화 객체 생성하고 // 그 객체로 c를 직렬화하세요
+	
+
+}
