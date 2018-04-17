@@ -1,0 +1,38 @@
+package com.d04.mathtest;
+
+import java.util.ArrayList;
+import java.util.Collections;
+public class LottoMain01 {
+	public static void main(String[] args) {
+		/*
+		 * 로또생성기
+		 * 1~45의 숫자중 중복되지 않는 숫자 6개를
+		 * 난수로 발생해서 출력하시오.
+		 * 
+		 * contains 메소드
+		 * 사이즈가 6되면 빠져나오고
+		 * 중복 되면 안됨
+		 */
+		
+		//반복문 (size()를 이용해서 ArrayList의 길이 측정)
+		//반복문 안에서 난수 발생
+		
+		//1~45 (int)(Math.random*45)+1
+		//중복값 체크(contains(난수))
+		//중복되어있으면 저장하지 않고 중복되어 있지 않으면 저장
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+		while(list.size()<6) {
+			double ran = Math.random();
+			int num = (int)(ran*45)+1;
+			if(!list.contains(num)) {
+				//저장
+				list.add(num);
+			}	
+		}
+		Collections.sort(list);//정렬
+		System.out.println(list);
+		
+	}
+
+}
