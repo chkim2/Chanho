@@ -1,0 +1,34 @@
+package com.d06.method;
+
+public class OverloadingMain02 {
+	
+	//메서드 오버로딩(중복정의)
+	//인자로 전달되는 데이터를 문자열로 변환해서
+	//문자열의 길이를 측정
+	public void getLength(int n) {
+		//int -> String
+		//1000 -> "1000"
+		String s= String.valueOf(n);
+		//문자열의 길이를 측정하는 메서드 호출
+		getLength(s);
+	}
+	public void getLength(float n) {
+		//float -> String
+		//3.14 -> "3.14"
+		String str= String.valueOf(n);
+		//문자열의 길이를 측정하는 메서드 호출
+		getLength(str);
+	}
+	public void getLength(String msg) {
+		
+		System.out.println("msg의 길이 : " +msg.length());
+	}
+	public static void main(String[] args) {
+		OverloadingMain02 ot2 = new OverloadingMain02();
+		ot2.getLength(1000);
+		ot2.getLength(3.14f);
+		ot2.getLength("가가가가가");
+		
+	}
+
+}
