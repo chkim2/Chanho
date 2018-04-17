@@ -1,0 +1,34 @@
+package com.d04.mathtest;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+
+public class LottoMain02 {
+	public static void main(String[] args) {
+		
+		
+		/*
+		 * [실습]HashSet를 이용한 ㄹ또 생ㅅㅇ
+		 * 1~45 난수 발생, 중복되지 않는 6개의 수를
+		 * HashSet에 저장하고 출력
+		 */
+		
+		HashSet<Integer> hs = new HashSet<Integer>();
+		while(hs.size()<6) {
+			int index = (int)(Math.random()*45)+1;
+			hs.add(index);
+		}
+		//HashSet은 Collectins 사용이 불가능하여 ArrayList에 담아서 넘긴다
+		//HashSet에 저장된 데이터(요소)를 ArrayList를 생성해서 복사해줌(선생님)
+		ArrayList<Integer> list = new ArrayList<Integer>(hs);
+		Collections.sort(list);
+		
+		for(int num : list) {
+			System.out.print(num+"\t");
+		}
+		
+	}
+
+}
