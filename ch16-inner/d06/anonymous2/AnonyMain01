@@ -1,0 +1,41 @@
+package com.d06.anonymous;
+
+import com.d06.anonymous.AnonyMain01;
+import com.d06.anonymous.Inner6;
+
+//부모클래스
+class Inner6{
+	public void disp() {
+		System.out.println("Inner6의 disp 메서드");
+	}
+}
+
+
+public class AnonyMain01 {
+	public void make() {
+		//익명 내부클래스(클래스 정의 부분과 생성 부분을 결합)
+		//생성자뒤에 중괄호가 있다면 익명내부클래스
+		
+		Inner6 i = new Inner6(){
+			@Override
+			public void disp() {
+				System.out.println("익명 내부 클래스의 disp");
+			}
+			public void make() {
+				System.out.println("make");
+			}
+		};i.disp();
+		//부모클래스 타입으로 객체의 멤버들을 참조하기 때문에
+		//자식 클래스 영역에 있는 make메서드는 참조할 수 없음
+//		i.make(); //i가 Inner6를 쓰기 때문에 부모에 없는 make는 사용할 수 없지요
+//		부모클래스에 없는 메소드는 사용하지 마시오
+		
+	}
+	public static void main(String[] args) {
+		AnonyMain01 am = new AnonyMain01();
+		//재정의를 안했다면 상속받았던 부모클래스의 disp를 호출 
+		//재정의 했다면 로컬 내부클래스의 disp 호출
+		am.make();
+	}
+
+}
