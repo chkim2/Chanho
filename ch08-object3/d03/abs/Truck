@@ -1,0 +1,15 @@
+package com.d03.abs;
+
+public class Truck extends Unit{
+	
+	public Truck(String name,int energy) {
+		this.name = name;
+		this.energy = energy;
+	}
+	
+	//추상 메서드 구현
+	@Override
+	public void decEnergy() {
+		energy-= 6;
+	}
+}
