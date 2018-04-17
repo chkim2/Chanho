@@ -1,0 +1,39 @@
+package com.d07.poly;
+
+
+class Parent{
+	int a = 100;
+	
+}
+class Child extends Parent{
+	int b = 200;
+}
+
+
+public class PolyMain01 {
+	public static void main(String[] args) {
+		//전체 멤버 변수, 메서드 호출 가능
+		Child ch = new Child();
+		
+		System.out.println(ch.a);
+		System.out.println(ch.b);
+		//부모클래스의  멤버 변수, 메서드 호출가능
+		Parent p = ch;//ch에 저장된 주소를 복사해서 p에다가 저장합니다.
+		              //자식 클래스 타입 -> 부모클래스타입 형변환
+		              //업캐스팅, 자동적으로 형변환
+		System.out.println(p.a);
+		////호출 범위를 벗어나 호출 불가
+//		System.out.println(p.b); 이건 안됨
+		
+		Child ch2 = (Child)p;//p에 저장된 주소를 복사해서
+		                     //ch2에 저장함.같은 클래스 객체
+		                     
+		                     //명시적 형변환(다운 캐스팅)
+		                     //부모 클래스 타입-> 자식클래스타입 형변환
+		System.out.println(ch2.a);
+		System.out.println(ch2.b);
+
+		
+	}
+
+}
