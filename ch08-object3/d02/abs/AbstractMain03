@@ -1,0 +1,42 @@
+package com.d02.abs;
+
+//추상 클래스
+abstract class AbsEx1{
+	//추상메서드
+	abstract public int getA();
+	abstract public int getB();
+	public void fun() {
+		System.out.println("We are the world");
+	}
+}
+abstract class AbsEx2 extends AbsEx1{//같은 추상클래스이기 때문에 굳이 구현 안해도됨
+	//추상메서드 getA를 구현하기
+	
+	@Override
+	public int getA() {
+		return 100;
+	}
+	//추상 메서드
+	abstract public void make();
+	
+}
+
+public class AbstractMain03 extends AbsEx2 {
+	//모두 구현해야 에러 안남
+	//추상 메서드 구현하기
+	@Override
+	public int getB() {
+		return 200;
+	}
+	public void make() {
+		System.out.println("make 메서드 호출");
+	}
+	
+	public static void main(String[] args) {
+		//AbstractMain03이 모두를 상속받아서
+		AbstractMain03 am = new AbstractMain03();
+		System.out.println(am.getA());
+		System.out.println(am.getB());
+	}
+
+}
