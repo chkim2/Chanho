@@ -1,0 +1,16 @@
+package com.d03.abs;
+
+//추상클래스
+abstract public class Unit {
+	
+	protected String name;
+	protected int energy;
+	
+	//추상 메서드 //에너지 소비
+	abstract public void decEnergy();
+	
+	//일반 메서드
+	public int getEnergy() {
+		return energy;
+	}
+}
