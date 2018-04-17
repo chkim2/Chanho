@@ -1,0 +1,32 @@
+package com.d07.poly;
+
+class Parent2{
+	public void make() {
+		System.out.println("make 메서드");
+	}
+}
+
+
+public class PolyMain03 {
+	
+	public static void main(String[] args) {
+		//전체 멤버필드, 멤버 메서드 호출
+		Parent2 p = new Parent2();
+		System.out.println(p.toString());
+		p.make();
+		
+		//부모클래스 멤버 필드와 멤버 메서드만 호출
+		Object o = p;//자식 클래스타입 -> 부모 클래스 타입 (업 캐스팅) // 자동적으로 형변환
+		System.out.println(o.toString());
+		//호출 범위를 벗어나서 호출 불가능
+//		o.make();
+		
+		
+//		같은객체를 가르키지만 호출가능한 범위가 달라요
+		
+		Parent2 p2 = (Parent2)o; //부모클래스 타입 -> 자식클래스 타입
+		System.out.println(p2.toString());
+		p2.make();
+		
+	}
+}
