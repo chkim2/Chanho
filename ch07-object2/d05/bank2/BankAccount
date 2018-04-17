@@ -1,0 +1,60 @@
+package com.d05.bank2;
+//부모클래스
+public class BankAccount {
+	protected String number;
+	protected String password;
+	protected String name;
+	protected long balance;
+	
+	public BankAccount(String number,String password,
+			           String name,long balance) {
+		//멤버변수에 데이터 저장
+		this.number = number;
+		this.password = password;
+		this.name = name;
+		this.balance = balance;
+		System.out.println(this.number + " 계좌가 개설되었습니다.");
+	}
+	//입금하기
+	public void deposit(long balance) {
+		//0보다 큰 값만 입금 가능
+		if(balance <= 0) {
+			System.out.println("0보다 크게 입력해야 합니다.");
+			//void형 메서드에서 특정 조건일 때 메서드
+			//를 빠져나와 메서드 수행을 멈춤
+			return;
+		}
+		
+		this.balance += balance; //누적
+		System.out.println("입금이 완료되었습니다.");
+	}
+	//출금하기
+	public void withdraw(long balance) {
+		//0보다 큰 값만 출금 가능
+		if(balance <= 0) {
+			System.out.println("0보다 크게 입력해야 합니다.");
+			return;
+		}
+		//잔고가 출금을 원하는 금액 미만이면 출금 불가능
+		//"잔액이 부족합니다."
+		if(this.balance < balance) {
+			System.out.println("잔고가 부족합니다.");
+			return;
+		}
+		//잔고가 출금을 원하는 금액 이상이면 출금가능
+		//차감
+		this.balance -= balance;
+		System.out.println("출금이 완료되었습니다.");
+	}
+	
+	public void printAccount() {
+		//일반 계좌번호, 비밀번호, 예금주, 계좌잔고
+		System.out.println("================");
+		System.out.println("(일반)계좌번호: " + number);
+		System.out.println("비밀번호: " + password);
+		System.out.println("예금주: " + name);
+		System.out.printf("계좌잔액: %,d원%n", balance);
+		System.out.println("================");
+	}
+	
+}
