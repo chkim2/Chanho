@@ -1,0 +1,33 @@
+package com.d05.inter;
+
+interface Inter1{
+	public int getA();
+}
+interface Inter2{
+	public int getB();
+}
+interface Inter3 extends Inter1,Inter2{//인터페이스 간의 다중 상속
+	public int getData();
+}
+interface Inter4{
+	public int getC();
+}
+//interface간에 상속 관계
+public class InterMain01 implements Inter3,Inter4{
+	@Override
+	public int getA() {
+		return 10;
+	}
+	@Override
+	public int getB() {
+		return 20;
+	}
+	@Override
+	public int getData() {
+		return 30;
+	}
+	@Override
+	public int getC() {
+		return 40;
+	}
+}
