@@ -1,0 +1,38 @@
+package com.d01.finaltest;
+
+class A{
+	//상수
+	final int NUM = 10;
+	//상수를 초기화하지 않으면 생성자를 통해 초기화 해야함
+	final int TES;
+	
+	public static final int NUMBER = 10;
+	
+	public A() {
+		//*주의*
+		//초기화하지 않은 상수가 존재하면
+		//인자가 없는 생성자를 사용할 경우
+		//생성자내에서 반드시 상수 초기화를 해야함
+		TES = 20;
+	}
+	public A(int tes) {
+		TES = tes;
+	}
+}
+public class FinalMain01 {
+	public static void main(String[] args) {
+		//지역 상수
+		final int NO = 40;//상수라는 의미로 대문자
+		System.out.println(NO);
+		System.out.println("==================");
+		//static 상수
+		System.out.println(A.NUMBER);
+		A ap = new A();
+		//상수변경 불가능
+		//ap.NUM=20;
+	}
+	
+
+
+
+}
