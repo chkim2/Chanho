@@ -1,0 +1,27 @@
+package com.d11.thistest;
+
+public class ThisMain05 {
+
+	public ThisMain05() {
+		System.out.println("바람");
+	}
+	public ThisMain05(int n) {
+		//this()를 통해서 생성자 내부에서 또다른 생성자를 호출할 때는 this()르 호출하기 전에
+		//수행문이 명시되어야 하고 This()를 호출하기 전에 수행문이 명시되면 오류 발생
+		//String m = String.valueOf(n);
+		//int -> String
+		this(String.valueOf(n));
+	}
+	public ThisMain05(String str) {
+		System.out.println(str);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//ThisMain05 tm01 = new ThisMain05();
+		System.out.println("=======================");
+		//ThisMain05 tm02 = new ThisMain05(2000);
+		System.out.println("=======================");
+	//	ThisMain05 tm03 = new ThisMain05("서울");
+	}
+
+}
