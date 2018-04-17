@@ -1,0 +1,22 @@
+package com.d01.stringtokenizer;
+
+import java.util.StringTokenizer;
+
+public class StringTokenizerMain01 {
+	
+	public static void main(String[] args) {
+		
+		String source = "100,200,300,400";
+		//                                      대상문자열 구분자
+		StringTokenizer st = new StringTokenizer(source, ",");
+		//구분자를 제외한 100 200 300 400 을 StringTokenizer가 갖고있음
+		
+		//반복문을 이용해서 잘려진 문자열을 추출
+		//        잘려진 문자열이 있는지 검증
+		while(st.hasMoreTokens()) {//있으면 true 진행 /없으면  false면 탈출 
+			                  //검증된 문자열을 반환
+			System.out.println(st.nextToken());//st를 읽어오거라
+		}
+	}
+
+}
