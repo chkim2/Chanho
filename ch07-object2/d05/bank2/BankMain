@@ -1,0 +1,34 @@
+package com.d05.bank2;
+
+import java.util.Scanner;
+
+public class BankMain {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		//계좌 생성
+		MinusAccount ba = new MinusAccount("10-234", "1234", "신봉선", 10000L,5000l);		
+		//계좌 정보 출력
+		ba.printAccount();
+		
+		System.out.print("입금:");
+		long money = input.nextLong();
+		//입금하기
+		ba.deposit(money);
+		//계좌 정보 출력
+		ba.printAccount();
+		
+		System.out.print("출금:");
+		money = input.nextLong();
+		//출금하기
+		ba.withdraw(money);
+		//계좌 정보 출력
+		ba.printAccount();
+		
+		input.close();
+	}
+}
+
+
+
+
+
