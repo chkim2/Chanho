@@ -1,0 +1,167 @@
+package com.d04.list;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class AccountMain {
+
+	BufferedReader br = null;
+	InputStreamReader ir = null;
+	ArrayList<Account> list;
+//	Account at;
+	public AccountMain() {
+		list = new ArrayList<Account>();
+		br = new BufferedReader(new InputStreamReader(System.in));
+//		at = new Account();
+	}
+
+	public void callMenu() throws IOException {
+		while(true) {
+			System.out.println
+			("1.계좌생성,2.입금,3.출금,4.송금,5.계좌확인,6.종료");
+			try {
+				int num = Integer.parseInt(br.readLine());
+				if(num == 1) {
+					//계좌 생성
+					make();
+				}else if(num == 2) {
+					//입금
+//					Account at = new Account();
+					deposite();
+				}else if(num == 3) {
+					//출금
+					withdraw();
+				}else if(num == 4) {
+					//송금
+					sendMoney();
+				}else if(num == 5) {
+					//계좌 확인
+					output();
+				}else if(num == 6 ) {
+					System.out.println("종료");
+					System.exit(0);
+				}else {
+					System.out.println("잘못 입력했습니다.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("숫자만 입력 가능");
+			}
+		}
+	}
+	public void sendMoney() {
+		try {
+			System.out.println("출금하실 계좌 입력");
+			String str = br.readLine();
+			System.out.println("입금하실 계좌 입력");
+			String str2 = br.readLine();
+			if(!str.equals(str2)) {
+				System.out.println("송금하실 금액 입력");
+				int num = Integer.parseInt(br.readLine());
+				for(int i=0;i<list.size();i++) {
+					Account a = list.get(i);
+					if(str2.equals(a.getName())) {
+						a.deposite(num);
+					}
+					if(str.equals(a.getName())) {
+						a.withdraw(num);
+					}
+				}
+				
+			}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void make() throws IOException {
+		Account at = new Account();
+		System.out.println("계좌를 만들어주세요");
+		at.setAccount(br.readLine());
+		System.out.println("이름을 입력하세요");
+		at.setName(br.readLine());
+		System.out.println("예금액을 입력하세요");
+		at.setBalance(Integer.parseInt(br.readLine()));
+
+		list.add(at);
+	}
+	public void output() {
+		System.out.println("계좌\t이름\t예금액");
+		for(int i=0;i<list.size();i++) {
+			Account a = list.get(i);
+			System.out.println(a.getAccount()+"\t"+a.getName()+"\t"+a.getBalance());
+		}
+
+	}
+	
+	public void deposite() {
+		try {
+			System.out.println("계좌를 입력하세요");
+			String secondaccount=br.readLine();
+
+			for(int i=0;i<list.size();i++) {
+				Account a = list.get(i);
+				if(secondaccount.equals(a.getName())) {
+					System.out.println("입금액을 입력하세요");
+					int inputmoney=Integer.parseInt(br.readLine());
+					a.deposite(inputmoney);
+				}else {
+					System.out.println("계좌가 없습니다.");
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	public void withdraw() {
+		try {
+			System.out.println("계좌를 입력하세요");
+			String secondaccount=br.readLine();
+			for(int i=0;i<list.size();i++) {
+				Account a = list.get(i);
+				if(secondaccount.equals(a.getName())) {
+					System.out.println("입금액을 입력하세요");
+					int inputmoney=Integer.parseInt(br.readLine());
+					a.withdraw(inputmoney);
+				}else {
+					System.out.println("계좌가 없습니다.");
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	public Account getSameAccount(String title) throws IOException {
+		String account = null;
+		while(true) {
+			System.out.println(title);
+			account = br.readLine();
+			
+			//루프를 빠져나감
+			if(account.equals("q")) {
+				return null;
+			}
+			for(Account ac : list) {
+				if(account.equals(ac.getAccount())) {
+					return ac;
+				}
+			}
+			//검색하는 계좌 존재하지 않으면 반복문을 종료된 후 아래에 수행문을 호출
+			System.out.println("동일 계조가 존재하지 않습니다.");
+		}
+		
+	}
+	public static void main(String[] args) {
+		AccountMain am = new AccountMain();
+		try {
+			am.callMenu();
+		} catch (IOException e) {
+			System.out.println("오류");
+		}
+	}
+}
