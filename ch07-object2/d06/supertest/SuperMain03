@@ -1,0 +1,29 @@
+package com.d06.supertest;
+//부모클래스
+class People{
+	int a = 10;
+	//생성자
+	public People(){
+		super();//Object의 default 생성자
+	}
+}
+//자식클래스
+class Student extends People{
+	int b = 20;
+	//생성자
+	public Student() {
+		super();//부모클래스이 default 생성자
+				//기본적으로 명시하지 않고 자동적으로 처리
+	}
+}
+
+public class SuperMain03 {
+
+	public static void main(String[] args) {
+		Student st = new Student();
+		System.out.println(st.a);
+		System.out.println(st.b);
+
+	}
+
+}
