@@ -1,0 +1,41 @@
+package com.d04.mathtest;
+
+import java.util.Random;
+
+public class RandomMain {
+	public static void main(String[] args) {
+		
+		//꽝뽑기
+		//0.0 ~ 0.99999999999999999999999
+		//원하는 범위 0.0 ~ 0.3
+		
+		String[] gift = {"스마트폰","Tv","냉장고","꽝!!!!!!!!"};
+		                // 0        1    2      3
+		
+		
+		double ran = Math.random();
+		System.out.println("발생한 난수 : " + ran);
+		
+		              //double > int 형변환
+		int index = (int)(ran*4);
+		
+		System.out.println("발생한 난수 : "+index);
+		System.out.println("오늘의 선물 : "+gift[index]);
+		
+		
+		System.out.println("=================================");
+
+		
+		String[] luck = {"로또 당첨","피곤해~~~~","새로운 만남","천만원 득템"};
+		               //    0          1           2        3
+		
+		Random r1 = new Random();
+		//0부터 인자로 전달된 값의 전 범위까지의 난수 발생
+		//0~3
+		index = r1.nextInt(4);
+		System.out.println("발생 난수 : "+ index);
+		System.out.println("오늘의 운세 : "+luck[index]);
+		
+	}
+
+}
