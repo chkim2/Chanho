@@ -1,0 +1,54 @@
+package com.d05.writer;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class BufferedWriterMain {
+	public static void main(String[] args) {
+		
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		
+		try {
+			//파일생성
+			fw = new FileWriter("bufferedWriter.txt");
+			//버퍼로 읽겠습니다~
+			bw = new BufferedWriter(fw);
+			//파일에 문자 입력
+			bw.write("BufferedWriter 테스트입니다");
+			//줄바꿈
+			bw.newLine();//줄바꿈 (BufferedWriter)
+			                          //OS에 맞는 줄바꿈 문자 읽어오기
+			//파일에 문자입력
+			bw.write("안녕하세요. " + System.getProperty("line.separator")+"하하하");
+			//버퍼에 갖고있는 데이터를 비우고 보내주는것
+			//파일로 전송함
+			bw.flush();
+			System.out.println("파일을 생성하고 내용을 기술");
+			
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			//자원정리
+			if(bw !=null) {
+				try {
+					bw.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+			if(fw !=null) {
+				try {
+					fw.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+			
+		}
+	}
+
+}
