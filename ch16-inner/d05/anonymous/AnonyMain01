@@ -1,0 +1,35 @@
+package com.d05.anonymous;
+
+import com.d05.anonymous.AnonyMain01;
+import com.d05.anonymous.Inner6;
+
+//부모클래스
+class Inner6{
+	public void disp() {
+		System.out.println("Inner6의 disp 메서드");
+	}
+}
+
+
+public class AnonyMain01 {
+	public void make() {
+		//로컬 내부클래스
+		class Inner extends Inner6{
+			@Override
+			public void disp() {
+				System.out.println("로컬 내부 클래스의 disp");	
+			}
+		}
+		//로컬내부클래스 객체를 생성
+		Inner i = new Inner();
+		//Innet6의 disp메서드 호출
+		i.disp();
+	}
+	public static void main(String[] args) {
+		AnonyMain01 am = new AnonyMain01();
+		//재정의를 안했다면 상속받았던 부모클래스의 disp를 호출 
+		//재정의 했다면 로컬 내부클래스의 disp 호출
+		am.make();
+	}
+
+}
