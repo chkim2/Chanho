@@ -1,0 +1,33 @@
+package com.d03.stringbuffer;
+
+public class StringBufferMain {
+	
+	public static void main(String[] args) {
+		
+		StringBuffer sb = new StringBuffer("여름 덥다!");
+		System.out.println("1 :" + sb);//여름 덥다!
+		                                //0 1234 5
+		//해당 인덱스에 문자열 추가
+		sb.insert(2, '이');
+		System.out.println("2 :" + sb);//여름이 덥다!
+		                                //0 1234 56
+		                                //인덱스를 뒤로 밀어버림
+		//문자열 뒤에 문자열을 추가
+		sb.append("가을은 ");
+		System.out.println("3 :" + sb);//여름이 덥다!가을은 
+		                                //0 1234 567 89 10(공백)
+		sb.append("시원하다");
+		System.out.println("4 :" + sb);//여름이 덥다!가을은 시원하다
+		                                //0 1234 567 891011121314
+		
+		//시작 인덱스부터 끝 인덱스 전까지 삭제
+		sb.delete(0,3);
+		System.out.println("5 :" + sb);
+		
+		           //StringBuffer -> String
+		String str = sb.toString();
+		//글자를 다~ 만들고 String으로 바꿔서 쓰면됨
+		System.out.println(str);
+	}
+
+}
