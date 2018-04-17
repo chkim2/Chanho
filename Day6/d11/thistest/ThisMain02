@@ -1,0 +1,30 @@
+package com.d11.thistest;
+
+public class ThisMain02 {
+	private int a;
+	//private int b;
+	
+	
+	public void setA(int a) {
+		//메서드 블럭내에서 멤버변수명과 지역변수명이 같으면 지역변수가 우선함
+		//a= a; 둘다 지역변수
+		
+		//변수명이 동일하면 멤버변수와 지역변수를 구별해서 명시해야 함 
+	  //멤버변수 = 지역변수
+		this.a=a;
+	}
+	public int getA() {
+		return a;
+	}
+	public void make() {
+		//make 메서드와 같은 객체의 멤버 메서드를 this를 이용해서 호출
+		//this를 이용해서 호출
+		System.out.println(this.a);
+	}
+	
+	public static void main(String[] args) {
+		ThisMain02 tm = new ThisMain02();
+		tm.setA(10);
+		System.out.println(tm.getA());
+	}
+}
