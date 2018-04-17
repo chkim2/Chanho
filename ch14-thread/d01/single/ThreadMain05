@@ -1,0 +1,45 @@
+package com.d01.single;
+
+class MyRunnableOne implements Runnable{
+	@Override
+	public void run() {
+		System.out.println("run");
+		first();
+	}
+	public void first() {
+		System.out.println("first");
+		second();
+	}
+	public void second() {
+		System.out.println("second");
+	}
+}
+public class ThreadMain05 {
+	public static void main(String[] args) {	
+		
+		System.out.println("main start");
+		MyRunnableOne mr = new MyRunnableOne();
+		Thread myThread = new Thread(mr);
+		myThread.start();
+		
+//		try {
+//			//join메서드는 join메서드를 호출한 스레드가 종료 할때까지 현재의 스레드를 기다리게 함.
+//			myThread.join();
+//		} catch (InterruptedException e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
+		
+		
+		System.out.println("main end");
+		
+	}
+	/*
+	 * join이 없을 때는 MyRunnable과 main Thread 둘중 main 스레드를 먼저 출력하지만
+	 * join을 사용했을 땐 순위를 정할 수 있음
+	 * 1번과 2번바꾸기
+	 * 1번 출력하고 2번 이후 3번출력하기
+	 */
+	
+
+}
