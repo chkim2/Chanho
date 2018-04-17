@@ -1,0 +1,41 @@
+package com.d01.list;
+
+import java.util.ArrayList;
+
+class A{
+	//Object의 toString을 재정의 함
+	@Override
+	public String toString() {
+		return "A클래스";
+	}
+}
+class B{
+	
+}
+public class ArrayListMain01 {
+	
+	public static void main(String[] args) {
+		ArrayList list = new ArrayList<>();
+		
+		//ArrayList의 저장된 요소의 갯수
+		System.out.println("요소의 갯수 : " + list.size());
+		System.out.println("===========================");
+		
+		
+		//객체를 ArrayList에 저장
+		//ArrayLis의 객체의 주소를 저장
+		list.add(new A());
+		list.add(new B());
+		list.add(new String("박지성"));
+//		list.add(new Integer(100));
+		list.add(100);//auto boxing 문법에 의해서 Integer 객체가 자동으로 생성
+		
+		System.out.println("요소의 갯수 : " + list.size());
+		//ArrayList에 저장된 요소의 목록을 보여준다.
+		System.out.println(list);
+		//toString으로 박지성과 10이 재정의 되어 값을 보여줌
+	}
+	
+	
+
+}
