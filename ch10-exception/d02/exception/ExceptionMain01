@@ -1,0 +1,37 @@
+package com.d02.exception;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ExceptionMain01 {
+//	                               Input output exception
+//	                       throws 메서드에 사용하고 예외를 임시 보관하는
+//	                                             개념으로 실제 예외처리는 메서드를 호출한 곳에서
+//	                        try~catch 해야함
+	public void printData() throws IOException,NumberFormatException{
+		BufferedReader br = new BufferedReader
+				(new InputStreamReader(System.in));
+		
+		
+		System.out.println("단 입력 : ");
+		//             String > int
+		int dan = Integer.parseInt(br.readLine());
+		System.out.println(dan+"단");
+		System.out.println("=======================");
+		for(int i=0;i<=9;i++) {
+			System.out.println(dan+"*"+i+"="+dan*i);
+		}
+	}
+	public static void main(String[] args) {
+		ExceptionMain01 em = new ExceptionMain01();
+		try {
+			em.printData();//예외처리를 해주어야한다.
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("예외 발생");
+		}
+	}
+
+}
