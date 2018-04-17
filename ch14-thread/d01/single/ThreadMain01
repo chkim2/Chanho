@@ -1,0 +1,38 @@
+package com.d01.single;
+
+public class ThreadMain01 extends Thread{
+//	public class ThreadMain01 extends Parent,Thread 다중 상속이라 안됨
+	
+	//생성자에 스레드 이름을 전달하면 스레드가 생성될 때 지정한 이름으로 생성됨
+	public ThreadMain01(String threadName) {
+		super(threadName);
+	}
+	//Thread의 run 메서드 재정의
+	@Override
+	public void run() {//작업 단위
+		Thread t = currentThread();
+		for(int i=0;i<10;i++) {
+			try {
+				sleep(1000); //지정된 시간(밀리세컨드)만큼 수행을 멈춤
+			} catch (InterruptedException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			//currentThread() : 현재 수행되는 스레드 객체의 주소 반환
+			//getName() : 스레드 객체의 이름을 반환
+			                    //        스레드의 주소를 가져옴 //그리고 그 스레드의 이름을 가져옴
+			System.out.println("스레드의 이름 : " + t.getName() 
+					+ ", temp value : " + i);//동시수행 병렬수행
+		}
+	}
+	public static void main(String[] args) {
+		ThreadMain01 tm = new ThreadMain01("첫번째");
+		tm.run();
+		System.out.println("=============");
+		tm.start();
+		//일반적인 객체. 메소드와는 다르게 스레드는 동시에 돌려야하기 때문에
+		//start를 써야함
+		//start 메서드가 작업단위인 run 메서드 실행
+	}
+
+}
