@@ -1,0 +1,19 @@
+package com.d01.stringtokenizer;
+
+import java.util.StringTokenizer;
+
+public class StringTokenizerMain02 {
+	public static void main(String[] args) {
+		
+		
+		String source = "2018-04-06 10:27:56";
+                                            //복수의 구분자 사용이 가능함
+		StringTokenizer st = new StringTokenizer(source,"-: ");
+		
+		while(st.hasMoreTokens()) {
+			System.out.println(st.nextToken());
+		}
+		
+	}
+
+}
