@@ -1,0 +1,48 @@
+package com.d03.calendar;
+
+import java.util.Scanner;
+import java.util.Calendar;
+
+public class CalendarMain02 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		//날짜와 시간을 구함
+		Calendar cal = Calendar.getInstance();
+		System.out.println("희망 연도와 월을 입려가세요! (ex 연도 :2018, 월:4)");
+		System.out.print("연도 : ");
+		int year =sc.nextInt();
+		System.out.print("월  :");
+		int month = sc.nextInt();
+		System.out.println("	["+year+"년 "+month+"월]") ;
+		System.out.println("====================================");
+		System.out.println("  일  월  화  수  목  금  토");
+		//희망 연도, 월(월의 범위는 0~11, 입력 월-1),
+		//일(첫날짜의 요이을 구해서 그 요일부터 시작)
+		cal.set(year, month-1,1);
+		//첫날짜의 요일구하기
+		int week = cal.get(Calendar.DAY_OF_WEEK);
+		//마지막 날 구하기
+		int lastOfDate = cal.getActualMaximum(Calendar.DATE);
+		//첫날짜의 요일에 맞게 표시되도록
+		//날짜가 없는 부분은 공백
+		for(int i=1; i<week;i++)
+			System.out.print("   ");
+
+		for(int i=1;i<=lastOfDate;i++) {
+
+			System.out.printf("%3d",i);
+			//System.out.print((i<10?"  "+i : " "+i));
+
+			//7(토요일)이면 줄바꿈
+			if(week%7==0)
+				System.out.println();
+			week++;
+
+		}
+
+
+		sc.close();
+	}
+
+}
