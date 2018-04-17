@@ -1,0 +1,22 @@
+package com.d02.extend;
+
+public class PhoneMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		SmartPhone sp = new SmartPhone("sm-995n","010-1234","white","안드로이드");
+		FeaturePhone fp = new FeaturePhone("KM-600","010-5678","black",800);
+		System.out.println("=====================================================");
+		System.out.println("모델\t번호\t\t색상\t옵션(OS/화소수)");
+		System.out.println("=====================================================");
+		System.out.print(sp.getModel()+"\t");
+		System.out.print(sp.number+"\t");
+		System.out.print(sp.color+"\t");
+		System.out.print(sp.getOs()+"\n");
+		System.out.print(fp.getModel()+"\t");
+		System.out.print(fp.number+"\t");
+		System.out.print(fp.color+"\t");
+		System.out.print(fp.getPixel()+"\t");
+	}
+
+}
