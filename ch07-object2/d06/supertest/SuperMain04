@@ -1,0 +1,24 @@
+package com.d06.supertest;
+//부모클래스
+class People2{
+	int a;
+	//인자가 있는생성자
+	public People2(int a) {
+		super();//명시하지 않지만 자동적을 삽입
+		this.a = a;
+	}
+}
+//자식클래스
+class Student2 extends People2{
+	public Student2() {
+		super(100);
+		//부모클래스이 인자의 타입이 int인 생성자르 호출
+	}
+}
+public class SuperMain04 {
+	public static void main(String[] args) {
+		Student2 st = new Student2() ;
+		System.out.println(st.a);
+	}
+
+}
