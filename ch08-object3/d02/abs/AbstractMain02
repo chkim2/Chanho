@@ -1,0 +1,36 @@
+package com.d02.abs;
+
+//추상클래스는 일반적으로 1개 이상의 추상메서드를 가지고 있음
+abstract class A2{
+private int x;
+	
+	//일반 메서드
+	public void setX(int x) {
+		this.x = x;
+		
+	}
+	public abstract void make();
+}
+//추상클래스를 상속받아서 사용할 때 추상클래스엔
+//추상메서드가 있으면 자식클래스에서 반드시 일반 메서드로
+//구현해야함(메서드 재정의 문법)
+class B2 extends A2{
+	//추상 메서드 구현
+	@Override//재정의 오버라이드
+	public void make() {
+		System.out.println("make 메서드 호출");
+	}
+	
+}
+abstract class AbstractMain02 {
+	//추상 메서드 (미완성 메서드 )
+	//일반 클래스는 추상메서드 정의 불가능
+	public static void main(String[] args) {
+		B2 b2 = new B2();
+		b2.make();
+		
+	}
+	
+	
+	
+}
