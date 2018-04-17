@@ -1,0 +1,32 @@
+package com.d04.Inter;
+
+interface A2{
+	//추상 메서드
+	public abstract void make();//원형
+	
+	void fun();//public 생략
+}
+
+//         A형식을 B에 적용하겠습니다/~
+class B2 implements A2{
+	//추상 메서드 구현하기
+	@Override
+	public void make() {
+		System.out.println("make 메서드 호출");
+	}
+	@Override
+	public void fun() {
+		System.out.println("fun 메서드 호출");
+	}
+}
+public class InterMain02 {
+	public static void main(String[] args) {
+	
+				B2 bp = new B2();
+				bp.make();
+				bp.fun();
+	}
+		
+	
+
+}
