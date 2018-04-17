@@ -1,0 +1,31 @@
+package com.d01.exception;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+public class ExceptionMain07 {
+	/*
+	 * 자바 리소스 닫기
+	 * 자바 7.0에서 새로 추가된 try~with~resources를
+	 * 사용하면 예외 발생 여부와 상관없이 사용했던
+	 * 리소스 객체(각종 입출력 스트림, 서버 소켓, 소켓)
+	 * close() 메서드를 호출해서 안전하ㅔ 리소스를 닫아준다.
+	 */
+	public static void main(String[] args) {
+		try {
+//			try with resource //
+//			BufferedReader br = new BufferedReader(new FileReader("test.txt"));
+			FileReader fr = new FileReader("test.txt");
+			BufferedReader br =new BufferedReader(fr);
+			String line = null;;
+			while((line = br.readLine()) != null) {
+				System.out.println(line);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+
+	}
+
+}
