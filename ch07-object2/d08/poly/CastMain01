@@ -1,0 +1,39 @@
+package com.d08.poly;
+
+
+class A{
+	
+}
+class B{
+	
+}
+class C{
+	
+}
+class D{
+	
+}
+public class CastMain01 {
+	//A객체를 담을 곳이 없기 때문에 하나씩 다 만들어 주어야 합니다
+	//하지만 담을곳이 없다면?
+	//그러므로 아래의 방법은 좋지 않은 방법
+	public void add(A a) {}//<- A객체
+	public void add(B b) {}//<- B객체
+	public void add(C c) {}//<- C객체
+	public void add(D d) {}//<- D객체
+	
+	public static void main(String[] args) {
+		
+		
+		//객체 생성해서 객체에 주소를 저장하려고 함
+		CastMain01 c = new CastMain01();
+		c.add(new A());
+		c.add(new B());
+		
+		
+		
+	}
+	
+	
+
+}
