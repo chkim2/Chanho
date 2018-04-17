@@ -1,0 +1,34 @@
+package com.d01.single;
+
+
+
+public class ThreadMain04 extends Thread{
+	
+	//Thread의 run 메서드를 재정의
+	@Override
+	public void run() {
+		for(int i=1;i<10;i++) {
+			try {
+				sleep(2000);//Thread생략 //같은 클래스 생략 가능
+			} catch (InterruptedException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			System.out.println( i +"번 박수쳐!!");
+		}
+	}
+	public static void main(String[] args) {
+		ThreadMain04 tm = new ThreadMain04();
+		tm.start();
+		
+		for(int i=1;i<10;i++) {
+			try {
+				sleep(1000);//Thread생략 //같은 클래스 생략 가능
+			} catch (InterruptedException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			System.out.println( i +"번 노래불러 !!");
+		}
+	}
+}
