@@ -1,0 +1,58 @@
+package com.d02.url;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class NetworkMain02 {
+	
+	public static void main(String[] args) {
+		URL url = null;
+		BufferedReader input = null;
+		String addess = "https://www.naver.com/index.html";
+		String line = "";//빈 문자열//Data 없음
+		
+		try {
+			//URL 객체 생성
+			url = new URL(addess);
+			//URL 객체의 웹사이트 주소 정보를 이용해서
+			//서버에 접속해서 해당 HTML을 호출하고
+			//전송받아서 InputStream -> 문자스트림
+			input = new BufferedReader
+					//url.openSteam의 HTML을
+					//InputStreamReader가 String으로 변환해서 읽어옴
+					//UTF-8방법으로
+					//그 String을 BufferedReader가 한 라인씩 읽어옴
+					(new InputStreamReader(url.openStream(),"UTF-8"));
+			
+			//반복문을 이용해서 데이터를 한 라인씩 읽음
+			//input.realine이 한 라인씩 읽어오는데 그걸 라인에다가 넣어줘
+			//근데 null이면 중지해
+			//있다면 계속 출력하고
+			while((line =input.readLine())!=null) {
+				System.out.println(line);
+			}
+		} catch (MalformedURLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}//자원정리 
+		finally {
+			if(input !=null) {
+				try {
+					input.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+		}
+	}
+
+}
