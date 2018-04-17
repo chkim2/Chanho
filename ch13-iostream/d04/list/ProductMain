@@ -1,0 +1,93 @@
+package com.d04.list;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.io.IOException;
+
+/*
+ * 1번에서 어레이리스트에 넣어줌
+ * 2번에서 어레이리스트에서 루프 돌리면서 데이터 값을 뽑아서 보여줘라
+ */
+public class ProductMain {
+	BufferedReader br;
+
+	ArrayList<Product> list = new ArrayList<Product>();
+	public ProductMain() {
+		br = new BufferedReader(new InputStreamReader(System.in));
+	}
+
+	//메뉴 만드는 부분
+	public void callMenu() throws IOException{
+		while(true) {
+			try {
+				System.out.print("1.상품 입력"+"\t\t"+"2.상품목록보기"+"\t"+"3.종료"+"\n");
+				int num = Integer.parseInt(br.readLine());
+				if(num==1) {
+					input();
+					
+				}else if(num==2) {
+					output();
+				}else if(num==3){
+					System.out.println("종료");
+					System.exit(0);
+				} else {
+					System.out.println("잘못 입력하셨습니다.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("숫자만 허용함");
+			}
+
+			//readLine은 문자로 받기 때문에 숫자로 바꿔주어야함
+			//만약 문자열로 받는다면 (num.equals("1"))처럼 써야함
+		}
+	}
+	public void input() throws IOException {
+		Product pd = new Product();
+		System.out.println("상품명 입력하세요");
+		pd.setName(br.readLine());
+		System.out.println("가격 입력");
+		pd.setPrice(Integer.parseInt(br.readLine()));
+		System.out.println("메이커 입력");
+		pd.setMaker(br.readLine());
+		System.out.println("재고 입력");
+		pd.setStock(Integer.parseInt(br.readLine()));
+		list.add(pd);
+		//ArrayList 0번방에 지금까지 받은 pd값을 한방에 넘겨준다~
+	}
+
+	//목록 출력
+	public void output() {
+//		for(int i=0;i<list.size();i++) {
+//			Product pt = list.get(i);
+//			System.out.print("상품 이름 : "+pt.getName()+"\t");
+//			System.out.print("가격  : "+pt.getPrice()+"\t");
+//			System.out.print("메이커 : "+pt.getMaker()+"\t");
+//			System.out.println("재고 : "+pt.getStock()+"\t");
+//			System.out.println("=========================================");
+//		}	
+		//확장 for문
+		//이미 for에서 인덱스 0번부터 list마지막까지 돌라고 명시되어있음
+		for(Product pt : list) {
+			System.out.print("상품 이름 : "+pt.getName()+"\t");
+			System.out.print("가격  : "+pt.getPrice()+"\t");
+			System.out.print("메이커 : "+pt.getMaker()+"\t");
+			System.out.println("재고 : "+pt.getStock()+"\t");
+			System.out.println("=========================================");
+		}	
+	}
+
+	public static void main(String[] args) {
+		ProductMain pm = new ProductMain();
+		try {
+			pm.callMenu();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+
+
+
+	}
+
+}
