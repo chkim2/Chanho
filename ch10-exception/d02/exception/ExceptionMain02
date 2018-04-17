@@ -1,0 +1,35 @@
+package com.d02.exception;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ExceptionMain02 {
+	//이건 그냥 Exception에다가만 넘겨준거
+	public static void main(String[] args) {
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("0이상만 입력");
+			int num = Integer.parseInt(br.readLine());
+			if(num<0) {//음수일때
+				//인위적으로 예외를 발생시킬 때는
+				//반드시 try 블럭에 명시해야함
+				//예이가 발생하면 catch블럭으로 이동함
+				throw new Exception("음수를 사용할 수 없습니다.");
+			}
+			System.out.println("입력한 숫자 : " + num);
+		} catch (IOException e) {
+			// TODO: handle exception
+			System.out.println("입력시 오류발생");
+		}catch (NumberFormatException e) {
+			// TODO: handle exception
+			System.out.println("숫자만 입력 가능");
+		}catch (Exception e) {
+			//예외를 강제로 발생 해을 때 Exception 생성자에
+			//전달해준 예외문구를 반환
+			System.out.println(e.getMessage());
+		}
+	}
+
+}
