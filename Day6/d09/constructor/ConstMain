@@ -1,0 +1,53 @@
+package com.d09.constructor;
+
+public class ConstMain {
+	int kor;
+	int eng;
+	int math;
+	int histoy;
+	int science;
+	int num;//과목수
+
+	public ConstMain(int k, int e, int m) {
+		kor= k;
+		eng = e;
+		math=m;
+		num =3; //3과목
+				
+	}
+	
+	public ConstMain(int k, int e, int m,int h, int s) {
+		kor= k;
+		eng = e;
+		math=m;
+		histoy=h;
+		science=s;
+		num =5; //5과목
+				
+	}
+	public int getSum() {//합계 구하기
+		int total;
+		if(num==3)
+			total = kor+eng+math;
+		else
+			total = kor+eng+math+histoy+science;
+		
+		return total;
+		
+	}
+	public int getAverage() {
+		int avg= getSum()/num;
+		return avg;
+	}
+	public static void main(String[] args) {
+		ConstMain ct = new ConstMain(50,60,90);
+		System.out.println("합계 : "+ct.getSum());
+		System.out.println("평균 : "+ct.getAverage());
+		System.out.println("----------------------");
+		ConstMain ct2 = new ConstMain(88,97,92,85,77);
+		System.out.println("합계 : "+ct2.getSum());
+		System.out.println("평균 : "+ct2.getAverage());
+		
+	}
+
+}
