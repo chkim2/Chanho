@@ -1,0 +1,41 @@
+package com.d06.inter;
+
+
+class A{
+	public void autoPlay(I i) {//인터페이스도 자료형으로 쓸 수 있다.
+		i.play();
+	}
+}
+interface I{
+	//추상메서드
+	public abstract void play();
+	
+}
+class B implements I{
+
+	//인터페이스 추상메서드 play 구현
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		System.out.println("play in B class");
+	}
+
+}
+class C implements I{
+	//인터페이스에 추상메서드 play 구현
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		System.out.println("play in C class");
+	}
+	
+}
+public class InterMain02 {
+	public static void main(String[] args) {
+		
+		A ap = new A();
+		ap.autoPlay(new B());//B -> I 클래스타입 -> 인터페이스 타입
+		ap.autoPlay(new C());//C -> I 클래스타입 -> 인터페이스 타입
+	}
+
+}
