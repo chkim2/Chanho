@@ -1,0 +1,45 @@
+package com.d01.string;
+
+public class StringMain01 {
+	public static void main(String[] args) {
+		
+		//암시적 객체 생성
+		//문자열이 같은면 객체를 공유
+		String str1 = "Hello";
+		String str2 = "Hello";
+		
+		//객체 비교
+		if(str1==str2) {
+			System.out.println("str1과 str2는 같은객체 : " + true);
+		}else {
+			System.out.println("str1과 str2는 같은객체 : " +false);
+		}
+		//문자열 비교
+		if(str1.equals(str2)) {//str1==str2의 내용이 같다
+			System.out.println("str1 == str2");
+		}else {
+			System.out.println("str1 != str2");
+		}
+		System.out.println("=================================");
+		
+		//명시적 객체 생성
+		//명시저 객체 생성시 문자열이 같아도 각각 객체
+		//따로따로 생성함
+		
+		String str3 = new String("Hello");
+		String str4 = new String("Hello");
+		
+		if(str3==str4) {
+			System.out.println("str3과 str4는 같은객체 : " + true);
+		}else {
+			System.out.println("str3과 str4는 같은객체 : " +false);
+		}
+		//문자열 비교
+		if(str3.equals(str4)) {//str3==str4의 내용이 같다
+			System.out.println("str3 == str4");
+		}else {
+			System.out.println("str3	 != str4");
+		}
+	}
+
+}
