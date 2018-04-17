@@ -1,0 +1,17 @@
+package com.d03.abs;
+
+public class Bus extends Unit{
+	
+	
+	public Bus(String name,int energy) {
+		this.name = name;
+		this.energy = energy;
+	}
+	
+	//추상 메서드 구현
+	@Override//컴파일 단계에서 잘못된게 있다면 수정해줌
+	public void decEnergy() {
+		energy-=3;;
+	}
+
+}
