@@ -1,0 +1,53 @@
+package com.d03.map;
+
+import java.util.Enumeration;
+import java.util.Hashtable;
+
+public class HashTableMain {
+	public static void main(String[] args) {
+		
+		
+		Hashtable<String, String> h = new Hashtable<String,String>();
+		     //key와 value의 쌍으로 저장
+		     //인덱스 이름 // 인덱스 값
+		h.put("name","홍길동");
+		h.put("age","27");
+		h.put("tel","010-1234-5678");
+		h.put("hobby","여행");
+		//key가 중복되면 마지막에 입력한 데이터가 인정
+		h.put("name","장영실");
+//		key와 value에 null 불인정
+//		h.put("job",null);null null갑이 인정이 안됨
+//		h.put(null,"학생");같은오류남
+		
+		//저장된 데이터의 목록
+		System.out.println(h);
+		System.out.println("-------------------");
+		
+		//key를 이용해서 value 구하기
+		//개별적으로 구하는 방법
+		//key를 알 때 가능한 방법
+		String name = h.get("name");
+		String age = h.get("age");
+		
+		System.out.println(name);
+		System.out.println(age);
+		System.out.println("-------------------");
+		
+		//전체 key와 전체 value를 구함
+		//Enumeration을 이용한 출력
+		Enumeration<String> en = h.keys();//h 전체의 키를 담는다
+		while(en.hasMoreElements()) {
+			String key = en.nextElement();
+			System.out.println(key + ", " + h.get(key));
+			//                 키와                 키안에 값을 출력
+		}
+		//Enumeration에 key를 쫙 넣으면
+		//주소값이 넘어감
+		//hasMoreElents로 데이터 존재 여부 확인
+		//(while문으로 있을 때 까지 확인)
+		//nextElement로 데이터 뽑아냄
+		//뽑아내면 값 삭제됨
+	}
+
+}
