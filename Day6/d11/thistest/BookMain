@@ -1,0 +1,28 @@
+package com.d11.thistest;
+
+public class BookMain {
+	public static void main(String[] args) {
+		Book[] bookArray = new Book[3];
+		int total = 0;//책 대금
+		
+		//book 객체를 3개 생성하여 배열에 넣음
+		bookArray[0] = new Book("IT","java",5000,5);
+		bookArray[1] = new Book("IT","Android",4000,3);
+		bookArray[2] = new Book("Art","VanGogh",6000,6);
+		
+		//배열에 있는 객체 정보를 호출
+		//책 대금(합계금액) 산출
+		for(int i=0; i<bookArray.length; i++) {
+			System.out.printf("%s\t",bookArray[i].getCategory());
+			System.out.printf("%s\t",bookArray[i].getName());
+			System.out.printf("%,d원\t",bookArray[i].getPrice());
+			System.out.printf("%.1f%%\n",bookArray[i].getDiscount());
+			//합계
+			total+=bookArray[i].getPrice();
+		}
+		System.out.println("=============================");
+		//합계 금액 출력
+		System.out.printf("책 가격의 합 : %,d원\n",total);
+
+	}
+}
