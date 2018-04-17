@@ -1,0 +1,46 @@
+package com.d02.input;
+
+import java.io.FileInputStream;//Stream은 1바이트 IO할 때 씀
+import java.io.FileNotFoundException;
+import java.io.IOException;
+public class FileInputStreamMain {
+	public static void main(String[] args) {
+		
+		FileInputStream fis = null;
+		int readbyte = 0;
+		byte[] readbyte2;//한글작업
+		try {
+			fis = new FileInputStream("file.txt");//프로젝트 밑에서 file.txt를 읽어줌
+			//파일의 정보를 한 문자씩 읽어 들여 아스키 코드로 반환. 영문자 이외의 문자는 깨짐
+//			while((readbyte = fis.read())!= -1) {//-1이면 탈출//아니면 계속 read함
+//				System.out.println((char)readbyte);
+//				
+//			}
+			
+//			(영문 이외의 문자도 처리하게끔)
+//			fis에서 읽어온 파일을 바이트로 읽어 환산해줌
+			readbyte2 = new byte[fis.available()];
+			//byte형 배열에 파일로부터 읽어온 데이터를 저장
+			fis.read(readbyte2);
+			//                     byte 배열을 ->String으로 변형
+			System.out.println(new String(readbyte2));
+		} catch (FileNotFoundException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			if(fis !=null) {
+				try {
+					fis.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+				
+			}
+		}
+		
+	}
+
+}
