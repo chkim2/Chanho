@@ -1,0 +1,43 @@
+package com.d01.string;
+
+public class StringMain06_1 {
+
+	public static void main(String[] args) {
+		//[실습] 대문자는 소문자로 바꾸고
+		//소문자는 대문자로 바꿔서 출력
+		//String의 toLowerCase() 소문자로 변경
+		//String의 toUpperCase() 대문자로 변경
+		String str = "abcMDye-4W?EWzz";
+		String result = "";
+
+
+		for(int i=0; i<str.length(); i++) {
+			char c =str.charAt(i);
+			if(c>=97&&c<=122) {//소문자이면 true
+				result+=String.valueOf(c).toUpperCase();//소문자를 대문자로
+			}else if(c>=65&&c<=90) {//대문자면 true
+				result+=String.valueOf(c).toLowerCase();//대문자를 소문자로
+			}else {
+				result+=c;
+			}
+
+		}
+		System.out.println("str = "+str);
+		System.out.println("result = "+result);
+		System.out.println("===========================");
+		String result2 ="";
+		//확장 for문
+		for(char c : str.toCharArray()) {
+			if(Character.isLowerCase(c)) {
+				result2 += Character.toUpperCase(c);
+			}else if(Character.isUpperCase(c)) {
+				result2 += Character.toLowerCase(c);
+			}else {
+				result2 += c;
+			}
+		}
+		System.out.println("result2 = "+result2);
+		System.out.println("===========================");
+		String result3 ="";
+	}
+}
