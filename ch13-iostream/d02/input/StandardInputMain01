@@ -1,0 +1,36 @@
+package com.d02.input;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public class StandardInputMain01 {
+	
+	public static void main(String[] args) {
+		//자바의 기본 입력
+		//바이트 스트림 : 1byte 단위로 입력
+		
+		try {
+			System.out.print("영문자 1개 입력");
+			//문자하나를 입력 받아서 아스키 코드로 반환
+			int a = System.in.read();
+			System.out.println("아스키 코드 : " + a + "\n" +"문자  : " + (char)a);
+			System.out.println("==================");
+			
+			//숫자를 입력해도 문자로 인식(아스키코드값 반환)
+			System.out.print("숫자 1개 입력");
+			//a를 입력받을 때 엔터를 치면 enter(\r\n)동시입력됨 그리하여 2개의 문자로 인식하여
+			//b까지 입력되는거래
+			System.in.read();//그걸 없에버리는 과정
+			System.in.read();//두번 없에야함
+			int b = System.in.read(); //멍청이//-48;연산하려면 빼서 하세요
+			System.out.print("아스키 코드 : " + b + "\n" +"문자  : " + (char)b);
+			
+;			
+		} catch (Exception e) {
+			// TODO: handle exception
+			//예외 문구 출력
+			e.printStackTrace();
+		}
+	}
+
+}
