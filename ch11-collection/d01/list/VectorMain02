@@ -1,0 +1,56 @@
+package com.d01.list;
+
+import java.util.Collections;
+import java.util.Vector;
+
+public class VectorMain02 {
+	public static void main(String[] args) {
+		
+		Vector<Double> v = new Vector<Double>();
+		
+		//요소 추가
+		v.add(100.3);
+		v.add(3.14);
+		v.add(1000.);//0생략 가능 = 1000.0
+		
+		//확장 for문을 이용한 출력
+		
+		for(double a : v) {
+			System.out.println(a);
+		}
+		
+		System.out.println("============");
+		Collections.sort(v);
+		for(double b : v) {
+			System.out.println(b);
+		}
+		
+		System.out.println("===============");
+		
+		//자원 검색
+		double search = 1000.0;
+		int index = v.indexOf(search);
+		
+		if( index != -1) {//검색
+			System.out.println("검색요소 : "+search+" 의 위치는 " +  index);
+		}else {
+			System.out.println("검색 요소"+search+"가 없습니다.");
+		}
+		
+		
+		System.out.println("=================");
+		//자원 삭제
+		double del = 3.14;
+		//삭제할 요소가 Vertor의 요소인지 검사함
+		//Vector안에 포함되어있으면 true 반환
+		if(v.contains(del)) {
+			v.remove(del);//맞으면 지워라
+		}else {
+			System.out.println("검색 요소"+ del +"가 없습니다.");
+		}
+		
+		System.out.println(v);
+		
+	}
+
+}
