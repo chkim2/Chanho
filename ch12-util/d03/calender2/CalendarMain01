@@ -1,0 +1,56 @@
+package com.d03.calender;
+
+import java.util.Calendar;
+
+public class CalenderMain01 {//한번에 구하려면 day클래스로가세요
+	
+	public static void main(String[] args) {
+		
+		Calendar today = Calendar.getInstance();//시스템이 반환
+		System.out.println(today);
+		
+		//연중 몇주 // 일년중에 몇주째냐?
+		int week_yy = today.get(Calendar.WEEK_OF_YEAR);
+		
+		//연중 며칠 //  
+		int day_yy = today.get(Calendar.DAY_OF_YEAR);
+		
+		System.out.print("오늘은 연중 ");
+		System.out.print(week_yy+"주째고");
+		System.out.println(day_yy+"일째인");
+		
+		int year = today.get(Calendar.YEAR);//연도
+		int month = today.get(Calendar.MONTH)+1;//월  0~11 // 0부터 시작해서 1더해줘야함
+		int date = today.get(Calendar.DATE);//일
+		System.out.print(year +"년 "+ month + "월 " + date + "일 ");
+		
+		
+		int day = today.get(Calendar.DAY_OF_WEEK);//요일 1~7까지
+		String nday = "";//String값 초기화 해주어야함
+		switch(day) {
+		case 1: nday ="일"; break;
+		case 2: nday ="월"; break;
+		case 3: nday ="화"; break;
+		case 4: nday ="수"; break;
+		case 5: nday ="목"; break;
+		case 6: nday ="금"; break;
+		case 7: nday ="토"; break;
+		}
+		System.out.println(nday+"요일 ");
+		
+		int ampm = today.get(Calendar.AM_PM);//오전오후
+		int hour = today.get(Calendar.HOUR);//HOUR_DAY(24시 표기법)
+		int min = today.get(Calendar.MINUTE);//분
+		int sec = today.get(Calendar.SECOND);//초
+		//ampm이 Calenday.AM(오전)이라면 오전을 반환
+		String str = ampm == Calendar.AM ? "오전" : "오후";
+		System.out.println(str +" "+ hour + "시 " + min + "분 " + sec + "초 ");
+		System.out.println();
+		
+		
+		
+		
+		
+	}
+
+}
