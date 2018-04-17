@@ -1,0 +1,29 @@
+package com.d05.bank;
+
+import java.util.Scanner;
+
+public class BankMain {
+	public static void main(String[] args) {
+
+		Scanner input = new Scanner(System.in);
+
+		//계좌 생성
+		//계좌 정보입력
+		BankAccount ba = new BankAccount("110-254544-555", "6472", "김상필", 10000l);
+		ba.printAccount();
+		System.out.print("입금 : ");
+		long money = input.nextLong();
+		ba.deposit(money);
+		ba.printAccount();
+		//입금하기
+		//계좌 정보 출력
+		System.out.print("출금 : ");
+		money = input.nextLong();
+		//출금하기
+		//계좌 정보 출력
+		ba.withdraw(money);
+		ba.printAccount();
+
+		input.close();
+	}
+}
