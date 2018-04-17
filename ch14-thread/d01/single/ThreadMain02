@@ -1,0 +1,28 @@
+package com.d01.single;
+
+public class ThreadMain02 implements Runnable{
+
+	//Runnable 인터페이스의 추상메서드 구현
+	@Override
+	public void run() {
+		for(int i=0;i<10;i++) {
+			try {
+				//Thread메서드 라서 써줬음
+				//아까와는 다르게 Thread를 상속하지 않아서 써줬음
+				Thread.sleep(1000);//객체생성 안하고 바로 호출
+			} catch (InterruptedException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			System.out.println("스레드 이름 : " +
+					Thread.currentThread().getName() + ",temp value : " + i);
+		}
+	}
+	public static void main(String[] args) {
+		ThreadMain02 tm2 = new ThreadMain02();
+		//                   쓰레드 주소 // 쓰레드 이름
+		Thread td = new Thread(tm2,"두번 째");
+		td.start(); 
+	}
+
+}
