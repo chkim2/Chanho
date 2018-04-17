@@ -1,0 +1,43 @@
+package com.d07.poly;
+
+//부모 클래스
+class A{
+	public void make() {
+		System.out.println("make 메서드");
+	}
+}
+class B extends A{
+	public void play() {
+		System.out.println("play 메서드");
+	}
+}
+
+public class PolyMain02 {
+	
+	public static void main(String[] args) {
+		//전체 멤버 변수, 멤버 메서드를 호출
+		B bp = new B();
+		
+		bp.make();
+		bp.play();
+		
+		//부모 클래스의 멤버 필드와 멤버 메서드만 호출되게
+		System.out.println("===================");
+		A ap = bp;//자식 클래스 타입-> 부모 클래스 타입
+		          //업캐스팅, 자동적으로 형변환
+		ap.make();
+		//호출범위를 벗어나서 호출이 불가능합니다
+		//영역만 줄어든거임
+//		ap.play();
+		//원래 모두다 호출이 가능했지만 업캐스팅으로 인하여 할 수 없게됨
+		System.out.println("===================");
+		//전체 멤버 필드, 멤버 메서드를 호출
+		B bp2 = (B)ap;//부모클래스 타입 -> 자식 클래스 타입
+		              // 다운캐스팅, 명시적으로 형변환
+		
+		bp2.make();
+		bp2.play();
+		
+	}
+
+}
