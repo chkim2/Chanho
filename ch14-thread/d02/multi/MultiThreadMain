@@ -1,0 +1,38 @@
+package com.d02.multi;
+
+public class MultiThreadMain implements Runnable{
+	
+	@Override
+	public void run() {
+		for(int i=0;i<10;i++) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			System.out.println("스레드 이름 : " + 
+			Thread.currentThread().getName());
+		}
+	}
+	public static void main(String[] args) {
+		MultiThreadMain mt = new MultiThreadMain();
+		Thread t = new Thread(mt,"첫번 째****");
+		t.start();
+		try {
+			t.join();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		Thread t2 = new Thread(mt,"두번 째====");
+		t2.start();
+//		try {
+//			t2.join();
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+		Thread t3 = new Thread(mt,"세번 째++++");
+		t3.start();
+	}
+
+}
