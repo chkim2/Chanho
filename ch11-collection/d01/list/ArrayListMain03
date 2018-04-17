@@ -1,0 +1,39 @@
+package com.d01.list;
+
+import java.util.ArrayList;
+
+public class ArrayListMain03 {
+
+	public static void main(String[] args) {
+		//제네릭 표현
+		//객체를 생성할 때 객체의 저장할 수 있는 요소의 타입을 강요하는것
+		//         String만 저장하세요
+		ArrayList<String> list = new ArrayList<String>();
+		
+		//요소의 저장
+		list.add("강호동");//String
+		list.add("유재석");//String
+		//제네릭 표현을 이용해서 저장되는 요소의 타입을 String으로 지정했기 때문에
+		//Integer 객체를 저장 불가능
+		list.add("1000");//Integer
+		list.add("김병만");
+		
+		for(int i=0;i<list.size();i++) {
+			//제네릭 표현 사용시 타입지정 안해도 됨
+			String name = list.get(i);
+			System.out.println(name);
+		}
+//		int a = Integer.parseInt(list.get(2));
+//		System.out.println(a+a);
+		System.out.println("======================");
+		//확장 for문, 개선된 루프
+		//ArrayList에 첫번 째 인덱스부터 마지막 인데그 까지
+		//순차적으로 접근해서 요소를 호출하고 지정한 변수에 저장
+		// name : 요소가 저장되는 변수
+		//list : ArrayList
+		for(String name : list) {
+			System.out.println(name);
+		}
+		
+	}
+}
