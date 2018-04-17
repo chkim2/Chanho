@@ -1,0 +1,84 @@
+package com.d01.string;
+
+public class StringMain06 {
+	/*
+	 *[실습]대문자는 소문자로 바꾸고
+	 *소문자는 대문자로 바꿔서 출력 
+	 *toLowerCase
+	 *toUpperCase
+	 */
+	public static void main(String[] args) {
+		String str = "abcMDye-4W?EWzz";
+		String result = "";
+		
+		char[] array = str.toCharArray();
+		//배열에 나눠담았음 //문자로
+		for(int i=0;i<str.length();i++) {
+			if(array[i]>='a'&&array[i]<='z') {
+				//하지만 배열에있는 문자를 toUpperCase가 변경 못해줌
+				//그러므로 Chracter를 이용하여 문자열로 바꾼 후 변경
+				result += Character.toUpperCase(array[i]);
+				//문자하나씩을 result 값에 계속 추가해주기위해 +=씀
+			}else if(array[i]>='A'&&array[i]<='Z'){
+				result += Character.toLowerCase(array[i]);
+			}else {
+				result +=array[i]; 
+			}
+		}
+		System.out.println(result);
+		
+		//특수문자는 어찌됨?ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		
+//		for(int i=0;i<str.length();i++) {
+//			char c = str.charAt(i);
+//			if(c>=65&&c<=90) {
+//				result += String.valueOf(c).toLowerCase();
+//			}else if(c>=97&&c<=122) {
+//				result += String.valueOf(c).toUpperCase();
+//			}else {
+//				result += c;
+//			}
+//		}
+//		System.out.println(result);
+		System.out.println("=======================");
+		String result2 = "";
+		
+		//확장 for문
+		//array변수를 안만들고 바로 배열을 반환함
+		for(char c : str.toCharArray()) {//char cqnxj str 끝까지 루프 돌때
+			if(Character.isUpperCase(c)) {//만약에 c가 대문자면 true해라
+				result2 +=Character.toLowerCase(c);//그래서 result2에 값을 담음
+			}else {
+				result2 +=Character.toUpperCase(c);//여기에 맞으면 여기서 result2에 값을 담음
+			}
+		}
+		System.out.println(result2);//이후 출력
+	}
+}
+
+
+
+/*
+ * array배열에  split으로 나눈 값을 넣었음
+ * 
+ * 
+ * 
+ * 
+ * 
+ * String str = "abcMDye-4W?EWzz";
+		String result = "";
+		int inte;
+
+		char[] array = str.toCharArray();
+		for(int i=0;i<str.length();i++) {
+			String a = Character.toString(array[i]);
+
+			if(array[i]>='a' && array[i]<='z') {
+				result += a.toUpperCase();
+			}else{
+				result += a.toLowerCase();
+			}
+		}
+		System.out.println(result);
+ */
+
