@@ -1,0 +1,64 @@
+package com.d11.thistest;
+
+public class Score {
+	private String name;
+	private int kor;
+	private int eng; 
+	private int math;
+	
+	public Score(){}
+	
+	//인자있는 생성자 표시
+	public Score(String name, int kor, int eng, int math) {
+		this.name= name;
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+	}
+	//총점구하기(makeSum)
+	public int makeSum() {
+		return kor+eng+math;
+	}
+	//평균구하기(makeAvg)
+	public float makeAvg() {
+		return (float)makeSum()/3;
+	}
+	//등급구하기(makeGrade)
+	public String makeGrade() {
+		String grade;
+		if(makeAvg()>=90.0 && makeAvg()<=100.0) {grade="A";}
+		else if(makeAvg()>=80.0 && makeAvg()<=89.99) {grade="B";}
+		else if(makeAvg()>=70.0 && makeAvg()<=79.99) {grade="C";}
+		else if(makeAvg()>=60.0 && makeAvg()<=69.99) {grade="D";}
+		else if(makeAvg()>=0.0 && makeAvg()<=59.99) {grade="F";}
+		else {grade="등급 외 점수";}
+		return grade;
+	}
+	//setter,getter
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getKor() {
+		return kor;
+	}
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+	public int getEng() {
+		return eng;
+	}
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+	public int getMath() {
+		return math;
+	}
+	public void setMath(int math) {
+		this.math = math;
+	}
+
+	
+}
