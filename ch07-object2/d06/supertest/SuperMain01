@@ -1,0 +1,26 @@
+package com.d06.supertest;
+
+class Mother{
+	public String getLunch() {
+		return "밥";
+	}
+
+}
+class Daugter extends Mother{
+	//메서드 오버라이딩(메서드 재정의)
+	public String getLunch() {
+		return "빵";
+	}
+	public String getRice() {
+		return super.getLunch();//부모클래스에 있는 getLunch 값을 리턴하기로함
+//		                        //그냥 getLunch값을 리턴하게 된다면 빵이 나올꺼임//ㅇㅇ 맞음
+	}
+}
+public class SuperMain01 {
+	public static void main(String[] args) {
+		Daugter d =new Daugter();
+		System.out.println("딸은 "+d.getLunch() +"을 먹습니다.");
+		System.out.println("딸은 오늘은 왠지 "+d.getRice() +"이 먹고싶어졌습니다.");
+	}
+	
+}
