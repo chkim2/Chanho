@@ -1,0 +1,22 @@
+package com.d07.statictest;
+
+public class StaticMain03 {
+	//인스턴스 변수
+	String s1 ="서울";
+	//static 변수
+	static String s2 ="부산";
+	
+	//static 메서드
+	public static String getString() {
+		
+		
+		return s2;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getString());
+		//같은 static 클래스라서 클래스명인 StringMain03으로 호출 안해도 됨
+
+	}
+
+}
