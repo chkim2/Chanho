@@ -1,0 +1,29 @@
+package com.d01.single;
+
+public class ThreadMain03 implements Runnable{
+	
+	//Runnable의 추상메서드 구현
+	public void run() {
+		System.out.println("run 메서드, 스레드 이름 : " + Thread.currentThread().getName());
+	}
+	public static void main(String[] args) {
+		//main에서 사용하는 쓰레드
+		//Thread 이름 : main
+		//시스템에서 만들어준 Thread //main에서 자동으로 사용함
+		System.out.println("main 메서드, 스레드 이름 : " + Thread.currentThread().getName());
+		
+		//run 메서드가 구현된 객체를 Thread 객체에
+		//등록해서  Thread 객체의 start를 구동시킬 때
+		//등록된 ThreadMain03 객체의 run를 실행할 수 있게 처리
+		ThreadMain03 tm = new ThreadMain03();
+		Thread t = new Thread(tm,"run");
+		t.start();
+		
+		
+		
+		//둘다 동시에 작업하며 누가 먼저 끝나는지 알 수 없음
+		//현재 main과 run 두가지의 스레드 즉, 멀티로 사용중
+	}
+	
+
+}
