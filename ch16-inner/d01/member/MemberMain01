@@ -1,0 +1,30 @@
+package com.d01.member;
+
+
+class Outer{
+	int x = 100;
+	//멤버내부 클래스
+	class Inner{
+		int y = 200;
+	}
+}
+
+public class MemberMain01 {
+	public static void main(String[] args) {
+		Outer ot = new Outer();
+		System.out.println(ot);
+		System.out.println(ot.x);
+//		System.out.println(ot.y);현재 내부클래스 객체를 생성하지 못했기 때문에 쓸 수 없음
+//		멤버 내부클래스 객체 생성
+		Outer.Inner oi = ot.new Inner();
+//		내부클래스 주소가 따라옴//각각 다른객체임
+		System.out.println(oi);
+		System.out.println(oi.y);
+		
+		System.out.println("===========================");
+		System.out.println("x = " + ot.x);
+		System.out.println("y = " + oi.y);
+		
+	}
+
+}
