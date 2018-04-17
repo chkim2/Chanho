@@ -1,0 +1,41 @@
+package com.d02.exception;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+//이건 다른 클래스에서 넘겨받을 수 있게 해준것
+
+
+//사용자 정의 예외 클래스                                    이 친구 상속
+class MinusNumberException extends Exception{
+	//예외 문구를 저자하기 위해서 인자가 있는 생성자를 명시
+	public MinusNumberException(String str) {
+		super(str);//부모 크래스의 인자가 있는 생성자 호출
+	}
+}
+
+public class ExceptionMain03 {
+	
+	public static void main(String[] args) {
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(System.in));
+			
+			System.out.println("0 이상 입력");
+			int num = Integer.parseInt(br.readLine());
+			if(num<0) {
+				throw new MinusNumberException("음수는 입력할 수없습니다.");
+			}
+			System.out.println("입력한 숫자 : " + num);
+		} catch (MinusNumberException e) {
+
+			System.out.println(e.getMessage());
+			
+		}catch (Exception e) {
+			System.out.println("입력이 잘못되었습니다.");
+			// TODO: handle exception
+		}
+//		MinusNumberException mn = new MinusNumberException("A");
+	}
+
+}
