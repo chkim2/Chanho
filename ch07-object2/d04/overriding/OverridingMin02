@@ -1,0 +1,27 @@
+package com.d04.overriding;
+class People{
+	//메서드 오버라이딩(메서드 재정의)
+	//Object의 toString메서드를 재정의
+	public String toString() {
+		return "people";
+	}
+}
+class Animal extends People{
+	//메서드 오버라이딩(메서드 재정의)
+	//Object의 toString메서드를 재정의
+	public String toString() {
+		return "동물";
+	}
+}
+public class OverridingMin02 {
+
+	public static void main(String[] args) {
+		People p = new People();
+		System.out.println(p.toString());
+		Animal a = new Animal();
+		System.out.println(a.toString());
+	}
+
+
+}
+
