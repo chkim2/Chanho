@@ -1,0 +1,17 @@
+package com.d02.extend;
+//자식클래스
+public class FeaturePhone extends Phone{
+	private int pixel;
+
+	public FeaturePhone(String model, String number, String color, int pixel) {
+		this.model=model;
+		this.number=number;
+		this.color=color;
+		this.pixel=pixel;
+
+	}
+	public int getPixel() {
+		return pixel;
+	}
+
+}
