@@ -1,0 +1,24 @@
+package com.d04.Inter;
+
+interface A1{
+	//상수
+	 int W = 10;//원형
+	/* public static final */ int X = 20;
+	/* public final */static int Y = 30;
+	/* public static */final int Z = 40;
+	 
+}
+
+public class InterMain01 {
+	public static void main(String[] args) {
+//		A1 ap= new A1(); 인터페이스 객체 생성 불가능
+		
+		//상수는 값 변경 불가능
+		//A1.X = 200; // final 이라 그런가봄
+		System.out.println("W : "+ A1.W);//와우 편해
+		System.out.println("X : "+ A1.X);//와우 편해
+		System.out.println("Y : "+ A1.Y);//와우 편해
+		System.out.println("Z : "+ A1.Z);//와우 편해
+	}
+
+}
