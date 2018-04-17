@@ -1,0 +1,23 @@
+package com.d09.constructor;
+
+public class MyClassMain {
+
+	public static void main(String[] args) {
+		//객체 선언 및 생성
+		MyClass mc = new MyClass();
+		mc.setName("이상화");
+		mc.setAge(28);
+		
+		
+		System.out.println("이름 : "+mc.getName());
+		System.out.println("나이 : "+mc.getAge());
+		
+		System.out.println("---------------------");
+		
+		MyClass mc2 = new MyClass("김연아",27);
+		
+		System.out.println("이름 : "+mc2.getName());
+		System.out.println("나이 : "+mc2.getAge());
+	}
+
+}
