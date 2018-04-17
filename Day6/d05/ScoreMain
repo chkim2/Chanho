@@ -1,0 +1,93 @@
+package com.d05.instance;
+
+import java.util.Scanner;
+
+class Score{
+	//멤버 변수
+	String name;
+	int kor;
+	int eng;
+	int math;
+	
+	//멤버 메서드
+	//총점구하기(getSum)
+	public int getSum() {
+		int sum=0;
+		sum = kor+math+eng;
+		return sum;
+	}
+	
+	//평균 구하기(getAverage)
+	public float getAverage() {
+		float avg=0.0f;
+		avg = (float)getSum()/3;
+		return avg;
+	}
+	
+	//등급 구하기(getGrade)
+	public String getGrade() {
+		//지역변수 : 메서드 블럭, 제어문 블럭안에서 만들어진 변수
+		//메서드 실행이 종료되거나 제어문 실행이 종료되면 사라짐
+		String grade;
+		if(getAverage()>=90.0 && getAverage()<=100.0) {grade="A";}
+		else if(getAverage()>=80.0 && getAverage()<=89.0) {grade="B";}
+		else if(getAverage()>=70.0 && getAverage()<=79.0) {grade="C";}
+		else if(getAverage()>=60.0 && getAverage()<=69.0) {grade="D";}
+		else if(getAverage()>=0.0 && getAverage()<=59.0) {grade="F";}
+		else {grade="등급 외 점수";}
+		return grade;
+	}
+	
+	//출력용 메서드(printScore)
+	//이름,국어,수학,영어,총점,평균,등급
+	public void printScore() {
+		System.out.println("이름 : "+name);
+		System.out.print("국어 : "+kor);
+		System.out.print(", 수학 : "+math);
+		System.out.println(", 영어 : "+eng);
+		System.out.println("총점 : "+getSum());
+		System.out.printf("평균 : %.2f%n",getAverage());
+		System.out.println("등급 : "+getGrade());
+		
+	}
+	
+	//입력용 메서드(inputScore)
+	public void inputScore() {
+		Scanner input = new Scanner(System.in);
+		//이름 입력
+		System.out.print("이름을 입력하세요 : ");
+		name = input.next();
+		
+		//국어 입력
+		do {
+			System.out.print("국어 점수를 입력하세요 (0~100): ");
+			kor = input.nextInt();
+		}while(kor<0||kor>100);
+		
+		//수학 입력
+		do {
+			System.out.print("수학 점수를 입력하세요 (0~100): ");
+			math = input.nextInt();
+		}while(math<0||math>100);
+		
+		//영어 입력
+		do {
+			System.out.print("영어 점수를 입력하세요 (0~100): ");
+			eng = input.nextInt();
+		}while(eng<0||eng>100);
+		input.close();
+	}
+}
+
+public class ScoreMain {
+	public static void main(String[] args) {
+		Score s =  new Score();
+		//데이터 입력
+		s.inputScore();
+		System.out.println("=================");
+		//데이터 출력
+		s.printScore();
+		System.out.println("================");
+	}
+
+}
