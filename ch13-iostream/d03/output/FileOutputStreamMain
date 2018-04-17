@@ -1,0 +1,32 @@
+package com.d03.output;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+public class FileOutputStreamMain {
+	public static void main(String[] args) {
+		
+		FileOutputStream fos = null;
+		
+		try {
+			//파일생성
+			fos = new FileOutputStream("fileout.txt");
+			//이어쓰기                                              // 파일명 , 이어쓰기 여부
+//			fos = new FileOutputStream("fileout.txt",true);
+			//내용 기술
+			String message = "Hello File! 파일에 내용 기술"+"\n";
+			fos.write(message.getBytes());
+			//           String -> byte[]
+			System.out.println("파일을 생성하고 내용을 기술했습니다.");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			//파일 연동할 땐 자원정리를 위해서 무조건 써주세요
+			//하지만 콘솔에서 입력할 땐 생략할 수도 있습니다.
+			if(fos !=null) {try {fos.close();} catch (IOException e2) {}
+			}
+		}
+		
+	}
+
+}
