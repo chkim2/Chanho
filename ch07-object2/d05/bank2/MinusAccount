@@ -1,0 +1,49 @@
+package com.d05.bank2;
+
+import java.util.Scanner;
+
+public class MinusAccount extends BankAccount{
+	private long minusLimit;
+
+	public MinusAccount(String number, String password, String name, long balance,
+			long minusLimit) {
+		super(number,password,name,balance);
+		this.minusLimit = minusLimit;
+	}
+	//메서드 오버라이딩(메서드 재정의)
+	//출금하기
+	@Override
+	public void withdraw(long balance) {
+		Scanner scan = new Scanner(System.in);
+		//0보다 큰 값만 출금 가능
+		if(balance <= 0) {
+			System.out.println("0보다 크게 입력해야 합니다.");
+			return;
+		}
+		//잔고가 출금을 원하는 금액 미만이면 출금 불가능
+		//"잔액이 부족합니다."
+		if(this.balance < balance && this.minusLimit<-(this.balance-balance)) {
+			System.out.println("");
+				System.out.println("한도초과입니다");
+				return;
+			}
+			
+		//잔고가 출금을 원하는 금액 이상이면 출금가능
+		//차감
+		this.balance -= balance;
+		System.out.println("출금이 완료되었습니다.");
+	}
+	@Override
+	public void printAccount() {
+		//일반 계좌번호, 비밀번호, 예금주, 계좌잔고
+		//(마이너스)계좌번호, 비밀번호, 예금주, 계좌잔액, 한도
+		//마이너스한도
+		System.out.println("================");
+		System.out.println("(마이너스)계좌번호: " + number);
+		System.out.println("비밀번호: " + password);
+		System.out.println("예금주: " + name);
+		System.out.printf("계좌잔액: %,d원%n", balance);
+		System.out.printf("계좌한도: %,d원%n", this.minusLimit);
+		System.out.println("================");
+	}
+}
