@@ -1,0 +1,45 @@
+package com.d03.map;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+public class HashMapMain02 {
+	public static void main(String[] args) {
+		
+//		String[] msg = {"Berlin","Paris","Seoul","NewYork","London"};
+		
+		HashMap<Integer,String> map = new HashMap<Integer,String>();
+		
+		map.put(0, "Berlin");
+		map.put(1, "Paris");
+		map.put(2, "Seoul");
+		map.put(3, "NewYork");
+		map.put(4, "London");
+		
+		//반복문을 이용해서 배열의 요소를  HashMap에 저장
+//		for(int i=0;i<msg.length;i++) {
+//			//HashMap에 저장
+//			map.put(i,msg[i]);
+//		}
+		//key,value의 쌍으로 저장된 데이터의 목록
+//		System.out.println(map);
+		
+//		System.out.println("=====================");
+		
+		//key 구하기
+//		Set<Integer> s = map.keySet();
+//		Iterator<Integer> keys = s.iterator();	
+//		>>두개를 하나로 합침
+//		                                             주소를 만드는 친구
+		Iterator<Integer> keys = map.keySet().iterator();
+//		key값이 있으면 true >> 없으면 false를 반환하여 while문을 돌림
+		while(keys.hasNext()) {//key가 있는지 없는지 검증
+			Integer key = keys.next();//key 반환
+//			                                value 구하기
+			System.out.println(key + "="+map.get(key));
+		}
+		
+	}
+
+}
