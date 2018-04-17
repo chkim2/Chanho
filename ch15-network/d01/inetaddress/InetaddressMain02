@@ -1,0 +1,48 @@
+package com.d01.inetaddess;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+
+public class InetaddressMain02 {
+	public static void main(String[] args) {
+		BufferedReader br = null;
+		InetAddress[] addresses;
+		String url = null;
+
+		try {
+			br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("웹사이트 주소 입력 : ");
+			url = br.readLine();
+
+			//해당 도메인과 매핑되어 있는 모든 주소 정보를 구함 >>배열로
+			addresses = InetAddress.getAllByName(url);
+
+			for(int i=0;i<addresses.length;i++) {
+				System.out.print("호스트 이름  : " + addresses[i].getHostName());
+				System.out.println(", IP주소 : " + addresses[i].getHostAddress());
+			}
+		} catch (UnknownHostException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			if(br != null) {
+				try {
+					br.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+		}
+
+
+	}
+}
+//뭐가 안
+//컴퓨터가 안된다고 하면
