@@ -1,0 +1,44 @@
+package com.d06.inter;
+
+
+//class에 부모클래스를 선언하는것보다
+//interface를 선언하여 공통으로 가져다가 쓰는게 훨씬 간편하다
+//그래서 많이씀
+interface Inter1{
+	//추상메서드
+	public abstract int getA();
+	
+}
+class InterEx implements Inter1{
+	//인터페이스 Inter1의 추상메서드 getA를 구현
+	@Override
+	public int getA() {
+		return 10;
+	}
+	public int getB() {
+		return 20;
+	}
+}
+
+
+public class InterMain01 {
+	public static void main(String[] args) {
+		InterEx in = new InterEx();
+		System.out.println(in.getA());
+		System.out.println(in.getB());
+		
+		Inter1 it = in;//클래스 타입 ->인터페이스 타입
+		               // 자동적으로 형변환
+		               //업캐스팅
+		
+		System.out.println(it.getA());
+//		System.out.println(it.getB());
+		
+		InterEx in2 = (InterEx)it;//인터페이스타입 -> 클래스타입으로명시적 형변환
+		                          // 다운캐스팅
+		System.out.println(in2.getA());
+		System.out.println(in2.getB());
+		
+		
+	}
+}
