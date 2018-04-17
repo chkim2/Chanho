@@ -1,0 +1,22 @@
+package com.d03.packtwo;
+import com.d03.packone.People;
+class Student extends People{
+	public void print() {
+		//System.out.println("a = "+ a);//private, 같은 클래스가 아님.
+		//System.out.println("b = "+ b);//default,같은 패키지가아님.
+		System.out.println("c = " + c);//protected, 같은 패키지가 아니지만 상속관계 이기때문에 호출 가능
+		System.out.println("d = " + d);//public, 접근 제한이 없음
+	}
+}
+public class AccessMain02{
+
+	public static void main(String[] args) {
+		Student s = new Student();
+		//System.out.println("a = "+ s.a);//private, 같은 클래스가 아님.
+		//System.out.println("b = "+ s.b);//default, 같은 패키지가아님.
+		//System.out.println("c = " + s.c);//protected, 같은 패키지도 아니고 상속관계도 아님
+		System.out.println("d = " + s.d);//public, 접근 제한이 없음
+
+	}
+
+}
