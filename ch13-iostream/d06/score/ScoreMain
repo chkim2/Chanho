@@ -1,0 +1,113 @@
+package com.d06.score;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class ScoreMain {
+	private BufferedReader br;
+	private BufferedWriter bw;
+	private FileReader fr;//파일 읽기
+	private FileWriter fw;//파일 쓰기
+	private ArrayList<Score>  scoreList;
+
+
+	public ScoreMain() {
+		br = new BufferedReader(new InputStreamReader(System.in));
+		scoreList = new ArrayList<Score>();
+	}
+	public void callMenu() throws IOException{
+		while(true) {
+			try {
+				System.out.print("1.성적 입력,2.내용출력,3.종료");
+				int num = Integer.parseInt(br.readLine());
+				if(num ==1) {
+					//성적입력
+					input();
+				}else if(num == 2) {
+					//내용출력
+					output();
+				}else if(num == 3){
+					System.out.println("종료");
+					System.exit(0);;
+				}else {
+					System.out.println("잘못 입력했습니다.");
+				}
+			} catch (NumberFormatException e) {
+				// TODO: handle exception
+				System.out.println("숫자만 허용");
+			}
+		}
+	}
+	public void input() throws IOException {
+		try {
+			Score soc = new Score();
+			System.out.println("이름 입력 : " );
+			soc.setName(br.readLine());
+			System.out.println("국어 성적 입력  : " );
+			soc.setKorean(Integer.parseInt(br.readLine()));
+			System.out.println("영어 성적 입력 : ");
+			soc.setEnglish(Integer.parseInt(br.readLine()));
+			System.out.println("수학 성적 입력 : ");
+			soc.setMath(Integer.parseInt(br.readLine()));
+
+			scoreList.add(soc);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void output() {
+		//콘솔에 출력
+		//파일을 생성해서 파일에 출력
+
+		for(int i=0;i<scoreList.size();i++) {
+
+			Score so = scoreList.get(i);
+			System.out.println("이름 : "+"\t"+"국어 : "+
+					"\t"+"영어 : "+"\t"+"수학 : "+"\t"+"총점 : "+"\t"+"평균 : "+"\t"+"등급 : ");
+			System.out.println(so.getName() +"\t"+so.getKorean()+
+					"\t"+so.getEnglish()+"\t"+so.getMath()+"\t"+so.makeSum()
+					+"\t"+so.makeAvg()+"\t"+so.makeGrade());
+
+			try {
+				fw = new FileWriter("good.txt");
+				bw = new BufferedWriter(fw);
+
+				bw.write("이름\t국어\t영어\t수학\t총점\t평균\t\t등급\n");
+				bw.write(String.format("%s\t",so.getName()));
+				bw.write(String.format("%d\t", so.getKorean()));
+				bw.write(String.format("%d\t", so.getEnglish()));
+				bw.write(String.format("%d\t", so.getMath()));
+				bw.write(String.format("%d\t", so.makeSum()));
+				bw.write(String.format("%.2f\t", so.makeAvg()));//공백 덕문에 자동으로 문자열로 형변환
+				bw.write(String.format("%s\t", so.makeGrade()));
+				System.out.println("저장 완료");
+				bw.flush();
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+
+
+
+		}
+	}
+	public static void main(String[] args) {
+		ScoreMain sm = new ScoreMain();
+		try {
+			sm.callMenu();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+
+
+	}
+
+}
