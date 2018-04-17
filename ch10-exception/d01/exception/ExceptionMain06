@@ -1,0 +1,46 @@
+package com.d01.exception;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ExceptionMain06 {
+	
+	//try~catch~finally 활용
+	
+	public static void main(String[] args) {
+	
+		BufferedReader br = null;
+		FileReader fr = null;
+		
+		try {
+			fr = new FileReader("test.txt");
+			br = new BufferedReader(fr);
+			String line = null;
+			while((line = br.readLine()) !=null) {
+				System.out.println(line);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("예외 발생");
+		}finally {
+			//자원 정리
+			//br 객체가 있다면? br.close 해라
+			if(br !=null)
+				try {
+					br.close();
+				}catch (Exception e2) {
+					// TODO: handle exception
+					
+				}
+			if(fr != null) {
+				try {
+					fr.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		}
+	}
+
+}
