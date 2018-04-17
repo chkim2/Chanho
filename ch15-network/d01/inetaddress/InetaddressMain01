@@ -1,0 +1,55 @@
+package com.d01.inetaddess;
+
+import java.io.*;
+import java.net.*;
+public class InetaddressMain01 {
+	
+	public static void main(String[] args) {
+		BufferedReader br = null;
+		InetAddress iaddr = null;
+		String url = null;
+		
+		try {
+			br = new BufferedReader(new InputStreamReader(System.in));
+			
+			System.out.println("웹사이트 주소 입력");
+			url = br.readLine();
+			
+			//static 메서드
+			iaddr = InetAddress.getByName(url);
+			//호스트의 이름 알아와라
+			System.out.println("호스트 이름 : " + iaddr.getHostName());
+			//호스트 IP 알아와라
+			System.out.println("호스트 IP주소 : " + iaddr.getHostAddress());
+			
+			//(로컬 호스트)사용자 컴퓨터의 IP주소
+			System.out.println("===============================");
+			
+			iaddr = InetAddress.getLocalHost();
+			System.out.println("로컬 호스트 이름 : " + iaddr.getHostName());
+			System.out.println("로컬 호스트 IP : " + iaddr.getHostAddress());
+			
+			
+			//도메인을 잘못 입력한 경우
+		} catch (UnknownHostException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			
+		}catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			if(br !=null) {
+				try {
+					br.close();
+				} catch (IOException e2) {
+					// TODO: handle exception
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+}
