@@ -1,0 +1,30 @@
+package com.d01.display;
+
+import java.awt.Button;
+import java.awt.Frame;
+
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
+public class FrameMain01 extends Frame{
+	
+	public FrameMain01(){
+		//제목 설정
+		super("Frame테스트");
+		//넓이, 높이, 설정
+		setSize(500,500);
+		//Frame 노출 여부 지정
+//		setVisible(true);
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		//생성자 한번만 호출하기 때문에 변수를 생성하지않습니다.
+		new FrameMain01();
+		
+		
+		
+		
+	}
+
+}
