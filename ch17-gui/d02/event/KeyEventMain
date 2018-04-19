@@ -1,0 +1,64 @@
+package com.d02.event;
+
+import java.awt.Frame;
+import java.awt.TextArea;
+import java.awt.event.*;
+public class KeyEventMain extends Frame implements KeyListener{
+	
+	TextArea ta = new TextArea();
+	
+	
+	public KeyEventMain() {
+		//제목설정
+		super("KeyEvent Test");
+		
+		//Frame에 TextArea 등록
+		add(ta);
+		
+		//x,y,width,height 지정
+		setBounds(300, 300, 300, 300);
+		
+		//Frame 노출 여부 지정
+		setVisible(true);
+		
+		//이벤트 소스와 이벤트 리스너를 연결
+		ta.addKeyListener(this);
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {//눌렀을 때
+		// TODO Auto-generated method stub
+		if(e.getKeyCode()==KeyEvent.VK_UP) {
+			ta.append("Up key\n");
+			
+		}
+		//상수값과 getKeycode 값이 같으면 문자열 반환
+		if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+			ta.append("Down key\n");
+		}
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			ta.append("Right key\n");
+		}
+		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+			ta.append("Left key\n");
+		}
+		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+			ta.append("Enter key\n");
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {//
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {//눌럿다가 
+		// TODO Auto-generated method stub
+		
+	}
+	//사용하지 않더라도 삭제할 수 없음
+	// 이 친구들은 다 추상메서드임
+	public static void main(String[] args) {
+		new KeyEventMain();
+	}
+}
