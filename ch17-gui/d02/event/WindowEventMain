@@ -1,0 +1,67 @@
+package com.d02.event;
+
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+
+
+public class WindowEventMain extends Frame implements WindowListener{
+	Label label;
+	
+	public WindowEventMain() {
+
+		//제목 설정
+		super("WindowEvent Test");
+		//Label 객체 생성
+		label = new Label("Please press exit button");
+		
+		//Frame에 Label 등록
+		//Panel이 아닌 Frame자체에 등록
+		add(label);
+		
+		//x, y, width, height
+		setBounds(300,300,200,200);
+		//Frame 노출 여부
+		setVisible(true);	
+		
+		//이벤트 소스와 이벤트 리스너를 연결한다.
+		addWindowListener(this);
+	}
+	@Override
+	public void windowClosing(WindowEvent e) {
+		//x버튼 > 종료처리
+		System.exit(0);
+	}
+	@Override
+	public void windowActivated(WindowEvent e) {
+		//활성화시 작동
+	}
+	@Override
+	public void windowClosed(WindowEvent e) {
+		//x버튼 > 종료처리 > 완전히 조료되기 직전 처리
+	}
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		//비활성화시 작동
+	}
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		//2. 원래대로 돌아오는거
+	}
+	@Override
+	public void windowIconified(WindowEvent e) {
+		//1. 최소화 시 동작함
+	}
+	@Override
+	public void windowOpened(WindowEvent e) {
+		//실행시 동작
+	}
+	
+	
+	public static void main(String[] args) {
+		new WindowEventMain();
+	}
+}
