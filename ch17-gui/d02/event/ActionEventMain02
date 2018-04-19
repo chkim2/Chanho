@@ -1,0 +1,66 @@
+package com.d02.event;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
+public class ActionEventMain02 extends Frame implements
+ActionListener{
+
+	/*
+	 * [실습] 구구단 처리
+	 * 
+	 */
+	TextField text = new TextField(10);//한줄만 입력가능
+	TextArea ta = new TextArea();
+	Button btn = new Button("Dan");
+	Panel p1 = new Panel();
+	
+	public ActionEventMain02(){
+		//제목설정
+		super("99");
+		
+		btn.addActionListener(this);
+		//TextField를 Panel에 등록
+		p1.add(text);
+		//Button을 Panel에 등록
+		p1.add(btn);
+		
+		//Panel을 Frame에 등록
+		add(p1,BorderLayout.NORTH);
+		//TextArea를 Frame에 등록
+		add(ta,BorderLayout.CENTER);
+		
+		//x,y,width,height
+		setBounds(300,300,400,250);
+		//Frame 노출여부 지정
+		setVisible(true);
+	}
+	@Override
+	//문자열로 입력받아서 숫자로 바꿔서 연산 후 문자열로 넘긴다?
+	//5 * 1 = 5
+	public void actionPerformed(ActionEvent e) {
+		//TextField에 입력한 데이터를 String 타입으로 반환
+		String dan = text.getText();//몇단으로 할지 입력받는 값
+		
+		int num = Integer.parseInt(dan);//dan 형변환
+//		ta.append(dan + "단\n");//이전 텍스트에 붙여넣기
+		ta.setText(dan + "단\n");//이전 텍스트를 초기화 후 다시 셋팅
+		for(int i=1;i<10;i++) {
+			int num2 = num*i; //dan과 i 곱한 값
+			String dan2 = String.valueOf(num2);//곱한값의 형변환
+			ta.append(dan+" * "+i+" = "+dan2+"\n");//출력
+		}
+		//TextField를 초기화할 때
+		text.setText("");
+		//TextFiedl에 커서를 둠
+		text.requestFocus();
+	}
+	public static void main(String[] args) {
+		new ActionEventMain02();	
+		
+	}
+	
+}
