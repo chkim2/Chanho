@@ -1,0 +1,36 @@
+package com.d05.display;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+
+
+public class JPanelMain extends JFrame{
+	
+	public JPanelMain(){
+		//제목 설정
+		super("JPanel Test");
+		//JButton 객체 생성
+		JButton button = new JButton("로그인");
+		//JPanel 객체 생성
+		JPanel jp = new JPanel();
+		//JPanel에 JButton 등록
+		jp.add(button);
+		
+		//JFrame에 JPanel 등록
+		add(jp);
+		
+		//x,y,width,height;
+		setBounds(100,100,500,200);
+		//Frame 노출 여부 지정
+		setVisible(true);
+		//x버튼 종료 처리
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	
+	public static void main(String[] args) {
+		new JPanelMain();
+	}
+
+}
