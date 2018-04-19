@@ -1,0 +1,69 @@
+package com.d02.event;
+
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Point;
+import java.awt.event.*;
+public class MouseEventMain extends Frame 
+implements ActionListener,MouseMotionListener{
+	Label move = new Label("Mouse",Label.CENTER);
+	Button exit = new Button("exit");
+	
+	public MouseEventMain() {//가운데정렬
+		
+		//제목
+		super("MouseEvent Test");
+		
+		//컴포넌트를 마우스 커서의 좌표를 부여해서
+		//해당 좌표로 이동시키면 Layout을 사용하지 않고
+		//좌표를 설정해서 위치를 부여해야함
+		//레이아웃 설정 취소
+		setLayout(null);
+		
+		//레이블 좌표 지정        x   y width  height
+		move.setBounds(100,50,150,20);
+		//버튼의 좌표지정
+		exit.setBounds(250,500,50,30);
+		
+		//레이블의 글자색과 배경색 지정
+		move.setForeground(Color.lightGray);
+		move.setBackground(Color.BLACK);
+		
+		//Frame에 Label등록
+		add(move);
+		//Frame에 Button 등록
+		add(exit);
+		
+		//x,y,width,height
+		setBounds(300,100,500,600);
+		//Frame 노출여부 지정
+		setVisible(true);
+		
+		exit.addActionListener(this);
+		//이벤트소스가 Frame이라서 그냥 add
+		addMouseMotionListener(this);
+		
+	}
+	public static void main(String[] args) {
+		new MouseEventMain();
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.exit(0);
+	}
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		//마우스 커서의 좌표
+		Point p = e.getPoint();//Point 객체는 x,y좌표값을 가지고 있음
+		//마우스 커서의 좌표 정보를 갖고잇는 Point 객체를 Label에 셋팅
+		move.setLocation(p);
+//		exit.setLocation(p);
+	}
+
+}
