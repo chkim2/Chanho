@@ -1,0 +1,129 @@
+package com.d04.inner;
+
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+/*
+ * 처음엔 내부클래스로 변경하는 작업 후 > 익명내부클래스로 변경하는 작업을 한번 더 했음(윈도우x창만)
+ */
+
+public class AdapterMain extends Frame implements ActionListener{
+	
+	Panel p1, p2, p3;
+	TextField tf;
+	TextArea ta;
+	Button b1,b2;
+	
+	public AdapterMain() {
+		//제목 설정
+		super("Adapter 테스트");
+		
+		p1 = new Panel();
+		p2 = new Panel();
+		p3 = new Panel();
+		
+		tf = new TextField(35);
+		               // 높이,넓이
+		ta = new TextArea(10,35);
+		
+		b1 = new Button("Clear");
+		b2 = new Button("Exit");
+		
+		//Panel에 TextField 등록
+		p1.add(tf);
+		//Panel에 TextArea 등록
+		p2.add(ta);
+		//Panel에 버튼 등록
+		p3.add(b1);
+		p3.add(b2);
+		
+		//Frame에 패널 등록
+		add(p1,BorderLayout.NORTH);
+		add(p2,BorderLayout.CENTER);
+		add(p3,BorderLayout.SOUTH);
+		
+		//x,y,width,height 지정
+		setBounds(300,200,300,300);
+		
+		//Frame 노출여부 지정
+		setVisible(true);
+		
+		//이벤트 소스와 이벤트 리스너 연결
+		b2.addActionListener(this); 
+		b1.addActionListener(this);
+		//값 넘겨주면 객체에 접속해서  사용가능
+		tf.addKeyListener(new KeyEventhandler(/*tf,ta 내부클래스로 옮기기 전 사용했음*/));
+		//익명내부클래스 형태로 표시
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				//프로그램 종료
+				System.exit(0);
+			}
+		});//Frame에서 가져옴
+	}
+	
+	//멤버 내부클래스
+	//KeyEvent 처리하는 클래스
+	class KeyEventhandler extends KeyAdapter{
+		//1. 주소를 받아서 멤버변수에 보관
+//		TextField tf;
+//		TextArea ta;
+//		//2. 생성자에 데이터 입력
+//		public KeyEventhandler(TextField tf, TextArea ta) {
+//			this.tf = tf;
+//			this.ta = ta;
+//		}
+		//내가 입력한인 getKeyChar가 Enter면 TextArea에다가 TextField의 값을 더해라
+		@Override
+		public void keyTyped(KeyEvent e) {
+			if(e.getKeyChar()==KeyEvent.VK_ENTER) {
+				//TextField에 입력한 데이터를
+				//TextArea에 추가
+				ta.append(tf.getText()+"\n");
+				//TextField 초기화
+				tf.setText("");
+			}
+		}
+	}
+//	class WindowEventHandler extends WindowAdapter{
+//		//x버튼 종료처리
+//		@Override
+//		//<<초록색 세모 //재정의 잘됐다는 표시
+//		public void windowClosing(WindowEvent e) {
+//			System.exit(0);
+//		}
+//	}
+	//이벤트 핸들러
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//프로그램 종료
+		String name = e.getActionCommand();
+		if(name.equals("Clear")) {
+			tf.setText("");
+			ta.setText("");
+			tf.requestFocus();//TextField에 커서를 둠
+		}
+		if(name.equals("Exit")) {
+			System.exit(0);
+		}
+	}
+	public static void main(String[] args) {
+		new AdapterMain();
+	}
+}
+//WindowEvent를 처리하는 별도의 클래스  // 얘가 리스너 기능을 가짐
+
+
+
+
