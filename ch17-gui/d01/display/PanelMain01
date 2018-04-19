@@ -1,0 +1,38 @@
+package com.d01.display;
+
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.Panel;
+
+public class PanelMain01 extends Frame{
+	
+	public PanelMain01() {
+		
+		//Panel 객체 생성
+		Panel p = new Panel();
+		//Button 객체 생성
+		Button b = new Button("OK");
+		
+		//Panel에 Button 등록
+		p.add(b);
+		//Frame에 Panel 등록
+		add(p);
+
+		//사이즈
+		setSize(300,200);
+		//노출여부
+		setVisible(true);
+	}
+	
+	
+	public static void main(String[] args) {
+		new PanelMain01();
+	}
+
+}
+/*
+ * Frame 생성
+ * Panel 생성
+ * Componant 추가
+*
+*/
