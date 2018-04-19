@@ -1,0 +1,31 @@
+package com.d05.display;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class JButtonMain extends JFrame{
+	
+	
+	public JButtonMain() {
+		//제목 설정
+		super("JButton Test");
+		
+		//JButton 객체 새성
+		JButton button = new JButton("로그인");
+		
+		//JFrame에 JButton 등록
+		add(button);
+		
+		//x,y,width,height // setLocation setSize 합친게 setBounds
+		setBounds(100,100,500,200);
+		//Frame 노출여부 지정
+		setVisible(true);
+		//x버튼 종료 처리
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public static void main(String[] args) {
+		new JButtonMain();
+	}
+
+}
