@@ -1,0 +1,98 @@
+package com.d02.event;
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
+
+public class ActionEventMain03 extends Frame implements
+ActionListener{
+	/*
+	 * [실습]계산기 만들기
+	 */
+	TextField text1 = new TextField(10);//숫자1을받음
+	TextField text2 = new TextField(10);//숫자2를받음
+	Label result = new Label("=");//화면에 문자를 표시할 때 쓴다(Label)
+	Button btnAdd =new Button("+");
+	Button btnSub = new Button("-");
+	Button btnMulti  = new Button("*");
+	Button btnDiv = new Button("/");
+	Panel p1 = new Panel();
+	Panel p2 = new Panel();
+
+	public ActionEventMain03() {
+		//제목 설정
+		super("Calculator");
+		
+		//이벤트 소스와 이벤트 리스너가 구현된 객체 연결
+		btnAdd.addActionListener(this);
+		btnSub.addActionListener(this);
+		btnMulti.addActionListener(this);
+		btnDiv.addActionListener(this);
+		
+		//TextField를 Panel에 등록
+		p1.add(text1);
+		p1.add(text2);//p1이라는 패널에 text1,2 등록
+		
+		//Button을 Panel에 등록
+		p2.add(btnAdd);
+		p2.add(btnSub);
+		p2.add(btnMulti);
+		p2.add(btnDiv);
+		
+		//Panel을 Frame에 등록
+		//p1은 상단에 p2는 하단에
+		add(p1,BorderLayout.NORTH);
+		add(p2,BorderLayout.SOUTH);
+		add(result,BorderLayout.CENTER);
+		
+		//x,y,width,height
+		setBounds(300,300,400,200);
+		//Frame 노출여부	
+		setVisible(true);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//첫번째 숫자(text1.getText());
+		String first = text1.getText();
+		//두번째 숫자(text2.getText());
+		String second = text2.getText();
+		//연산의 결과값은(result.setText)
+		//결과값 : 8
+		//나누기의 경우 0으로 나눌경우 메세지(0으로 나눌 수 없음)
+		int num1 = Integer.parseInt(first);
+		int num2 = Integer.parseInt(second);
+		String num3 = null;
+		//조건체크 더하기, 빼기, 곱하기, 나누기
+		String name = e.getActionCommand();
+		if(name.equals("+")) {
+			//+가 붙은순간 최종적으로 문자열로 반환하기 때문에
+			//String.valueof 필요없음
+			//단 연산을 잘 확인해주어야함
+			result.setText("Result : "+(num1+num2));
+		}else if(name.equals("-")) {
+			result.setText("Result : "+(num1-num2));
+		}else if(name.equals("*")) {
+			if(num1<=0||num2<=0) {
+				result.setText("0은 입력할 수 없습니다.");
+			}else {
+				result.setText("Result : "+(num1*num2));
+			}
+		}else if(name.equals("/")){
+			if(num2==0) {
+				result.setText("0으로 나눌 수 없습니다.");
+			}else {
+				result.setText("Result : "+(num1/num2));
+			}
+		}
+		result.requestFocus();
+	}
+	public static void main(String[] args) {
+		new ActionEventMain03();//객체 생성//GUI소환
+	}
+}
