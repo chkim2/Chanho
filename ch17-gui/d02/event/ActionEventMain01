@@ -1,0 +1,83 @@
+package com.d02.event;
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.*;
+
+public class ActionEventMain01 extends Frame 
+implements ActionListener{
+	/*
+	 * 이벤트 처리 순서
+	 * 1.이벤트 리스너를 구현
+	 * 2.이벤트 리스너에 포함된 이벤트 핸들러(추상메서드)를 구현
+	 * 3.이벤트 소스와 이벤트 리스너를 구현한 객체를 연결
+	 * 
+	 * 이벤트 동작
+	 * 이벤트 소스 -> 이벤트발생 -> 이벤트 리스너가 감지 ->이벤트 핸들러 호출
+	 * 
+	 */
+	
+	Panel p;
+	Button input, exit;
+	TextArea ta;
+	
+	public ActionEventMain01() {
+		//제목 설정
+		super("ActionEvent 테스트");
+		
+		p = new Panel();
+		
+		//이벤트 소스
+		input = new Button("Input");
+		exit = new Button("Exit");
+		ta = new TextArea();
+		//이벤트 소스와 이벤트리스너를 연결시켜주어야 한다
+		//이벤트 소스에서 발생한 이벤트를 이벤트 리스너가 감지해서
+		//이벤트 핸들러를 호출한다
+		input.addActionListener(this);
+		exit.addActionListener(this);
+		//this >> ActionEventMain01
+		
+		//Button을 Panel에 등록
+		p.add(input);
+		p.add(exit);
+
+		
+		//Panel을 Frame에 등록
+		add(p,BorderLayout.NORTH);
+		//TextArea를 Frame에 등록
+		add(ta,BorderLayout.CENTER);
+		
+		//위치 지정
+		//        x   y     width height
+		setBounds(100,300,300,200);
+		
+		//Frame 노출여부 지정
+		setVisible(true);
+	}
+	//이벤트 핸들러
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//이벤트가 발생한 소스에 레이블(문자열)을 반환
+		String name = e.getActionCommand();
+		if(name.equals("Input")) {
+			ta.append("버튼을 눌렀군요!\n");
+		}else {
+			//프로그램 종료
+			System.exit(0);
+		}
+	}
+	
+	public static void main(String[] args) {
+		new ActionEventMain01();
+	}
+
+
+	
+
+}
