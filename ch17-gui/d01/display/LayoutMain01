@@ -1,0 +1,47 @@
+package com.d01.display;
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.Panel;
+
+public class LayoutMain01 extends Frame{
+	
+	public LayoutMain01() {
+		//제목
+		super("BorderLayout 테스트");
+		
+		//BorderLayout이 대중적임****************	
+		
+		//Panel 생성
+		Panel p = new Panel();
+		//버튼 생성
+		Button north = new Button("North");
+		Button south = new Button("South");
+		Button east = new Button("East");
+		Button west = new Button("West");
+		Button center = new Button("Center");
+		
+		//Button을 Panel에 등록
+		p.add(center);
+		
+		//Button을 Frame에 등록할 때 보여질 위치를 지정
+		add(north,BorderLayout.NORTH);
+		add(south,BorderLayout.SOUTH);
+		add(east,BorderLayout.EAST);
+		add(west,BorderLayout.WEST);
+		//Panel을 frame에 등록
+		//Center 고정
+		add(p,BorderLayout.CENTER);
+		
+		//width, height 지정
+		setSize(200, 200);
+		//Frame 노출 여부 지정
+		setVisible(true);
+	}
+	
+	
+	public static void main(String[] args) {
+		new LayoutMain01();
+	}
+}
