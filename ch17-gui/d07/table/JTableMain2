@@ -1,0 +1,72 @@
+package com.d07.table;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+
+public class JTableMain02 extends JFrame{
+
+	JTable table;
+	JTableModel model;//사용자 모델정의 클래스
+	
+	public JTableMain02() {
+		super("JTable 테스트");
+		
+		//JTableModel 객체 생성
+		model = new JTableModel();
+		//JTable 객체를 생성하면서 JTableModel 정보를 등록
+		table = new JTable(model);
+		add(new JScrollPane(table));//스크롤 처리
+		
+		//x,y,width,height
+		setBounds(200,200,300,300);
+		//JFrame 노출 여부
+		setVisible(true);
+		
+		//x버튼 종료 처리
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	public static void main(String[] args) {
+		new JTableMain02();
+	}
+}//end of class
+class JTableModel extends AbstractTableModel{
+	
+	//JTable에 표시될 데이터
+	Object[][] data = {
+			{"dragon","홍길동","1234","학생"},
+			{"sky","박명수","1234","군인"},
+			{"blue","노홍철","1234","공무원"},
+			{"one","유재석","1234","경찰"}
+			
+	};
+	//열 이름 지정
+	String[] name = {"아이디","이름","비밀번호","구분"};
+	
+	//테이블의 타이틀명 부여
+	@Override
+	public String getColumnName(int c) {//필수는 아님
+		return name[c];
+	}
+	//테이블 편집이 가능하게 처리
+	//열 번호 0 : 편집 불가능, 나머지는 편집 가능
+	@Override
+	public boolean isCellEditable(int r, int c) {
+		return (c !=0 ) ? true : false;
+	}
+	@Override
+	public int getColumnCount() {//테이블의 열의 수[필수]
+		return name.length;
+	}
+	@Override
+	public int getRowCount() {//테이블의 행의 수[필수]
+		return data.length;
+	}
+	//JTable에 표시하고 싶은 데이터를 반화[필수]
+	//데이터가 들어잇는 Object 2차원 배열에서 데이터를 읽어서 반환
+	@Override
+	public Object getValueAt(int r,int c) {
+		return data[r][c];
+	}
+}
