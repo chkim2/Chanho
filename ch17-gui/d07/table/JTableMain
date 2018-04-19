@@ -1,0 +1,45 @@
+package com.d07.table;
+
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+public class JTableMain extends JFrame{
+
+	public JTableMain() {
+		//제목 설정
+		super("JTable 테스트");
+		
+		//처음 생성할 땐 2차원배열로
+		//추가할 땐 1차원배열가능
+		
+		//1.테이블의 각 셀에 들어갈 내용을 2차원 배열에 넣는것
+		//                    사번             이름         직급       ?       이메일
+		Object[][] data = {//4행 5열에 2차원 배열
+				{"100-1234","홍길동","차장",10,"test1@naver.com"},
+				{"100-1233","김유신","주임",11,"test2@naver.com"},
+				{"100-1232","이순신","사원",12,"test3@naver.com"},
+				{"100-1231","장영실","대리",13,"test4@naver.com"}	
+		};
+		//2.테이블의 열 이름이 드러갈 내욜을 일차원 배열에 넣는다.
+		String[] columnName = {"사번","이름","직책","부서","메일"};
+		//3.JTable 객체 생성
+		//JTable만 썼을 때 데이터량이 많아지게 되면 안보일 수 있어서 스크롤을 만들어줍니다.
+		                        //
+		JTable table = new JTable(data,columnName);
+		//JFrame에 스크롤 처리된 JTable 등록
+		add(new JScrollPane(table),BorderLayout.CENTER);
+		
+		//x,y,width,height
+		setBounds(200,200,500,200);
+		//JFrame 노출 여부 지정
+		setVisible(true);
+		//x버튼 종료 처리
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public static void main(String[] args) {
+		new JTableMain();
+	}
+}
