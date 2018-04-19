@@ -1,0 +1,89 @@
+package com.d02.event;
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Checkbox;
+import java.awt.Frame;
+import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+public class ItemEventMain extends Frame implements 
+ActionListener,ItemListener{
+
+	Panel p1 = new Panel();
+	Panel p2 = new Panel();
+	TextArea ta = new TextArea();
+	Button exit = new Button("exit");
+	Checkbox cb1 = new Checkbox("chook");
+	Checkbox cb2 = new Checkbox("nong");
+	Checkbox cb3 = new Checkbox("ya");
+	Checkbox cb4 = new Checkbox("bae");
+	
+	
+	public ItemEventMain() {
+		super("ItemEvent Test");
+
+		p1.add(cb1);
+		p1.add(cb2);
+		p1.add(cb3);
+		p1.add(cb4);
+		//Panel에 Checkbox 등록 
+		p2.add(exit);
+		
+		//Frame에 Panel 등록
+		add(p1,BorderLayout.NORTH);
+		add(p2,BorderLayout.SOUTH);
+		
+		//Frame에 TextArea등록
+		add(ta,BorderLayout.CENTER);
+		
+		//x,y,width,heigth
+		setBounds(300,300,300,300);
+		//Frame노출 여부
+		setVisible(true);
+		
+		//이벤트 소스와 리스너를 연결
+		exit.addActionListener(this);
+		cb1.addItemListener(this);
+		cb2.addItemListener(this);
+		cb3.addItemListener(this);
+		cb4.addItemListener(this);
+		
+	}
+	
+	//이벤트 핸들러
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		//프로그램 종료
+		System.exit(0);;
+	}
+	//아이템 리스너
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
+		//                            아이템을 선택했을 때
+		if(e.getStateChange()==ItemEvent.SELECTED) {
+			//Checkbox 선택
+		//                                     아이템선택을 해제했을 때
+			ta.append(e.getItem()+"을 선택\n\n");
+		}else if(e.getStateChange()==ItemEvent.DESELECTED){
+			//Checkbox 해제
+			ta.append(e.getItem()+"을 취소\n\n");
+		}
+		
+		
+	}
+	public static void main(String[] args) {
+		new ItemEventMain();
+	}
+
+	
+
+
+	
+	
+}
