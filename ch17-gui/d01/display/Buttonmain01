@@ -1,0 +1,30 @@
+package com.d01.display;
+
+import java.awt.Button;
+import java.awt.Frame;
+
+public class ButtonMain01 extends Frame{
+	
+	public ButtonMain01() {
+		//제목 설정
+		super("Button test");
+		//width, height 설정
+		setSize(500,500);
+		//노출여부 지정
+		setVisible(true);
+		
+		//Button 생성
+		Button b = new Button("OK");
+		
+		//Frame에 Button 등록
+		add(b);
+		
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		new ButtonMain01();
+	}
+
+}
