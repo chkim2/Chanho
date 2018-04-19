@@ -1,0 +1,46 @@
+package com.d06.layout;
+
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+public class BorderLayoutMain extends JFrame{
+	
+	public BorderLayoutMain() {
+		//제목 설정
+		super("레이아웃 테스트");
+		//JButton 생성
+		JButton north = new JButton("north");
+		JButton south = new JButton("south");
+		JButton east = new JButton("east");
+		JButton west = new JButton("west");
+		JButton center = new JButton("center");
+		
+		//JPanel에 JButton 등록
+		JPanel p = new JPanel();
+		p.add(center);
+		
+		
+		//JFrame에 Jbutton을 등록
+		add(north,BorderLayout.NORTH);
+		add(south,BorderLayout.SOUTH);
+		add(east,BorderLayout.EAST);
+		add(west,BorderLayout.WEST);
+		//JFrame에 JPanel 등록
+		//패널에 담앗으니 패널 변수를 지정해서 BorderLayout에 담아야 하느니라
+		add(p,BorderLayout.CENTER);
+		
+		
+		//x,y,width,height 지정
+		setBounds(100,100,500,200);
+		//JFrame 노출여부 지정
+		setVisible(true);
+		//x버튼 종료처리
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public static void main(String[] args) {
+		new BorderLayoutMain();
+	}
+
+}
