@@ -1,0 +1,28 @@
+package com.d05.display;
+
+import javax.swing.JFrame;
+
+
+public class JFrameMain extends JFrame{
+	
+	public JFrameMain() {
+		//제목 설정
+		super("JFrame 테스트");
+		
+		//          x , y
+		setLocation(100,200);
+		//       width,height
+		setSize(500,200);
+		
+		//JFrame 노출 여부 지정
+		setVisible(true);
+		
+		//x 버튼  클릭시 종료 처리//스윙을 다룰경우 필수적으로 사용
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public static void main(String[] args) {
+		new JFrameMain();
+		
+	}
+}
