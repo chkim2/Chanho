@@ -1,0 +1,147 @@
+package com.d08.event;
+
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+//성정 관리 프로그램을 JFrame을 이용하여 만들어봅시다
+public class ScoreMain extends JFrame implements ActionListener{
+	JTable table;
+	JTextField text1,text2,text3,text4;//국어,영어,수학,과학
+	JButton button1,button2;
+	
+	public ScoreMain() {
+		//제목설정
+		super("성적관리 프로그램");
+		
+		Container contentPane = getContentPane();
+		
+		//열이름
+		String colNames[] = {"이름","국어","영어","수학","총점","평균","등급"};
+		
+		//DafaultTableModel 객체 생성//뒤에 {}있으면 100% 익명내부클래스 
+		//                                              열이름 , 행번호
+		DefaultTableModel model = new DefaultTableModel(colNames,0) {
+			//테이블 편집가능 여부 설정
+			@Override
+			public boolean isCellEditable(int r,int c) {
+				return false;
+			}
+		};
+		//JTable 객체 생성하면 DefaultTableModel 객체 셋팅
+		table = new JTable(model);
+		//Container에 JScrollPane형식으로 JTable 등록 // 센터에다가 등록합니다
+		contentPane.add(new JScrollPane(table),BorderLayout.CENTER);
+		
+		//JPanel 객체 생성
+		JPanel panel = new JPanel();
+		//JTextField 객체 생성
+		text1 = new JTextField(4);
+		text2 = new JTextField(3);
+		text3 = new JTextField(3);
+		text4 = new JTextField(3);
+		
+		//JButton 객체 생성
+		button1 = new JButton("추가");
+		button2 = new JButton("삭제");
+		//JPanel에 JLabel 추가
+		panel.add(new JLabel("이름"));
+		panel.add(text1);
+		panel.add(new JLabel("국어"));
+		panel.add(text2);
+		panel.add(new JLabel("영어"));
+		panel.add(text3);
+		panel.add(new JLabel("수학"));
+		panel.add(text4);
+		panel.add(button1);
+		panel.add(button2);
+		
+		//Container에 Panel 등록
+		contentPane.add(panel,BorderLayout.SOUTH);
+		
+		//x,y
+		setLocation(500,400);
+		//width,height 지정하지 않고 자동적으로  width,height 지정
+		pack();
+		//JFrame의 노출여부 지정
+		setVisible(true);
+		//x버튼 활성화
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//이벤트소스와 이벤트리스너를 연결
+		button1.addActionListener(this);
+		button2.addActionListener(this);
+	}
+	
+	public static void main(String[] args) {
+		new ScoreMain();
+	}
+
+	//이벤트 핸들러
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object ob = e.getSource();
+		if(ob == button1) {//추가
+			String name = text1.getText();
+			int korean = Integer.parseInt(text2.getText());
+			int english = Integer.parseInt(text3.getText());
+			int math = Integer.parseInt(text4.getText());
+			
+			//총점
+			int sum = korean + english + math;
+			//평균
+			int avg = sum / 3;
+			//등급
+			String grade;
+			switch(avg / 10) {
+			case 10:
+			case 9: grade = "A";break;
+			case 8: grade = "B";break;
+			case 7: grade = "C";break;
+			case 6: grade = "D";break;
+			default: grade = "F";
+			}
+			//JTable에 데이터 셋팅     //int -> String 으로 자등으로 형변화
+			Object data[] = {name,korean,english,math,sum,avg,grade};
+			
+			//JTable에 데이터 셋팅을 위한 DafaultTableModel 객체를 반환
+			//table.getModel은 무조건 부모타입으로 반환해주어야한다.
+			DefaultTableModel model = (DefaultTableModel)table.getModel();
+			//데이터 추가
+			//Object배열을 DafaultTableModel 객체에 등록하는것
+			model.addRow(data); //하나의 배열만 추가 가능함 // 데이터 저장은 Object형식으로 해야돼서 배열을 Object로 만들었음
+			//JTextField 초기화
+			//이후 커서를 text1에 둔다.
+			text1.setText("");
+			text2.setText("");
+			text3.setText("");
+			text4.setText("");
+			text1.requestFocus();
+		}else if(ob == button2){//삭제
+			//JTable에서 선택한 행을  반환하는 메소드
+			int row = table.getSelectedRow();//선택하지 않으면 -1 반환
+			if(row == -1) {//선택한 행이 없는 경우 빠져나감
+				
+				return;
+			}
+			DefaultTableModel model = (DefaultTableModel)table.getModel();
+			//행 번호를 전달해서 해당 행을 삭제
+			model.removeRow(row);
+			
+		}
+		
+	}
+
+}
