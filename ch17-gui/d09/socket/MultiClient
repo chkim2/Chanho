@@ -1,0 +1,210 @@
+package com.d09.socket;
+
+import java.net.Socket;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
+
+
+
+public class MultiClient extends JFrame implements ActionListener{
+	private Socket socket;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+	private JTextField jtf;
+	private JTextArea jta;
+	private JLabel jlb1,jlb2;
+	private JPanel jp1,jp2;
+	private String ip;
+	private String id;
+	private JButton jbtn;
+	
+	public MultiClient(String ip,String id) {
+		//제목 설정
+		super("Multi Chatting");
+		this.ip = ip;
+		this.id = id;
+		
+		jtf = new JTextField(30);
+		              //default 데이터, 높이, 넓이
+		jta = new JTextArea("",10,50);
+		jlb1 = new JLabel("사용 ID : [ " +id+"]");
+		jlb2 = new JLabel("사용 IP : [ " +ip+"]");
+		jbtn = new JButton("종료");
+		
+		jp1 = new JPanel();
+		jp2 = new JPanel();
+		
+		//JTextArea의 배경색 지정
+		jta.setBackground(Color.PINK);
+		
+		//JPanel의 Layout 지정
+		jp1.setLayout(new BorderLayout());
+		jp2.setLayout(new BorderLayout());
+		
+		//JPanel에 JButton 등록
+		jp1.add(jbtn,BorderLayout.EAST);
+		//JPanel에 JTextField 등록
+		jp1.add(jtf,BorderLayout.CENTER);
+		//JPanel에 JLabel 등록
+		jp2.add(jlb1,BorderLayout.CENTER);
+		jp2.add(jlb2,BorderLayout.EAST);
+		
+		//JFrame에 JPanel을 등록
+		add(jp1,BorderLayout.SOUTH);
+		add(jp2,BorderLayout.NORTH);
+		
+		//JTextArea 스크롤 처리 // 대상자, 스크롤 방향(위아래 좌우 다해준듯)
+		JScrollPane jsp = new JScrollPane(jta,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS
+				,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		//JFrame JTextArea에 스크롤 처리가 되어서 JScrollPane 등록
+		add(jsp,BorderLayout.CENTER);
+		//JTextArea 편집 불가능
+		jta.setEditable(false);
+		
+		//이벤트 소스와 이벤트 리스너 연결
+		jtf.addActionListener(this);
+		jbtn.addActionListener(this);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {                 //이친구의 id값을 가져와야함
+					//서버에 종료 메세지 전송
+					//this -> 익명객체
+					//MultiClient.this -> MultiClient객채를 의미
+					oos.writeObject(MultiClient.this.id+"#exit");
+				} catch (IOException e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
+				//프로그램 종료
+				System.exit(0);
+			}
+			
+		});
+		
+		
+		//실행되는 윈도우 창의 위치가 스크린 중앙에 놓여지게 처리
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		//스크린 크기를 읽어옴
+		Dimension d = tk.getScreenSize();
+		int screenwidth = d.width;//높이
+		int screenheight = d.height;//넓이
+		
+		//JFrame 사이즈를 지정하지 않으면 컴포넌트의 크기를 계산해서 자동으로 넓이와 높이를 지정
+		pack();
+		//getWidth() : JFrame의 넓이 반환
+		//getheight() : JFrame 높이 반환
+		setLocation((screenwidth - getWidth())/2,
+				(screenheight - getHeight())/2);
+		
+		//JFrame의 사이즈 변경 불가
+		setResizable(false);
+		//JFrame의 노출 여부 지정
+		setVisible(true);
+		
+		
+	}
+	
+	//종료처리
+	public void exit() {
+		System.exit(0);
+	}
+	//입력 스트림 반환
+	public ObjectInputStream getOis() {
+		return ois;
+	}
+	
+	//JTextArea를 반환
+	public JTextArea getjta() {
+		return jta;
+	}
+	
+	//id 반환
+	public String getId() {
+		return id;
+	}
+	public void init() throws IOException{
+		//소켓 객체를 생성 //생성시 서버와 연결
+		socket = new Socket(ip,5000);
+		System.out.println("Connected..");
+		//서버에 전송할 객체를 생성 // 스트림 처리할 것
+		oos = new ObjectOutputStream(socket.getOutputStream());
+		//서버로부터 전달받은 데이터를 처리(입력할 객체)
+		ois = new ObjectInputStream(socket.getInputStream());
+		//데이터 처리를 위한 스레드 생성
+		MultiClientThread ct = new MultiClientThread(this);
+		ct.start();
+		
+		
+	}
+	public MultiClient() {
+	}
+	
+	
+	//이벤트 핸들러
+	@Override
+	public void actionPerformed(ActionEvent e){
+		// TODO Auto-generated method stub
+		//이벤트가 발생한 객체를 반환
+		Object obj = e.getSource();
+		if(obj == jtf) {
+			//JTextField에서 입력한 데이터 읽기
+			String msg = jtf.getText();
+			//데이터가 없거나 데이터길이가 0 이면 경고창
+			if(msg == null||msg.length()==0) {
+				JOptionPane.showMessageDialog(this, "글을 쓰세요","경고",JOptionPane.WARNING_MESSAGE);
+			}else {
+				//데이터를 입력했을 경우
+				try {
+					//데이터를 서버로 전송
+					oos.writeObject(id+"#"+msg);
+				} catch (IOException e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
+				jtf.setText("");
+			}
+		}else if(obj == jbtn){
+			try {
+				//서버에 종료 메세지 전송
+				oos.writeObject(id+"#exit");
+//				jtf.setText("");
+			} catch (IOException e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+			System.exit(0);
+		}
+	}
+	public static void main(String[] args) {
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		MultiClient cc = 
+		new MultiClient("192.168.10.3","♥현기공㈜♥");
+		try {
+			cc.init();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+}
