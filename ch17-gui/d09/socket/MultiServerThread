@@ -1,0 +1,51 @@
+package com.d09.socket;
+
+import java.net.*;
+import java.io.*;
+public class MultiServerThread implements Runnable{
+    private Socket socket;
+    private MultiServer ms;
+    private ObjectInputStream ois;
+    private ObjectOutputStream oos;
+    public MultiServerThread(MultiServer ms){
+        this.ms = ms;
+    }
+    public synchronized void run(){//동시에 여러 개의 스레드가 진입하지 못하도록 동기화
+        boolean isStop = false;
+        try{
+            socket = ms.getSocket();
+            ois = new ObjectInputStream(socket.getInputStream());
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            String message = null;
+            while(!isStop){
+                message = (String)ois.readObject();
+                String[] str = message.split("#");
+                if(str[1].equals("exit")){
+                    broadCasting(message);
+                    isStop = true;
+                }else{
+                    broadCasting(message);
+                }
+            }
+            ms.getList().remove(this);
+            System.out.println(socket.getInetAddress()+
+                    "���������� �����ϼ̽��ϴ�");
+            System.out.println("list size : "+ms.getList().size());
+        }catch(Exception e){
+            ms.getList().remove(this);
+            System.out.println(socket.getInetAddress()+
+                    "������������ �����ϼ̽��ϴ�");
+            System.out.println("list size : "+ms.getList().size());
+        }
+    }
+    public void broadCasting(String message)throws IOException{
+    	//ArrayList에 등록되어 있는 모든 클라이언트 정보를 호출해서 모든 클라이언트에게 메세지 전송
+        for(MultiServerThread ct : ms.getList()){
+           ct.send(message);
+        }
+    }
+    public void send(String message)throws IOException{
+    	//클라이언트에게 데이터 전송
+        oos.writeObject(message);        
+    }
+}
