@@ -1,0 +1,43 @@
+package com.d09.socket;
+
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+
+public class MultiServer {
+	private ArrayList<MultiServerThread> list;
+	private Socket socket;
+	public MultiServer() throws IOException{
+		list = new ArrayList<MultiServerThread>();
+		ServerSocket serverSocket = new ServerSocket(5000);
+		MultiServerThread mst = null;
+		boolean isStop = false;
+		while(!isStop){
+			System.out.println("Server ready ....");
+			//클라이언트의 진입을 기다림
+			//클라이언트가 진입하면 Socket 객체가 생성됨
+			socket = serverSocket.accept();
+			//클라이언트와 통신하기 위해서 run메서드를 가지고 있는 객체를 생성하고
+			//Socket 정보를 보관하기 위해서 MultiServer객체를 등록함
+			mst = new MultiServerThread(this);
+			//스레드를 ArrayList에 저장
+			list.add(mst);
+			//스레드를 생성하고 run메서드 호출
+			Thread t = new Thread(mst);
+			t.start();
+		}
+	}
+	public ArrayList<MultiServerThread> getList(){
+		return list;
+	}
+	public Socket getSocket(){
+		return socket;
+	}
+	public static void main(String[] args) throws IOException{
+		new MultiServer();
+
+	}
+
+}
