@@ -1,0 +1,191 @@
+package com.d08.event;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+
+public class Calculator extends JFrame implements ActionListener{
+	JButton button1,button2;//연산/취소
+	JTextField text1,text2,text3;
+	JComboBox<String> combo;
+	JPanel p1,p2;
+	int num1,num2,num3,res;
+	String t1,t2,com;
+	
+	public Calculator() {
+		super("계산기");
+		
+		
+		
+		//컴포넌트를 등록할 수 있는 Container 사용
+		Container contentPane = getContentPane();
+		
+		//JPanel 객체 생성
+		p1 = new JPanel();
+		p2 = new JPanel();
+		
+		//JTextFiedl 객체 생성
+		text1 = new JTextField(5);//첫번 째 숫자 입력
+		text2 = new JTextField(5);
+		text3 = new JTextField(5);
+		
+		//연산자 표시//스트링 배열로 소모값에 넣어줄거임
+		String[] op = {"+","-","*","/"};
+		//그럼 이 콤보박스가 표시해줄것
+		combo = new JComboBox<String>(op);
+		
+		//JPanel에 JTextField를 등록하려고 함
+		p1.add(text1);
+		//JPanel에 JComboBox를 등록하려고 함
+		p1.add(combo);
+		//JPanel에 JtextField2를 등록
+		p1.add(text2);
+		//JPanel에 JLabel를 객체 생성해서 등록
+		p1.add(new JLabel("="));
+		//JPanel에 JtextField를 등록
+		p1.add(text3);
+		
+		//합계가 보여지는 JTextField에 입력 불가 처리
+		//결과값은 수정할 수 없게끔 만든것
+		text3.setEditable(false);
+		
+		button1 = new JButton("확인");
+		button2 = new JButton("취소");
+		
+		//JPanel2에 JButton을 등록
+		p2.add(button1);
+		p2.add(button2);
+		
+		//Container에 JPanel을 등록하려고 합니다.
+		contentPane.add(p1,BorderLayout.NORTH);
+		contentPane.add(p2,BorderLayout.CENTER);
+		
+		//이벤트 소스와 이벤트 리스너 연결
+		button1.addActionListener(this);
+		button2.addActionListener(this);
+		//x,y 지정
+		setLocation(500,400);
+		//width,height를 지정하지 않고 컴포넌트의 넓이와 
+		//높이를 자동으로 인식해서 자연스럽게 윈도우 창이
+		//만들어지도록 넓이와 높이를 표시해주는 역할
+		pack();
+		
+		//JFrame 노출 여부 지정
+		setVisible(true);
+		//x버튼 종료 처리
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+//		String name = e.getActionCommand();
+//		if(name.equals("취소")) {
+//			System.exit(0);
+//		}
+		//이벤트가 발생한 객체를 반환해줌
+		Object obj = e.getSource();
+		if(obj==button1) {//확인//연산하는 버튼이라고함ㅇㅇ
+			//연산 작업
+			//첫번 째
+			t1 = text1.getText();
+			t2 = text2.getText();
+			//getSelectedItem이 반환시 Object로 반환하기 때문에 강제로 형변환 해주어야함
+			com = (String)combo.getSelectedItem();
+			
+			if(isDigit(t1,text1)) {//숫자만 입력
+				num1 = Integer.parseInt(t1);
+			}else {//문자 포함
+				return;//메서드 종료
+			}
+			if(isDigit(t2,text2)) {
+				num2 = Integer.parseInt(t2);
+				doCalc();
+			}
+			num1 = Integer.parseInt(t1);
+			num2 = Integer.parseInt(t2);
+			doCalc();
+		}else if(obj==button2) {//취소
+			//JTextField 초기화
+			text1.setText("");
+			text2.setText("");
+			text3.setText("");
+		}else {
+			
+		}
+	}
+	//문자가 포함되어 있는지 체크
+//	private boolean isDigit(String value,JTextField text) {
+//		boolean f = true;
+//		if("".equals(value)) {
+//			f = false;
+//			showErrorMsg(text,"숫자를 입력하세요");
+//		}else {
+//			for(int i=0;i<value.length();i++) {
+//				char result = value.charAt(i);
+//				if(i==0 && result == '-') {
+//					//첫번 째 문자가 음수이면 체크하지 않는다
+//					continue;
+//				}
+//				if(result<48||result>57) {
+//					f = false;
+//					showErrorMsg(text,"숫자를 입력하세요");
+//				}
+//			}
+//		}
+//		return f;
+//	}
+	private boolean isDigit(String value,JTextField text) {
+		boolean f = true;
+		try {
+			Integer.parseInt(value);
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
+			f = false;
+			showErrorMsg(text,"숫자를 입력하세요");
+		}
+		return f;
+	}
+	//연산 수행
+	private void doCalc() {
+		try {
+			switch(com) {
+			case "+" : res = num1+num2;break;
+			case "-" : res = num1-num2;break;
+			case "*" : res = num1*num2;break;
+			case "/" : res = num1/num2;break;
+			}
+			text3.setText(res+"");//String.valueof(res)
+		} catch (ArithmeticException e) {
+			// TODO: handle exception
+			showErrorMsg(text2,"0으로 나눌 순 없죠");
+		}
+	}
+	//경고창 띄우기
+	private void showErrorMsg(JTextField text,String str) {
+		
+		text1.requestFocus();
+//		text1.setText("");
+		text2.setText("");//JTextField 초기화
+		//에러 발생시 합계를 초기화
+		text3.setText("");
+		JOptionPane.showMessageDialog(this, str,"에러메세지",JOptionPane.ERROR_MESSAGE);
+		text2.requestFocus();
+//		text1.requestFocus();
+		//                        부모컴포넌트 /메세지/메세지 타이틀 // 에러메세지 타입
+	}
+	public static void main(String[] args) {
+		//룩앤필 디자인 적용
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		new Calculator();
+	}
+}
