@@ -1,0 +1,55 @@
+package com.d09.socket;
+
+import javax.swing.JFrame;
+
+public class MultiClientThread extends Thread{
+	
+	private MultiClient mc;
+	public MultiClientThread(MultiClient mc) {
+		// TODO Auto-generated constructor stub
+		this.mc = mc;
+	}
+
+	//start하면 run 실행되니까 run 재정의
+	@Override
+	public void run() {
+		
+		String message = null;
+		String[] receivedMsg = null;
+		boolean isStop = false;
+		while(!isStop) {
+			try {
+				//서버에서 보내온 데이터
+				message = (String)mc.getOis().readObject();
+				//인덱스 0 <- ID, 인덱스 1 <- 문자열(데이터)
+				receivedMsg = message.split("#");
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				isStop = true;
+			}
+			System.out.println(receivedMsg[0]);
+			System.out.println(receivedMsg[1]);
+			if(receivedMsg[1].equals("exit")) {
+				//종료 메세지
+				if(receivedMsg[0].equals(mc.getId())) {
+					//내가 종료되는 경우
+					mc.exit();
+				}else {//타인이 종료하는 경우
+					mc.getjta().append(receivedMsg[0]+"님이 종료하셨습니다."+
+				System.getProperty("line.separator"));
+					//JTextArea에 데이터의 끝부분에
+					//커서가 위치하게 커서의 위치를 조정
+					//             커서  
+					mc.getjta().setCaretPosition(mc.getjta().getDocument().getLength());
+				}
+			}else {//일반데이터
+				mc.getjta().append(receivedMsg[0]+":"+receivedMsg[1]
+						+System.getProperty("line.separator"));
+				mc.getjta().setCaretPosition(mc.getjta().getDocument().getLength());
+			}
+		}
+	}
+	
+
+}
