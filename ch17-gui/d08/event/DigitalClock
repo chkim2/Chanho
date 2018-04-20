@@ -1,0 +1,67 @@
+package com.d08.event;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.util.Calendar;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class DigitalClock extends JFrame implements Runnable{
+
+	private Thread thread;
+	private JLabel label;
+	private JPanel panel;
+	
+	
+	public DigitalClock() {
+		//제목 설정
+		super("시계");
+		
+		//Panel 객체 생성
+		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		
+		//JLabel 객체 생성
+		label = new JLabel();
+		label.setFont(new Font("궁서", Font.PLAIN, 20));
+		
+		//JPanel에 JLabel 등록
+		panel.add(label);
+		//JFrame에 JPanel 등록
+		add(panel);
+		
+		//Thread 생성
+		if(thread == null) {
+			thread = new Thread(this);
+			//DigitalClock -> Runnable이 implements된 객체(this)
+			thread.start();
+		}
+		
+		//x,y,width,height
+		setBounds(100,100,400,100);
+		//Frame 노출 여부
+		setVisible(true);
+		//x버튼 종료 처리 
+		setDefaultCloseOperation(EXIT_ON_CLOSE);	
+	}
+	public void run() {
+		while(true) {
+			//달력 만들 때 이용해야함 >> Calendar
+			Calendar cal = Calendar.getInstance();
+			String now = cal.get(Calendar.YEAR)+"년"
+			            +(cal.get(Calendar.MONTH)+1+"월")+
+			            (cal.get(Calendar.DATE)+"일")+
+			            (cal.get(Calendar.HOUR_OF_DAY)+"시")+
+			            (cal.get(Calendar.MINUTE)+"분")+
+			            (cal.get(Calendar.SECOND)+"초");
+			//현재 연월일 시분초를 읽어들여서
+			//JLabel에 셋팅
+			label.setText(now);
+			
+		}
+	}
+	public static void main(String[] args) {
+		new DigitalClock();
+	}
+}
